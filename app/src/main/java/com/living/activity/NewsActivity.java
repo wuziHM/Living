@@ -44,6 +44,7 @@ public class NewsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete() {
                         Log.i("tobin", "onComplete");
+
                     }
 
                     @Override
