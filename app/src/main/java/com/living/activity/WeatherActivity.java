@@ -27,8 +27,6 @@ public class WeatherActivity extends AppCompatActivity {
             }
         });
 
-        String dd= "";
-
 
 
     }
