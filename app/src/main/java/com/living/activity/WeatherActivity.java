@@ -26,6 +26,7 @@ public class WeatherActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
 }
