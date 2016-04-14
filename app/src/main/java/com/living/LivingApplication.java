@@ -13,6 +13,6 @@ public class LivingApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ApiStoreSDK.init(this, "7f95bf87342d58243e5a5ce0bfda6b1b");
+        ApiStoreSDK.init(this, "10cf56b74c39366d6b202a57428dbb6b");
     }
 }
