@@ -100,7 +100,7 @@ public class LivingRequest<T> extends Request<T> {
             mParam = new TreeMap<>();
         }
 //      /*  mParam.put("clientInfo", PhoneInformation.getInstance().getClientJsonString());
-      /*  mParam.put("ts", System.currentTimeMillis() + "");
+        /*  mParam.put("ts", System.currentTimeMillis() + "");
         mParam.put("signature", Md5Util.getMD5Str(UrlUtil.getSignatureParams((TreeMap) mParam)));*/
         return mParam;
     }

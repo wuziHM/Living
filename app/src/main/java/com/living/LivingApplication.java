@@ -5,7 +5,7 @@ import android.app.Application;
 import com.baidu.apistore.sdk.ApiStoreSDK;
 
 /**
- * Created by work on 2016/4/14.
+ * Created by Tobin on 2016/4/14.
  */
 public class LivingApplication extends Application {
 
