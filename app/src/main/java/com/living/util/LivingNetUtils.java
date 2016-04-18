@@ -18,8 +18,8 @@ import java.util.TreeMap;
 public class LivingNetUtils {
     private static final String URL_BASE = "http://58.252.5.166:10008";
     private static final String URL_NEWS_CHANNEL = "http://apis.baidu.com/showapi_open_bus/channel_news/channel_news";
-    private static final String URL_WEAHTER = "http://apis.baidu.com/heweather/weather/free";
-//    private static final String URL_WEAHTER = "http://apis.baidu.com/heweather/weather/free?city=beijing";
+//    private static final String URL_WEAHTER = "http://apis.baidu.com/heweather/weather/free";
+    private static final String URL_WEAHTER = "http://apis.baidu.com/heweather/weather/free?city=beijing";
     public static final String APIKEY = "66c809c8b137a8f9968fd5fb9a27ca9e";
 /*
 
