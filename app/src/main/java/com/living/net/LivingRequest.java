@@ -1,7 +1,5 @@
 package com.living.net;
 
-import android.util.Log;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -10,6 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
+import com.living.util.LogUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -42,6 +41,12 @@ public class LivingRequest<T> extends Request<T> {
         this.mParam = mParam;
     }
 
+    public LivingRequest(int method, String url, Class<T> clazz, Listener<T> listener,
+                         Response.ErrorListener errorListener, Map<String, String> mParam) {
+        this(method, url, clazz, listener, errorListener);
+        this.mParam = mParam;
+    }
+
 
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
@@ -49,7 +54,8 @@ public class LivingRequest<T> extends Request<T> {
             //得到返回数据
             String jsonString = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers));
-            Log.v("request", "tobin " + jsonString);
+//            Log.v("request", "tobin " + jsonString);
+            LogUtil.e("返回结果:" + jsonString);
             // 转化成对象返回
             return Response.success(mGson.fromJson(jsonString, mClass),
                     HttpHeaderParser.parseCacheHeaders(response));
