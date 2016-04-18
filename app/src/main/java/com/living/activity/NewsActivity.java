@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.baidu.apistore.sdk.ApiCallBack;
 import com.baidu.apistore.sdk.ApiStoreSDK;
 import com.baidu.apistore.sdk.network.Parameters;
 
 import com.living.R;
 import com.living.bean.NewsChannelBean;
+import com.living.net.VolleySingleton;
+import com.living.util.LivingNetUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,73 +35,73 @@ public class NewsActivity extends AppCompatActivity {
     //新闻频道查询
     private void getChannelNews() {
 
-        Parameters para = new Parameters();
-        para.put("apikey", ApiStoreSDK.getAppKey());
-        ApiStoreSDK.execute("http://apis.baidu.com/showapi_open_bus/channel_news/channel_news",
-                ApiStoreSDK.GET,
-                para,
-                new ApiCallBack() {
-                    @Override
-                    public void onSuccess(int status, String responseString) {
-                        Log.i("tobin", "onSuccess" + responseString);
-                        jsonResult(responseString);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.i("tobin", "onComplete");
-
-                    }
-
-                    @Override
-                    public void onError(int status, String responseString, Exception e) {
-                        Log.i("tobin", "onError, status: " + status);
-                        Log.i("tobin", "errMsg: " + (e == null ? "" : e.getMessage()));
-                    }
-                }
-        );
-
-//        LivingNetUtils.getChannelNew(new Response.Listener<NewsChannelBean>() {
-//            @Override
-//            public void onResponse(NewsChannelBean response) {
+//        Parameters para = new Parameters();
+//        para.put("apikey", ApiStoreSDK.getAppKey());
+//        ApiStoreSDK.execute("http://apis.baidu.com/showapi_open_bus/channel_news/channel_news",
+//                ApiStoreSDK.GET,
+//                para,
+//                new ApiCallBack() {
+//                    @Override
+//                    public void onSuccess(int status, String responseString) {
+//                        Log.i("tobin", "onSuccess" + responseString);
+//                        jsonResult(responseString);
+//                    }
 //
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
+//                    @Override
+//                    public void onComplete() {
+//                        Log.i("tobin", "onComplete");
 //
-//            }
-//        }, null);
-    }
+//                    }
+//
+//                    @Override
+//                    public void onError(int status, String responseString, Exception e) {
+//                        Log.i("tobin", "onError, status: " + status);
+//                        Log.i("tobin", "errMsg: " + (e == null ? "" : e.getMessage()));
+//                    }
+//                }
+//        );
 
-    /**
-     * 解析返回的json数据
-     *
-     * @param responseString
-     * @return null
-     */
-    private void jsonResult(String responseString) {
-        try {
-            JSONObject jsonObject = (new JSONObject(responseString)).getJSONObject("showapi_res_body");
-            JSONArray jsonArray = jsonObject.getJSONArray("channelList");
-            for (int i = 1; i < jsonArray.length(); i++) {
-                JSONObject jsonObject2 = (JSONObject) jsonArray.get(i);
-                NewsChannelBean newsChannelBean = new NewsChannelBean();
-                String channelId = jsonObject2.getString("channelId");
-                newsChannelBean.setChannelId(channelId);
-                String name = jsonObject2.getString("channelId");
-                newsChannelBean.setName(name);
-                NewsChannelBeanList.add(newsChannelBean);
+        LivingNetUtils.getChannelNew(new Response.Listener<NewsChannelBean>() {
+            @Override
+            public void onResponse(NewsChannelBean response) {
+
+                Log.e("tobin","tobin getChannelNew" +response.toString());
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }, null);
     }
+
+//    /**
+//     * 解析返回的json数据
+//     *
+//     * @param responseString
+//     * @return null
+//     */
+//    private void jsonResult(String responseString) {
+//        try {
+//            JSONObject jsonObject = (new JSONObject(responseString)).getJSONObject("showapi_res_body");
+//            JSONArray jsonArray = jsonObject.getJSONArray("channelList");
+//            for (int i = 1; i < jsonArray.length(); i++) {
+//                JSONObject jsonObject2 = (JSONObject) jsonArray.get(i);
+//                NewsChannelBean newsChannelBean = new NewsChannelBean();
+//                String channelId = jsonObject2.getString("channelId");
+//                newsChannelBean.setChannelId(channelId);
+//                String name = jsonObject2.getString("channelId");
+//                newsChannelBean.setName(name);
+//                NewsChannelBeanList.add(newsChannelBean);
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void onStart() {
         super.onStart();
-
     }
 
     @Override

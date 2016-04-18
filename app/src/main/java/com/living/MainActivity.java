@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.living.activity.NewsActivity;
+import com.living.bean.NewsChannelBean;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView() {
         ll_news = (LinearLayout) findViewById(R.id.ll_news);
         ll_news.setOnClickListener(this);
+
+        NewsChannelBean.ShowapiResBodyBean.ChannelListBean jj = new NewsChannelBean.ShowapiResBodyBean.ChannelListBean();
 
     }
 
