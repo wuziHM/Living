@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     tools:context="com.living.activity.NewsActivity">
 
-
+    <include
+        android:id="@+id/title"
+        layout="@layout/activity_news_title" />
 
 </RelativeLayout>

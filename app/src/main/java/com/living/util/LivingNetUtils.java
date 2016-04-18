@@ -1,6 +1,5 @@
 package com.living.util;
 
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.living.bean.CountryWeatherBean;
@@ -22,8 +21,7 @@ public class LivingNetUtils {
     private static final String URL_WEAHTER = "http://apis.baidu.com/heweather/weather/free?city=beijing";
     public static final String APIKEY = "66c809c8b137a8f9968fd5fb9a27ca9e";
 /*
-
-    //首页接口
+   //首页接口
    public static void getHomeForecastData(Response.Listener<HomeForecastBaseBean> listener,Response.ErrorListener errorListener,TreeMap<String,String> map){
        LivingRequest<HomeForecastBaseBean> request=new LivingRequest<HomeForecastBaseBean>(URL_HOME_FORECAST,HomeForecastBaseBean.class,listener,map,errorListener);
        VolleySingleton.getInstance().addToRequestQueue(request);

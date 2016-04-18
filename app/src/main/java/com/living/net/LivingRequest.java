@@ -57,10 +57,8 @@ public class LivingRequest<T> extends Request<T> {
             //得到返回数据
             String jsonString = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers));
-//            Log.v("request", "tobin " + jsonString);
             LogUtil.e("返回结果:" + jsonString);
-
-                // 转化成对象返回
+            // 转化成对象返回
             return Response.success(mGson.fromJson(jsonString, mClass),
                     HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {

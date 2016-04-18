@@ -67,7 +67,7 @@ public class NewsActivity extends AppCompatActivity {
         LivingNetUtils.getChannelNew(new Response.Listener<NewsChannelBean>() {
             @Override
             public void onResponse(NewsChannelBean response) {
-                Log.e("tobin","tobin getChannelNew" +response.toString() + "//body: " + response.getShowapi_res_body().toString());
+                Log.e("tobin","tobin getChannelNew" +response.toString() + "//body: " + response.getShowapi_res_body().getTotalNum());
             }
         }, new Response.ErrorListener() {
             @Override
