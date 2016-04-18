@@ -6,6 +6,7 @@ import com.living.bean.NewsChannelBean;
 import com.living.net.LivingRequest;
 import com.living.net.VolleySingleton;
 
+import java.security.AccessController;
 import java.util.TreeMap;
 
 /**
@@ -27,6 +28,7 @@ public class LivingNetUtils {
     //首页接口
     public static void getChannelNew(Response.Listener<NewsChannelBean> listener, Response.ErrorListener errorListener, TreeMap<String, String> map) {
         LivingRequest<NewsChannelBean> request = new LivingRequest<NewsChannelBean>(URL_NEWS_CHANNEL, NewsChannelBean.class, listener, map, errorListener);
+
         VolleySingleton.getInstance().addToRequestQueue(request);
     }
 
