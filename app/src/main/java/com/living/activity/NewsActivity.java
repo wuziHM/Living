@@ -4,14 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.baidu.apistore.sdk.ApiCallBack;
 import com.baidu.apistore.sdk.ApiStoreSDK;
 import com.baidu.apistore.sdk.network.Parameters;
+
 import com.living.R;
 import com.living.bean.NewsChannelBean;
-import com.living.util.LivingNetUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,10 +26,12 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
         getChannelNews();
+
     }
 
     //新闻频道查询
-    private void getChannelNews(){
+    private void getChannelNews() {
+
         Parameters para = new Parameters();
         para.put("apikey", ApiStoreSDK.getAppKey());
         ApiStoreSDK.execute("http://apis.baidu.com/showapi_open_bus/channel_news/channel_news",
@@ -58,21 +58,22 @@ public class NewsActivity extends AppCompatActivity {
                 }
         );
 
-        LivingNetUtils.getChannelNew(new Response.Listener<NewsChannelBean>() {
-            @Override
-            public void onResponse(NewsChannelBean response) {
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        },null);
+//        LivingNetUtils.getChannelNew(new Response.Listener<NewsChannelBean>() {
+//            @Override
+//            public void onResponse(NewsChannelBean response) {
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        }, null);
     }
 
     /**
      * 解析返回的json数据
+     *
      * @param responseString
      * @return null
      */
@@ -89,8 +90,20 @@ public class NewsActivity extends AppCompatActivity {
                 newsChannelBean.setName(name);
                 NewsChannelBeanList.add(newsChannelBean);
             }
-        }catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
     }
 }
