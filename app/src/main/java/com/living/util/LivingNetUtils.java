@@ -33,8 +33,11 @@ public class LivingNetUtils {
 
     //首页接口
     public static void getChannelNew(Response.Listener<NewsChannelBean> listener, Response.ErrorListener errorListener, TreeMap<String, String> map) {
-        LivingRequest<NewsChannelBean> request = new LivingRequest<NewsChannelBean>(URL_NEWS_CHANNEL, NewsChannelBean.class, listener, map, errorListener);
-
+        LivingRequest<NewsChannelBean> request = new LivingRequest<NewsChannelBean>(Request.Method.POST,
+                URL_NEWS_CHANNEL, NewsChannelBean.class, listener,errorListener, map);
+        Map<String, String> header = new HashMap<>();
+        header.put("apikey","10cf56b74c39366d6b202a57428dbb6b");
+        request.setHeader(header);
         VolleySingleton.getInstance().addToRequestQueue(request);
     }
 

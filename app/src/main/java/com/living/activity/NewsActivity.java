@@ -20,7 +20,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class NewsActivity extends AppCompatActivity {
     List<NewsChannelBean> NewsChannelBeanList = new ArrayList<>();
@@ -64,8 +67,7 @@ public class NewsActivity extends AppCompatActivity {
         LivingNetUtils.getChannelNew(new Response.Listener<NewsChannelBean>() {
             @Override
             public void onResponse(NewsChannelBean response) {
-
-                Log.e("tobin","tobin getChannelNew" +response.toString());
+                Log.e("tobin","tobin getChannelNew" +response.toString() + "//body: " + response.getShowapi_res_body().toString());
             }
         }, new Response.ErrorListener() {
             @Override
