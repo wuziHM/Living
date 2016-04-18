@@ -26,7 +26,6 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
         getChannelNews();
-
     }
 
     //新闻频道查询

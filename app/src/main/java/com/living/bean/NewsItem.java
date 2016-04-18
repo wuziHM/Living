@@ -6,7 +6,7 @@ import java.util.List;
  * Author：燕青 $ on 16/4/18 09:43
  * E-mail：359222347@qq.com
  * <p/>
- * use to...
+ * 自动生成的模型
  */
 public class NewsItem {
 

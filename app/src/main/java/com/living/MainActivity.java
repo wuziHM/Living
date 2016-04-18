@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll_news = (LinearLayout) findViewById(R.id.ll_news);
         ll_news.setOnClickListener(this);
 
-
     }
 
 
