@@ -29,7 +29,6 @@ public class LivingNetUtils {
 */
 
 
-    //首页接口
     public static void getChannelNew(Response.Listener<NewsChannelBean> listener, Response.ErrorListener errorListener, TreeMap<String, String> map) {
         LivingRequest<NewsChannelBean> request = new LivingRequest<NewsChannelBean>(Request.Method.POST,
                 URL_NEWS_CHANNEL, NewsChannelBean.class, listener,errorListener, map);
