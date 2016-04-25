@@ -139,12 +139,11 @@ public class NewsActivity extends BaseAppCompatActivity {
                 newsChannelBean = response;
                 channelListBean = response.getShowapi_res_body().getChannelList();
                 initTabView();
-                Log.e("tobin","tobin getChannelNew" +response.toString() + "//body: " + response.getShowapi_res_body().getTotalNum());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.e("tobin", "tobin getChannelNew onErrorResponse: " + error.getMessage());
             }
         }, null);
     }
