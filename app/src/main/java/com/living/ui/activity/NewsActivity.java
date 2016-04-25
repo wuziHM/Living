@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -14,6 +13,7 @@ import com.living.adapter.NewsClassifyAdapter;
 import com.living.bean.NewsChannelBean;
 import com.living.ui.fragment.NewsFragment;
 import com.living.util.LivingNetUtils;
+import com.living.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -143,7 +143,7 @@ public class NewsActivity extends BaseAppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("tobin", "tobin getChannelNew onErrorResponse: " + error.getMessage());
+                LogUtil.e("tobin", "tobin getChannelNew onErrorResponse: " + error.getMessage());
             }
         }, null);
     }
