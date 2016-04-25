@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.living.activity.NewsActivity;
+import com.living.ui.activity.NewsActivity;
 import com.living.bean.CountryWeatherBean;
 import com.living.bean.NewsChannelBean;
 import com.living.util.LivingNetUtils;

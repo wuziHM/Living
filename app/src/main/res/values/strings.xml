@@ -2,4 +2,7 @@
     <string name="app_name">Living</string>
     <string name="title_activity_weather">WeatherActivity</string>
     <string name="title_activity_news">百度新闻</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
