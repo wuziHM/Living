@@ -11,7 +11,6 @@ import com.android.volley.VolleyError;
 import com.living.ui.activity.NewsActivity;
 import com.living.bean.CountryWeatherBean;
 import com.living.util.LivingNetUtils;
-
 import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

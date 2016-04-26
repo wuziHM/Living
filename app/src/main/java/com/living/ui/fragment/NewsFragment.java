@@ -5,14 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.living.R;
 import com.living.bean.NewsSearchBean;
 import com.living.util.LivingNetUtils;
 import com.living.util.LogUtil;
-
 import java.util.List;
 import java.util.TreeMap;
 
