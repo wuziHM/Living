@@ -23,9 +23,6 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
     private ViewPager mViewPager;
 
     NewsChannelBean newsChannelBean;
-
-
-
     List<NewsChannelBean.ShowapiResBodyBean.ChannelListBean> channelListBean;
 
     private List<String> mTitleList = new ArrayList<>();//页卡标题集合
