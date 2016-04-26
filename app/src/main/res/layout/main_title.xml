@@ -9,9 +9,9 @@
         android:layout_width="20dip"
         android:layout_height="20dip"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dip"
         android:layout_gravity="left"
-        android:src="@mipmap/main"/>
+        android:layout_marginLeft="10dip"
+        android:src="@mipmap/main" />
 
     <TextView
         android:layout_width="wrap_content"
