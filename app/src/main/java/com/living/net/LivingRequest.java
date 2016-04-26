@@ -1,7 +1,5 @@
 package com.living.net;
 
-import android.content.Context;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -12,12 +10,10 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.living.util.LogUtil;
 
-import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-
 /**
  * Created by senghor on 2015/12/23.
  */
