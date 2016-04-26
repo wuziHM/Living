@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -18,7 +19,7 @@ import com.living.util.LogUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsActivity extends BaseAppCompatActivity {
+public class NewsActivity extends BaseAppCompatActivity implements View.OnClickListener {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
@@ -27,9 +28,10 @@ public class NewsActivity extends BaseAppCompatActivity {
     List<NewsChannelBean.ShowapiResBodyBean.ChannelListBean> channelListBean;
 
     private List<String> mTitleList = new ArrayList<>();//页卡标题集合
-    /** tabLayout 分类列表 */
+    /**
+     * tabLayout 分类列表
+     */
     private ArrayList<Fragment> fragments = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +41,22 @@ public class NewsActivity extends BaseAppCompatActivity {
         getChannelNews();
     }
 
-    private void initView(){
-
+    private void initView() {
+        findViewById(R.id.iv_back).setOnClickListener(this);
         mViewPager = (ViewPager) findViewById(R.id.vp_view);
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
     }
 
-    private void initTabView(){
-        if (channelListBean == null && channelListBean.size() == 0){
+    private void initTabView() {
+        if (channelListBean == null || channelListBean.size() == 0) {
             return;
         }
-        for(int i = 0 ; i< channelListBean.size(); i++){
+        for (int i = 0; i < channelListBean.size(); i++) {
             mTitleList.add(channelListBean.get(i).getName());
         }
         initTabLayout();
         initFragment();
-        NewsClassifyAdapter mAdapter= new NewsClassifyAdapter(getSupportFragmentManager(),fragments, mTitleList);
+        NewsClassifyAdapter mAdapter = new NewsClassifyAdapter(getSupportFragmentManager(), fragments, mTitleList);
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
         mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器
@@ -64,7 +66,7 @@ public class NewsActivity extends BaseAppCompatActivity {
 
     /**
      * ViewPager切换监听方法
-     * */
+     */
     public ViewPager.OnPageChangeListener pageListener = new ViewPager.OnPageChangeListener() {
 
         @Override
@@ -82,10 +84,10 @@ public class NewsActivity extends BaseAppCompatActivity {
     };
 
     // 初始化 Fragment
-    private void initFragment(){
+    private void initFragment() {
         for (int i = 0; i < mTitleList.size(); i++) {
             Bundle data = new Bundle();
-            data.putString("cid", channelListBean.get(i).getChannelId());
+            data.putString("channelId", channelListBean.get(i).getChannelId());
             NewsFragment newsFragment = new NewsFragment();
             newsFragment.setArguments(data);
             fragments.add(newsFragment);
@@ -93,15 +95,15 @@ public class NewsActivity extends BaseAppCompatActivity {
     }
 
     //初始化导航栏
-    private void initTabLayout(){
-        if(mTitleList==null){
+    private void initTabLayout() {
+        if (mTitleList == null) {
             return;
         }
-        for (int tab = 0; mTitleList.size() > tab; tab++){
+        for (int tab = 0; mTitleList.size() > tab; tab++) {
             mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(tab)));//添加tab选项卡，默认选中第一个
         }
         //设置TabLayout模式可以用默认是不可滑动的，大于5个时设置为可滑动
-        if (mTitleList.size()> 5){
+        if (mTitleList.size() > 5) {
             mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         }
     }
@@ -146,6 +148,17 @@ public class NewsActivity extends BaseAppCompatActivity {
                 LogUtil.e("tobin", "tobin getChannelNew onErrorResponse: " + error.getMessage());
             }
         }, null);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back:
+                this.finish();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

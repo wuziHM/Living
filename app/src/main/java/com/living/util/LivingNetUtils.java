@@ -2,8 +2,10 @@ package com.living.util;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.baidu.apistore.sdk.ApiStoreSDK;
 import com.living.bean.CountryWeatherBean;
 import com.living.bean.NewsChannelBean;
+import com.living.bean.NewsSearchBean;
 import com.living.net.LivingRequest;
 import com.living.net.VolleySingleton;
 
@@ -15,25 +17,43 @@ import java.util.TreeMap;
  * Created by senghor on 2015/12/23.
  */
 public class LivingNetUtils {
-    private static final String URL_BASE = "http://58.252.5.166:10008";
+
+    //新闻频道查询
     private static final String URL_NEWS_CHANNEL = "http://apis.baidu.com/showapi_open_bus/channel_news/channel_news";
-//    private static final String URL_WEAHTER = "http://apis.baidu.com/heweather/weather/free";
+    // 根据频道或关键词查询新闻
+    private static final String URL_NEWS_SEARCH = "http://apis.baidu.com/showapi_open_bus/channel_news/search_news";
+
     private static final String URL_WEAHTER = "http://apis.baidu.com/heweather/weather/free?city=beijing";
-    public static final String APIKEY = "66c809c8b137a8f9968fd5fb9a27ca9e";
-/*
-   //首页接口
-   public static void getHomeForecastData(Response.Listener<HomeForecastBaseBean> listener,Response.ErrorListener errorListener,TreeMap<String,String> map){
-       LivingRequest<HomeForecastBaseBean> request=new LivingRequest<HomeForecastBaseBean>(URL_HOME_FORECAST,HomeForecastBaseBean.class,listener,map,errorListener);
-       VolleySingleton.getInstance().addToRequestQueue(request);
-   }
-*/
 
+    public static final String API_KEY = "66c809c8b137a8f9968fd5fb9a27ca9e";
 
+    /**
+     * 新闻频道
+     * @param listener
+     * @param errorListener
+     * @param map
+     */
     public static void getChannelNew(Response.Listener<NewsChannelBean> listener, Response.ErrorListener errorListener, TreeMap<String, String> map) {
-        LivingRequest<NewsChannelBean> request = new LivingRequest<NewsChannelBean>(Request.Method.POST,
+        LivingRequest<NewsChannelBean> request = new LivingRequest<>(Request.Method.POST,
                 URL_NEWS_CHANNEL, NewsChannelBean.class, listener,errorListener, map);
         Map<String, String> header = new HashMap<>();
-        header.put("apikey","10cf56b74c39366d6b202a57428dbb6b");
+        header.put("apikey",ApiStoreSDK.getAppKey());
+        request.setHeader(header);
+        VolleySingleton.getInstance().addToRequestQueue(request);
+    }
+
+    /**
+     *
+     * @param listener
+     * @param errorListener
+     * @param map
+     */
+
+    public static void getNewsSearch(Response.Listener<NewsSearchBean> listener, Response.ErrorListener errorListener, TreeMap<String, String> map) {
+        LivingRequest<NewsSearchBean> request = new LivingRequest<>(Request.Method.POST,
+                URL_NEWS_SEARCH, NewsSearchBean.class, listener,errorListener, map);
+        Map<String, String> header = new HashMap<>();
+        header.put("apikey", ApiStoreSDK.getAppKey());
         request.setHeader(header);
         VolleySingleton.getInstance().addToRequestQueue(request);
     }
@@ -48,7 +68,7 @@ public class LivingNetUtils {
         LivingRequest<CountryWeatherBean> request = new LivingRequest<CountryWeatherBean>(Request.Method.GET,
                 URL_WEAHTER,CountryWeatherBean.class,listener,errorListener,map);
         Map<String, String> header = new HashMap<>();
-        header.put("apikey",APIKEY);
+        header.put("apikey",API_KEY);
         request.setHeader(header);
         VolleySingleton.getInstance().addToRequestQueue(request);
     }
