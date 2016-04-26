@@ -5,10 +5,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-
 import com.living.R;
 import com.living.adapter.NewsClassifyAdapter;
 import com.living.bean.NewsChannelBean;
@@ -22,6 +20,9 @@ import java.util.List;
 public class NewsActivity extends BaseAppCompatActivity implements View.OnClickListener {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+
+
+
 
     NewsChannelBean newsChannelBean;
 

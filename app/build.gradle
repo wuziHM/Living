@@ -22,11 +22,10 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile files('src/main/libs/ApiStoreSDK1.0.4.jar')
-    compile files('src/main/libs/gson-2.1.jar')
+    compile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:design:22.2.1'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.android.support:support-v4:22.2.1'
+    compile 'com.google.code.gson:gson:2.6.2'
 }
