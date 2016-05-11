@@ -32,7 +32,6 @@ public class VolleySingleton {
     private static final String DEFAULT_TAG = "DEFAULT";
     private static VolleySingleton sInstance;
     private RequestQueue mRequestQueue;
-    //private ImageLoader mImageLoader;
     private static Context mContext; // application context
 
     private VolleySingleton(Context context) {
