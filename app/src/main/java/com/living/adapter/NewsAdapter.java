@@ -120,7 +120,6 @@ public class NewsAdapter extends RecyclerView.Adapter {
                         mOnItemClickListener.onItemClick(holder.itemView, pos);
                     }
                 });
-
                 holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
@@ -130,7 +129,6 @@ public class NewsAdapter extends RecyclerView.Adapter {
                     }
                 });
             }
-
         }
         if (holder instanceof FootHolder) {
             ((FootHolder) holder).foot.setVisibility(isLoading ? View.VISIBLE : View.GONE);
