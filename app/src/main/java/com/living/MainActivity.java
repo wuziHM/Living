@@ -73,12 +73,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+            new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
                     .setTitleText("Are you sure?")
                     .setContentText("Are you sure you want to quit!")
-                    .setConfirmText("Yes")
+                    .setConfirmText(" Yes ")
                     .setCancelText("Cancel")
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override

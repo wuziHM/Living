@@ -78,7 +78,7 @@ public class NewsFragment extends BaseFragment {
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                getNewsData();
             }
         });
         mRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -146,6 +146,7 @@ public class NewsFragment extends BaseFragment {
                 }
                 contentListBean = response.getShowapi_res_body().getPagebean().getContentlist();
                 mAdapter.setDatas(contentListBean);
+                mSwipeRefresh.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -153,6 +154,6 @@ public class NewsFragment extends BaseFragment {
                 LogUtil.e("tobin", "tobin getNewsSearch onErrorResponse: " + error.getMessage());
             }
         }, map);
-    }
 
+    }
 }
