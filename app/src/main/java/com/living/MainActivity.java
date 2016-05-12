@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                     .setTitleText("Are you sure?")
-                    .setContentText("Won't be able to exit!")
+                    .setContentText("Are you sure you want to quit!")
                     .setConfirmText("Yes")
                     .setCancelText("Cancel")
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
