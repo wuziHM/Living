@@ -77,7 +77,15 @@ public class NewsAdapter extends RecyclerView.Adapter {
             ((ItemViewHolder) holder).date.setText(mDatas.get(position).getPubDate());
             ((ItemViewHolder) holder).source.setText(mDatas.get(position).getSource());
 
-            LogUtil.e("tobin onBindViewHolder" + mDatas.get(position).getTitle());
+//            LogUtil.e("tobin onBindViewHolder" + mDatas.get(position).getTitle());
+            if (mDatas.get(position).getImageurls() != null && mDatas.get(position).getImageurls().size() > 0 ){
+                for(int i=0;i<mDatas.get(position).getImageurls().size();i++){
+                    LogUtil.e("tobin onBindViewHolder" + mDatas.get(position).getImageurls().get(i).getUrl() + "//position:" + position+ "//size: " + mDatas.get(position).getImageurls().size());
+                }
+            }else{
+                LogUtil.e("tobin onBindViewHolder" + "getImageurls is null //position: " + position);
+            }
+
             // 如果设置了回调，则设置点击事件
             if (mOnItemClickListener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -126,7 +134,7 @@ public class NewsAdapter extends RecyclerView.Adapter {
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.tv_title);
+            title = (TextView) itemView.findViewById(R.id.tv_new_title);
             desc = (TextView) itemView.findViewById(R.id.tv_desc);
             date = (TextView) itemView.findViewById(R.id.tv_pubDate);
             source = (TextView) itemView.findViewById(R.id.tv_source);

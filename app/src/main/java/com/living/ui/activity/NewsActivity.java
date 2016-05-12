@@ -57,7 +57,7 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
         NewsClassifyAdapter mAdapter = new NewsClassifyAdapter(getSupportFragmentManager(), fragments, mTitleList);
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
-        mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器
+//        mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器 // 新的版本不需要设置，会自动根据ViewPage找到mAdapter
         mViewPager.addOnPageChangeListener(pageListener);
         mViewPager.setOffscreenPageLimit(4);
     }

@@ -1,5 +1,6 @@
 package com.living.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.living.R;
 import com.living.adapter.NewsAdapter;
 import com.living.bean.NewsSearchBean;
+import com.living.ui.activity.WebViewActivity;
 import com.living.util.LivingNetUtils;
 import com.living.util.LogUtil;
 
@@ -73,7 +75,6 @@ public class NewsFragment extends BaseFragment {
     }
 
     private void initEvent() {
-
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -98,7 +99,9 @@ public class NewsFragment extends BaseFragment {
         mAdapter.setOnItemClickListener(new NewsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra("link",contentListBean.get(position).getLink());
+                getActivity().startActivity(intent);
             }
 
             @Override

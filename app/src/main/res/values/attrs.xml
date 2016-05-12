@@ -17,4 +17,12 @@
         <attr name="pwContourSize" format="dimension"/>
     </declare-styleable>
 
+    <declare-styleable name="WebViewWithProgress">
+        <attr name="progressStyle" format="enum">
+            <enum name="horizontal" value="0"/>
+            <enum name="circle" value="1"/>
+        </attr>
+        <attr name="barHeight" format="dimension" />
+    </declare-styleable>
+
 </resources>
