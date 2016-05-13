@@ -13,8 +13,6 @@ import com.living.bean.CountryWeatherBean;
 import com.living.ui.activity.NewsActivity;
 import com.living.util.LivingNetUtils;
 
-import java.util.TreeMap;
-
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -42,9 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, NewsActivity.class));
                 break;
             case R.id.ll_weather:
-                TreeMap<String, String> map = new TreeMap();
-                map.put("city", "shanghai");
-                LivingNetUtils.getWeather(new Response.Listener<CountryWeatherBean>() {
+                LivingNetUtils.getWeather("shanghai", new Response.Listener<CountryWeatherBean>() {
                     @Override
                     public void onResponse(CountryWeatherBean response) {
 
@@ -54,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onErrorResponse(VolleyError error) {
 
                     }
-                }, map);
+                });
                 break;
             default:
                 break;

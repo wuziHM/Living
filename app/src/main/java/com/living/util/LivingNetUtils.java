@@ -56,7 +56,9 @@ public class LivingNetUtils extends LivingAPI {
     /**
      * 获取天气的接口
      */
-    public static void getWeather(Response.Listener<CountryWeatherBean> listener, Response.ErrorListener errorListener, TreeMap<String, String> map) {
+    public static void getWeather(String cityName, Response.Listener<CountryWeatherBean> listener, Response.ErrorListener errorListener) {
+        TreeMap map = new TreeMap();
+        map.put("city", cityName);
         get(URL_WEATHER, CountryWeatherBean.class, listener, errorListener, map);
     }
 }

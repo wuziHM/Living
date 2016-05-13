@@ -8,7 +8,6 @@ import com.living.bean.NetModel;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Author：燕青 $ on 16/5/12 16:43
@@ -32,7 +31,7 @@ public class LivingAPI {
 //        request.setHeader(header);
 //        VolleySingleton.getInstance().addToRequestQueue(request);
 //    }
-    protected static void post(String url, Class<? extends NetModel> clazz, Response.Listener<? extends NetModel> listener, Response.ErrorListener errorListener, TreeMap<String, String> map) {
+    protected static void post(String url, Class<? extends NetModel> clazz, Response.Listener<? extends NetModel> listener, Response.ErrorListener errorListener, Map map) {
         LivingRequest request = new LivingRequest(Request.Method.POST, url, clazz, listener, errorListener, map);
         Map<String, String> header = new HashMap<>();
         header.put("apikey", ApiStoreSDK.getAppKey());
@@ -41,7 +40,7 @@ public class LivingAPI {
     }
 
     //int method, String url, Class<NetModel> clazz, Listener<NetModel> listener, Response.ErrorListener errorListener
-    protected static void get(String url, Class<? extends NetModel> clazz, Response.Listener<?> listener, Response.ErrorListener errorListener, TreeMap map) {
+    protected static void get(String url, Class<? extends NetModel> clazz, Response.Listener<?> listener, Response.ErrorListener errorListener, Map map) {
         url = url + "?";
         if (map != null) {
             Iterator<Map.Entry> it = map.entrySet().iterator();
