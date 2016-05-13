@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by tobin on 2016/4/14.
  */
-public class NewsChannelBean {
+public class NewsChannelBean extends NetModel{
 
     /**
      * showapi_res_code : 0

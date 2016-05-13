@@ -4,10 +4,9 @@ import java.util.List;
 
 /**
  * author Tobin on 2016/4/26 10:48
- *
  */
 
-public class NewsSearchBean {
+public class NewsSearchBean extends NetModel {
 
 
     /**

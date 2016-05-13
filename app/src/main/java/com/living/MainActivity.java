@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.ll_weather:
                 TreeMap<String, String> map = new TreeMap();
-                map.put("city", "beijing");
+                map.put("city", "shanghai");
                 LivingNetUtils.getWeather(new Response.Listener<CountryWeatherBean>() {
                     @Override
                     public void onResponse(CountryWeatherBean response) {
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onErrorResponse(VolleyError error) {
 
                     }
-                }, null);
+                }, map);
                 break;
             default:
                 break;
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             sDialog.cancel();
                         }
                     })
-            .show();
+                    .show();
             return true;
         }
         return super.onKeyDown(keyCode, event);

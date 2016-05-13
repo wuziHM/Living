@@ -8,7 +8,7 @@ import java.util.List;
  * <p/>
  * use to...
  */
-public class CountryWeatherBean {
+public class CountryWeatherBean extends NetModel{
 
 
     /**

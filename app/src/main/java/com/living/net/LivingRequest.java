@@ -14,18 +14,19 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+
 /**
  * Created by senghor on 2015/12/23.
  */
-public class LivingRequest<T> extends Request<T> {
-    private final Listener<T> mListener;
+public class LivingRequest<NetModel> extends Request<NetModel> {
+    private final Listener<NetModel> mListener;
 
     private Gson mGson;
 
-    private Class<T> mClass;
+    private Class<NetModel> mClass;
 
-    private LivingRequest(int method, String url, Class<T> clazz, Listener<T> listener,
-                          Response.ErrorListener errorListener) {
+    public LivingRequest(int method, String url, Class<NetModel> clazz, Listener<NetModel> listener,
+                         Response.ErrorListener errorListener) {
         super(method, url, errorListener);
         mGson = new Gson();
         mClass = clazz;
@@ -33,14 +34,14 @@ public class LivingRequest<T> extends Request<T> {
     }
 
 
-    public LivingRequest(String url, Class<T> clazz, Listener<T> listener,
+    public LivingRequest(String url, Class<NetModel> clazz, Listener<NetModel> listener,
                          Map<String, String> mParam,
                          Response.ErrorListener errorListener) {
         this(Method.POST, url, clazz, listener, errorListener);
         this.mParam = mParam;
     }
 
-    public LivingRequest(int method, String url, Class<T> clazz, Listener<T> listener,
+    public LivingRequest(int method, String url, Class<NetModel> clazz, Listener<NetModel> listener,
                          Response.ErrorListener errorListener, Map<String, String> mParam) {
         this(method, url, clazz, listener, errorListener);
         this.mParam = mParam;
@@ -48,7 +49,7 @@ public class LivingRequest<T> extends Request<T> {
 
 
     @Override
-    protected Response<T> parseNetworkResponse(NetworkResponse response) {
+    protected Response<NetModel> parseNetworkResponse(NetworkResponse response) {
         try {
             //得到返回数据
             String jsonString = new String(response.data,
@@ -65,7 +66,7 @@ public class LivingRequest<T> extends Request<T> {
     }
 
     @Override
-    protected void deliverResponse(T response) {
+    protected void deliverResponse(NetModel response) {
         mListener.onResponse(response);
     }
 

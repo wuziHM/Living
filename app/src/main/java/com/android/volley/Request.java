@@ -32,9 +32,9 @@ import java.util.Map;
 /**
  * Base class for all network requests.
  *
- * @param <T> The type of parsed response this request expects.
+ * @param <NetModel> The type of parsed response this request expects.
  */
-public abstract class Request<T> implements Comparable<Request<T>> {
+public abstract class Request<NetModel> implements Comparable<Request<NetModel>> {
 
     /**
      * Default encoding for POST or PUT parameters. See {@link #getParamsEncoding()}.
@@ -570,7 +570,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
      * @param response Response from the network
      * @return The parsed response, or null in the case of an error
      */
-    abstract protected Response<T> parseNetworkResponse(NetworkResponse response);
+    abstract protected Response<NetModel> parseNetworkResponse(NetworkResponse response);
 
     /**
      * Subclasses can override this method to parse 'networkError' and return a more specific error.
@@ -591,7 +591,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
      * @param response The parsed response returned by
      * {@link #parseNetworkResponse(com.android.volley.NetworkResponse)}
      */
-    abstract protected void deliverResponse(T response);
+    abstract protected void deliverResponse(NetModel response);
 
     /**
      * Delivers error message to the ErrorListener that the Request was
@@ -610,7 +610,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
      * sequence number to provide FIFO ordering.
      */
     @Override
-    public int compareTo(Request<T> other) {
+    public int compareTo(Request<NetModel> other) {
         Priority left = this.getPriority();
         Priority right = other.getPriority();
 

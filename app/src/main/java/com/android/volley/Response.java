@@ -19,17 +19,23 @@ package com.android.volley;
 /**
  * Encapsulates a parsed response for delivery.
  *
- * @param <T> Parsed type of this response
+ * @param <NetModel> Parsed type of this response
  */
-public class Response<T> {
+public class Response<NetModel> {
 
-    /** Callback interface for delivering parsed responses. */
-    public interface Listener<T> {
-        /** Called when a response is received. */
-        public void onResponse(T response);
+    /**
+     * Callback interface for delivering parsed responses.
+     */
+    public interface Listener<NetModel> {
+        /**
+         * Called when a response is received.
+         */
+        public void onResponse(NetModel response);
     }
 
-    /** Callback interface for delivering error responses. */
+    /**
+     * Callback interface for delivering error responses.
+     */
     public interface ErrorListener {
         /**
          * Callback method that an error has been occurred with the
@@ -38,29 +44,39 @@ public class Response<T> {
         public void onErrorResponse(VolleyError error);
     }
 
-    /** Returns a successful response containing the parsed result. */
-    public static <T> Response<T> success(T result, Cache.Entry cacheEntry) {
-        return new Response<T>(result, cacheEntry);
+    /**
+     * Returns a successful response containing the parsed result.
+     */
+    public static <NetModel> Response<NetModel> success(NetModel result, Cache.Entry cacheEntry) {
+        return new Response<NetModel>(result, cacheEntry);
     }
 
     /**
      * Returns a failed response containing the given error code and an optional
      * localized message displayed to the user.
      */
-    public static <T> Response<T> error(VolleyError error) {
-        return new Response<T>(error);
+    public static <NetModel> Response<NetModel> error(VolleyError error) {
+        return new Response<NetModel>(error);
     }
 
-    /** Parsed response, or null in the case of error. */
-    public final T result;
+    /**
+     * Parsed response, or null in the case of error.
+     */
+    public final NetModel result;
 
-    /** Cache metadata for this response, or null in the case of error. */
+    /**
+     * Cache metadata for this response, or null in the case of error.
+     */
     public final Cache.Entry cacheEntry;
 
-    /** Detailed error information if <code>errorCode != OK</code>. */
+    /**
+     * Detailed error information if <code>errorCode != OK</code>.
+     */
     public final VolleyError error;
 
-    /** True if this response was a soft-expired one and a second one MAY be coming. */
+    /**
+     * True if this response was a soft-expired one and a second one MAY be coming.
+     */
     public boolean intermediate = false;
 
     /**
@@ -71,7 +87,7 @@ public class Response<T> {
     }
 
 
-    private Response(T result, Cache.Entry cacheEntry) {
+    private Response(NetModel result, Cache.Entry cacheEntry) {
         this.result = result;
         this.cacheEntry = cacheEntry;
         this.error = null;
