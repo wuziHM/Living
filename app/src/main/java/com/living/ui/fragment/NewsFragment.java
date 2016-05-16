@@ -173,6 +173,5 @@ public class NewsFragment extends BaseFragment {
                 LogUtil.e("tobin", "tobin getNewsSearch onErrorResponse: " + error.getMessage());
             }
         }, map);
-
     }
 }
