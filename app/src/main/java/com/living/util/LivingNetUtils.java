@@ -1,16 +1,11 @@
 package com.living.util;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
-import com.baidu.apistore.sdk.ApiStoreSDK;
 import com.living.bean.CountryWeatherBean;
 import com.living.bean.NewsChannelBean;
 import com.living.bean.NewsSearchBean;
 import com.living.net.LivingAPI;
-import com.living.net.LivingRequest;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -31,13 +26,15 @@ public class LivingNetUtils extends LivingAPI {
      * 新闻频道
      */
     public static void getChannelNew(Response.Listener<NewsChannelBean> listener, Response.ErrorListener errorListener, TreeMap<String, String> map) {
-        LivingRequest<NewsChannelBean> request = new LivingRequest<>(Request.Method.POST,
-                URL_NEWS_CHANNEL, NewsChannelBean.class, listener, errorListener, map);
-        Map<String, String> header = new HashMap<>();
-        header.put("apikey", ApiStoreSDK.getAppKey());
-        request.setHeader(header);
-        volleySingleton.addToRequestQueue(request);
+//        LivingRequest<NewsChannelBean> request = new LivingRequest<>(Request.Method.POST,
+//                URL_NEWS_CHANNEL, NewsChannelBean.class, listener, errorListener, map);
+//        Map<String, String> header = new HashMap<>();
+//        header.put("apikey", ApiStoreSDK.getAppKey());
+//        request.setHeader(header);
+//        volleySingleton.addToRequestQueue(request);
 //        VolleySingleton.getInstance().addToRequestQueue(request);
+
+        post(URL_NEWS_CHANNEL, NewsChannelBean.class, listener, errorListener, map);
     }
 
     /**

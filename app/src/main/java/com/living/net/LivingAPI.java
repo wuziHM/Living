@@ -17,12 +17,20 @@ import java.util.Map;
  */
 public class LivingAPI {
 
-    protected static VolleySingleton volleySingleton;
+    static VolleySingleton volleySingleton;
 
     static {
         volleySingleton = VolleySingleton.getInstance();
     }
 
+    //    public static void getChannelNew(Response.Listener<NewsChannelBean> listener, Response.ErrorListener errorListener, TreeMap<String, String> map) {
+//        LivingRequest<NewsChannelBean> request = new LivingRequest<>(Request.Method.POST,
+//                URL_NEWS_CHANNEL, NewsChannelBean.class, listener, errorListener, map);
+//        Map<String, String> header = new HashMap<>();
+//        header.put("apikey", ApiStoreSDK.getAppKey());
+//        request.setHeader(header);
+//        VolleySingleton.getInstance().addToRequestQueue(request);
+//    }
     protected static void post(String url, Class<? extends NetModel> clazz, Response.Listener<? extends NetModel> listener, Response.ErrorListener errorListener, Map map) {
         LivingRequest request = new LivingRequest(Request.Method.POST, url, clazz, listener, errorListener, map);
         Map<String, String> header = new HashMap<>();
@@ -31,6 +39,7 @@ public class LivingAPI {
         volleySingleton.addToRequestQueue(request);
     }
 
+    //int method, String url, Class<NetModel> clazz, Listener<NetModel> listener, Response.ErrorListener errorListener
     protected static void get(String url, Class<? extends NetModel> clazz, Response.Listener<?> listener, Response.ErrorListener errorListener, Map map) {
         url = url + "?";
         if (map != null) {

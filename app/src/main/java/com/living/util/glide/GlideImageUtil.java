@@ -26,15 +26,11 @@ public class GlideImageUtil {
 		// TODO Auto-generated constructor stub
 		if (!activity.isFinishing()) {
 			if (transformations == null) {
-				Glide.with(activity).load(uri).centerCrop().error(defaultPhoto)
-						.crossFade(0).into(imageView);
-				// Glide.with(activity).load(uri).centerCrop()
-				// .error(defaultPhoto).into(imageView);
+				Glide.with(activity).load(uri).centerCrop().error(defaultPhoto).crossFade(0).into(imageView);
+				// Glide.with(activity).load(uri).centerCrop().error(defaultPhoto).into(imageView);
 			} else {
-				Glide.with(activity).load(uri).centerCrop().error(defaultPhoto)
-						.transform(transformations).into(imageView);
-				// Glide.with(activity).load(uri).error(defaultPhoto).centerCrop()
-				// .transform(transformations) .into(imageView);
+				Glide.with(activity).load(uri).centerCrop().error(defaultPhoto).transform(transformations).into(imageView);
+				// Glide.with(activity).load(uri).error(defaultPhoto).centerCrop().transform(transformations).into(imageView);
 			}
 		} else {
 			Glide.clear(imageView);
@@ -90,7 +86,6 @@ public class GlideImageUtil {
 	public static void setBigPhotoFast(Activity activity,
 			BitmapTransformation transformations, String uri,
 			ImageView imageView, ImageUtil.PhotoType photoType) {
-		// TODO Auto-generated constructor stub
 		if (activity.isFinishing()) {
 			return;
 		}
@@ -98,12 +93,9 @@ public class GlideImageUtil {
 			return;
 		uri = uri.replaceAll(photoType.fromRegex, photoType.toRegex);
 		if (transformations != null) {
-			Glide.with(activity).load(uri).centerCrop()
-					.transform(transformations).error(R.drawable.ic_launcher)
-					.into(imageView);
+			Glide.with(activity).load(uri).centerCrop().transform(transformations).error(R.drawable.ic_launcher).into(imageView);
 		} else {
-			Glide.with(activity).load(uri).error(R.drawable.ic_launcher)
-					.into(imageView);
+			Glide.with(activity).load(uri).error(R.drawable.ic_launcher).into(imageView);
 		}
 	}
 
