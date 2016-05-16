@@ -162,6 +162,7 @@ public class NewsFragment extends BaseFragment {
                     mAdapter.addDatas(contentListBean);
                 else
                     mAdapter.setDatas(contentListBean);
+
                 mSwipeRefresh.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
