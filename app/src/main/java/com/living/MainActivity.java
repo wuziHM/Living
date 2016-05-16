@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.living.ui.activity.ChatListActivity;
 import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll_news = (LinearLayout) findViewById(R.id.ll_news);
         ll_news.setOnClickListener(this);
         findViewById(R.id.ll_weather).setOnClickListener(this);
+        findViewById(R.id.ll_robot).setOnClickListener(this);
     }
 
     @Override
@@ -51,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //                    }
 //                });
+                break;
+            case R.id.ll_robot:
+                startActivity(new Intent(MainActivity.this, ChatListActivity.class));
                 break;
             default:
                 break;

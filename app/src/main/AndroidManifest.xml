@@ -33,7 +33,8 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".ui.activity.BaseAppCompatActivity" />
         <activity android:name=".ui.activity.WebViewActivity" />
-        <activity android:name=".ui.activity.WeatherActivity"></activity>
+        <activity android:name=".ui.activity.WeatherActivity" />
+        <activity android:name=".ui.activity.ChatListActivity"></activity>
     </application>
 
 </manifest>
