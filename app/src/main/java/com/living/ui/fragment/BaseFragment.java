@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.living.util.ProgressUtil;
+
 public abstract class BaseFragment extends Fragment {
 
     protected View view; // 当前界面的根
@@ -33,5 +35,14 @@ public abstract class BaseFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
+
+    /**
+     * @param isLoading 是否加载
+     */
+    public void loading(boolean isLoading) {
+        ProgressUtil.loading(getActivity(), isLoading);
+    }
+
 
 }

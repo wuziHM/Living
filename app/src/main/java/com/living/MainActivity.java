@@ -7,11 +7,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.living.bean.CountryWeatherBean;
 import com.living.ui.activity.NewsActivity;
-import com.living.util.LivingNetUtils;
+import com.living.ui.activity.WeatherActivity;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -40,17 +37,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, NewsActivity.class));
                 break;
             case R.id.ll_weather:
-                LivingNetUtils.getWeather("shanghai", new Response.Listener<CountryWeatherBean>() {
-                    @Override
-                    public void onResponse(CountryWeatherBean response) {
 
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                startActivity(new Intent(MainActivity.this, WeatherActivity.class));
 
-                    }
-                });
+//                LivingNetUtils.getWeather("shanghai", new Response.Listener<CountryWeatherBean>() {
+//                    @Override
+//                    public void onResponse(CountryWeatherBean response) {
+//
+//                    }
+//                }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//
+//                    }
+//                });
                 break;
             default:
                 break;
