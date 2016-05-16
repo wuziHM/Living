@@ -36,7 +36,6 @@ public class NewsAdapter extends RecyclerView.Adapter {
     private String mError = null;
 
     private int space;
-    LayoutInflater inflater = null;
 
     public NewsAdapter(Context context) {
         this.mContext = context;
@@ -153,7 +152,6 @@ public class NewsAdapter extends RecyclerView.Adapter {
         ImageView iv_new_image1;
         ImageView iv_new_image2;
         ImageView iv_new_image3;
-        ImageView icon;
 
         TextView title;
         TextView desc;
@@ -197,6 +195,14 @@ public class NewsAdapter extends RecyclerView.Adapter {
 
     public List<NewsSearchBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> getDatas() {
         return mDatas;
+    }
+
+    public String getmError() {
+        return mError;
+    }
+
+    public void setmError(String mError) {
+        this.mError = mError;
     }
 
 }

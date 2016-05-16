@@ -56,8 +56,7 @@ public class NewsFragment extends BaseFragment {
 
     private void initView(){
         mSwipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_news);
-        mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimary,
-                R.color.colorPrimary, R.color.colorPrimary);
+        mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimary, R.color.colorPrimary, R.color.colorPrimary);
         mRecycleView = (RecyclerView) view.findViewById(R.id.recycle_view_news);
         mManager = new LinearLayoutManager(getActivity());
         mRecycleView.setLayoutManager(mManager);
@@ -66,19 +65,21 @@ public class NewsFragment extends BaseFragment {
         mRecycleView.setAdapter(mAdapter);
     }
 
+    //当fragment可见时加载新闻数据
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (getUserVisibleHint()) {
-            getNewsData();
+            getNewsData(false);
         }
     }
 
+    // 初始化事件监听
     private void initEvent() {
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getNewsData();
+                getNewsData(false);
             }
         });
         mRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -87,7 +88,10 @@ public class NewsFragment extends BaseFragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 int last = mManager.findLastVisibleItemPosition();
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && last + 1 == mAdapter.getItemCount() && mAdapter.getItemCount() > 1) {
-
+                    if (contentListBean.size() >= 20){
+                        mAdapter.setIsLoading(true);
+                        getNewsData(true);
+                    }
                 }
             }
 
@@ -111,12 +115,21 @@ public class NewsFragment extends BaseFragment {
         });
     }
 
-    private void getNewsData(){
+    /**
+     *  获取新闻数据
+     * @param isLoadMore 是否加载更多数据
+     */
+    private void getNewsData(final boolean isLoadMore){
+        if (isLoadMore)
+            page ++;
+        else
+            page = 1;
         TreeMap<String,String> map = new TreeMap<>();
         map.put("channelId",channelId);// 新闻频道id，必须精确匹配
-//            map.put("channelName",channelName);// 新闻频道名称，可模糊匹配
-//            map.put("title",title); // 新闻标题，模糊匹配
+//        map.put("channelName",channelName);// 新闻频道名称，可模糊匹配
+//        map.put("title",title); // 新闻标题，模糊匹配
         map.put("page",page + ""); // 页数，默认1。每页最多20条记录。
+
         LivingNetUtils.getNewsSearch(new Response.Listener<NewsSearchBean>() {
             @Override
             public void onResponse(NewsSearchBean response) {
@@ -145,12 +158,17 @@ public class NewsFragment extends BaseFragment {
                     return;
                 }
                 contentListBean = response.getShowapi_res_body().getPagebean().getContentlist();
-                mAdapter.setDatas(contentListBean);
+                if (isLoadMore)
+                    mAdapter.addDatas(contentListBean);
+                else
+                    mAdapter.setDatas(contentListBean);
                 mSwipeRefresh.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                mSwipeRefresh.setRefreshing(false);
+                mAdapter.setmError(error.getMessage());
                 LogUtil.e("tobin", "tobin getNewsSearch onErrorResponse: " + error.getMessage());
             }
         }, map);

@@ -45,14 +45,11 @@ public class ImageUtil {
 	private static final long MAX_PIC_SIZE = 1024 * 1024L;
 
 	public static enum PhotoType {
-		// BIG("(/small/)|(/special/)", "/big/"), // 原图
-		// SMALL("(/big/)|(/special/)", "/big/"), //
-		// 比BIG小，比SPECIAL大。长宽比在5以内则最小边为128px
+		// SMALL("(/big/)|(/special/)", "/big/"), //比BIG小，比SPECIAL大。长宽比在5以内则最小边为128px
 		// SPECIAL("(/small/)|(/big/)", "/big/");
 		BIG("(/small/)|(/special/)", "/big/"), // 原图
 		SMALL("(/big/)|(/special/)", "/small/"); // 比BIG小，比SPECIAL大。长宽比在5以内则最小边为200px
-		// SPECIAL("(/small/)|(/big/)",
-		// "/special/");//最小。长宽比在5以内则最小边为50px。该选项为默认值
+		// SPECIAL("(/small/)|(/big/)","/special/");//最小。长宽比在5以内则最小边为50px。该选项为默认值
 
 		public String fromRegex;
 		public String toRegex;
@@ -76,14 +73,12 @@ public class ImageUtil {
 		}
 		int width = bitmap.getWidth();
 		int height = bitmap.getHeight();
-		Bitmap creBitmap = Bitmap.createBitmap(width, height,
-				Config.ARGB_8888);
+		Bitmap creBitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
 		Canvas canvas = new Canvas(creBitmap);
 		Paint paint = new Paint();
 		ColorMatrix colorMatrix = new ColorMatrix();
 		colorMatrix.setSaturation(0);
-		ColorMatrixColorFilter colorMatrixFilter = new ColorMatrixColorFilter(
-				colorMatrix);
+		ColorMatrixColorFilter colorMatrixFilter = new ColorMatrixColorFilter(colorMatrix);
 		paint.setColorFilter(colorMatrixFilter);
 		canvas.drawBitmap(bitmap, 0, 0, paint);
 		canvas.save(Canvas.ALL_SAVE_FLAG);
@@ -103,11 +98,9 @@ public class ImageUtil {
 	public static void setDrawableBound(Drawable drawable, int width, float k) {
 		int imgWidth = drawable.getIntrinsicWidth();
 		if (imgWidth * k < width) {
-			drawable.setBounds(0, 0, (int) (imgWidth * k),
-					(int) (drawable.getIntrinsicHeight() * k));
+			drawable.setBounds(0, 0, (int) (imgWidth * k), (int) (drawable.getIntrinsicHeight() * k));
 		} else {
-			drawable.setBounds(0, 0, imgWidth > width ? width : imgWidth,
-					imgWidth > width ? drawable.getIntrinsicHeight() * width / imgWidth : drawable.getIntrinsicHeight());
+			drawable.setBounds(0, 0, imgWidth > width ? width : imgWidth, imgWidth > width ? drawable.getIntrinsicHeight() * width / imgWidth : drawable.getIntrinsicHeight());
 		}
 	}
 
@@ -127,8 +120,7 @@ public class ImageUtil {
 		final int color = 0x00424242;
 		int width = bitmap.getWidth();
 		int height = bitmap.getHeight();
-		Bitmap creBitmap = Bitmap.createBitmap(width, height,
-				Config.ARGB_8888);
+		Bitmap creBitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
 		Canvas canvas = new Canvas();
 		canvas.drawColor(color);
 		canvas.setBitmap(creBitmap);

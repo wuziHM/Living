@@ -104,12 +104,10 @@ public class WebViewWithProgress extends RelativeLayout{
 			
 		});
 	}
-	
-	
+
 	public WebView getWebView()
 	{
 		return mWebView;
 	}
-	
-	
+
 }
