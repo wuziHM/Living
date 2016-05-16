@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class LivingAPI {
 
-    static VolleySingleton volleySingleton;
+    protected static VolleySingleton volleySingleton;
 
     static {
         volleySingleton = VolleySingleton.getInstance();

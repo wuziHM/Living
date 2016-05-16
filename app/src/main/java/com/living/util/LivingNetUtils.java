@@ -8,7 +8,6 @@ import com.living.bean.NewsChannelBean;
 import com.living.bean.NewsSearchBean;
 import com.living.net.LivingAPI;
 import com.living.net.LivingRequest;
-import com.living.net.VolleySingleton;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +36,8 @@ public class LivingNetUtils extends LivingAPI {
         Map<String, String> header = new HashMap<>();
         header.put("apikey", ApiStoreSDK.getAppKey());
         request.setHeader(header);
-        VolleySingleton.getInstance().addToRequestQueue(request);
+        volleySingleton.addToRequestQueue(request);
+//        VolleySingleton.getInstance().addToRequestQueue(request);
     }
 
     /**

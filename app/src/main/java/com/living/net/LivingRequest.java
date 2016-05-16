@@ -72,17 +72,6 @@ public class LivingRequest<NetModel> extends Request<NetModel> {
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
-        /*String localCookie = LocalCookieUtil.getCookies(); //保存的cookie
-        if(!TextUtils.isEmpty(localCookie)){
-            String cookie = mHeader.get("Cookie");
-            if(cookie != null){
-                cookie = cookie + ";" + localCookie;
-            }else{
-                mHeader = new HashMap<>();
-                cookie = localCookie;
-            }
-            mHeader.put("Cookie",cookie);
-        }*/
         if (mHeader == null) {
             mHeader = new HashMap<>();
         }
@@ -104,9 +93,6 @@ public class LivingRequest<NetModel> extends Request<NetModel> {
         if (mParam == null) {
             mParam = new TreeMap<>();
         }
-//      /*  mParam.put("clientInfo", PhoneInformation.getInstance().getClientJsonString());
-        /*  mParam.put("ts", System.currentTimeMillis() + "");
-        mParam.put("signature", Md5Util.getMD5Str(UrlUtil.getSignatureParams((TreeMap) mParam)));*/
         return mParam;
     }
 
