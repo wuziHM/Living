@@ -115,7 +115,10 @@ public class NewsFragment extends BaseFragment {
         });
     }
 
-    // 获取新闻数据
+    /**
+     *  获取新闻数据
+     * @param isLoadMore 是否加载更多数据
+     */
     private void getNewsData(final boolean isLoadMore){
         if (isLoadMore)
             page ++;
@@ -165,6 +168,7 @@ public class NewsFragment extends BaseFragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 mSwipeRefresh.setRefreshing(false);
+                mAdapter.setmError(error.getMessage());
                 LogUtil.e("tobin", "tobin getNewsSearch onErrorResponse: " + error.getMessage());
             }
         }, map);
