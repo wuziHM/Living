@@ -58,7 +58,7 @@ public class Constant {
     public static final String MSG_TYPE_MUSIC="msg_type_music";//音乐
 
     //机器人api， 图灵机器人官网注册http://www.tuling123.com
-    public static final String ROBOT_URL="http://www.tuling123.com/openapi/api?key=8c9e460d261588a152d99853df80fcfd&info=";
+    public static final String ROBOT_URL="http://www.tuling123.com/openapi/api?key=cceba4433c5e0b24c146eda940a7350d&info=";
 
 
 
