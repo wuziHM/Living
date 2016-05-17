@@ -63,10 +63,20 @@ public class LogUtil {
      */
     public static void i(String tag, String msg) {
         showBuddha();
-
         if (isDebug) {
-//            Log.i(tag, msg);
-            println(tag, msg);
+            Log.i(tag, msg);
+        }
+    }
+
+    /**
+     * 打印log.i日志
+     *
+     * @param msg
+     */
+    public static void i(String msg) {
+        showBuddha();
+        if (isDebug) {
+            Log.i(TAG, msg);
         }
     }
 
@@ -88,10 +98,20 @@ public class LogUtil {
      * @param tag
      * @param msg
      */
-    @SuppressWarnings("unused")
     public static void e(String tag, String msg) {
         if (isShowE || isDebug) {
             Log.e(tag, msg);
+        }
+    }
+
+    /**
+     * 打印log.e日志
+     *
+     * @param msg
+     */
+    public static void e(String msg) {
+        if (isShowE || isDebug) {
+            Log.e(TAG, msg);
         }
     }
 
@@ -101,16 +121,6 @@ public class LogUtil {
     public static void println(String TAG, String msg) {
         if (isDebug) {
             System.out.println(TAG + " : " + msg);
-        }
-    }
-
-
-    /**
-     * 打印log.e日志
-     */
-    public static void e(String msg) {
-        if (isShowE || isDebug) {
-            Log.e(TAG, msg);
         }
     }
 
