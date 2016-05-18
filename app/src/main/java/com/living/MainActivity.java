@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.living.ui.activity.ChatListActivity;
 import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
+import com.living.util.LogUtil;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
@@ -52,13 +53,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void beginCrop(Uri source) {
-        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped.png"));
         Crop.of(source, destination).asSquare().start(this);
     }
 
     private void handleCrop(int resultCode, Intent result) {
         if (resultCode == RESULT_OK) {
             iv_crop.setImageURI(Crop.getOutput(result));
+            LogUtil.e("tobin result: " + Crop.getOutput(result) + "//result" + "");
         } else if (resultCode == Crop.RESULT_ERROR) {
             Toast.makeText(this, Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();
         }
