@@ -104,7 +104,7 @@ public class NewsFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                intent.putExtra("link",contentListBean.get(position).getLink());
+                intent.putExtra("link",contentListBean.get(position).getLink() == null ? "http://blog.csdn.net/aprilqq":contentListBean.get(position).getLink());
                 getActivity().startActivity(intent);
             }
 
@@ -162,6 +162,7 @@ public class NewsFragment extends BaseFragment {
                     mAdapter.addDatas(contentListBean);
                 else
                     mAdapter.setDatas(contentListBean);
+
                 mSwipeRefresh.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
@@ -172,6 +173,5 @@ public class NewsFragment extends BaseFragment {
                 LogUtil.e("tobin", "tobin getNewsSearch onErrorResponse: " + error.getMessage());
             }
         }, map);
-
     }
 }

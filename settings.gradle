@@ -1,1 +1,1 @@
-include ':app', ':zixing'
+include ':app', ':zixing', ':imagecroplib'

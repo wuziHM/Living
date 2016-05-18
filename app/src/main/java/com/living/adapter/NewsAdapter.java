@@ -13,11 +13,9 @@ import android.widget.TextView;
 import com.living.R;
 import com.living.bean.NewsSearchBean;
 import com.living.util.DensityUtils;
-import com.living.util.ImageUtil;
 import com.living.util.LogUtil;
 import com.living.util.ScreenUtils;
 import com.living.util.glide.GlideImageUtil;
-import com.living.util.glide.GlideRoundTransform;
 import com.living.widget.ProgressWheel;
 
 import java.util.ArrayList;
@@ -97,9 +95,9 @@ public class NewsAdapter extends RecyclerView.Adapter {
             if (mDatas.get(position).getImageurls() != null && mDatas.get(position).getImageurls().size() > 0 ){
                 if(mDatas.get(position).getImageurls().size() >= 3){
                     ((ItemViewHolder) holder).ll_news_images.setVisibility(View.VISIBLE);
-                    GlideImageUtil.setBigPhotoFast((Activity)mContext, new GlideRoundTransform(mContext),mDatas.get(position).getImageurls().get(0).getUrl(),((ItemViewHolder) holder).iv_new_image1, ImageUtil.PhotoType.BIG);
-                    GlideImageUtil.setBigPhotoFast((Activity)mContext, new GlideRoundTransform(mContext),mDatas.get(position).getImageurls().get(1).getUrl(),((ItemViewHolder) holder).iv_new_image2, ImageUtil.PhotoType.BIG);
-                    GlideImageUtil.setBigPhotoFast((Activity)mContext, new GlideRoundTransform(mContext),mDatas.get(position).getImageurls().get(2).getUrl(),((ItemViewHolder) holder).iv_new_image3, ImageUtil.PhotoType.BIG);
+                    GlideImageUtil.setPhotoFast((Activity)mContext, null,mDatas.get(position).getImageurls().get(0).getUrl(),((ItemViewHolder) holder).iv_new_image1, R.drawable.ic_launcher);
+                    GlideImageUtil.setPhotoFast((Activity)mContext, null, mDatas.get(position).getImageurls().get(1).getUrl(),((ItemViewHolder) holder).iv_new_image2, R.drawable.ic_launcher);
+                    GlideImageUtil.setPhotoFast((Activity)mContext, null, mDatas.get(position).getImageurls().get(2).getUrl(),((ItemViewHolder) holder).iv_new_image3, R.drawable.ic_launcher);
                 }else{
                     ((ItemViewHolder) holder).ll_news_images.setVisibility(View.GONE);
                 }

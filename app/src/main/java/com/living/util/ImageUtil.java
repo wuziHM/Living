@@ -1,10 +1,6 @@
 package com.living.util;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -19,9 +15,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.media.ExifInterface;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -31,34 +24,11 @@ import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 
 /***
  * 图片操作
  */
-@SuppressLint("ResourceAsColor")
 public class ImageUtil {
-	public static final int IMAGE_PIXELS = 5; // 图片切圆角 幅度
-
-	private static final long MAX_PIC_SIZE = 1024 * 1024L;
-
-	public static enum PhotoType {
-		// SMALL("(/big/)|(/special/)", "/big/"), //比BIG小，比SPECIAL大。长宽比在5以内则最小边为128px
-		// SPECIAL("(/small/)|(/big/)", "/big/");
-		BIG("(/small/)|(/special/)", "/big/"), // 原图
-		SMALL("(/big/)|(/special/)", "/small/"); // 比BIG小，比SPECIAL大。长宽比在5以内则最小边为200px
-		// SPECIAL("(/small/)|(/big/)","/special/");//最小。长宽比在5以内则最小边为50px。该选项为默认值
-
-		public String fromRegex;
-		public String toRegex;
-
-		private PhotoType(String fromRegex, String toRegex) {
-			this.fromRegex = fromRegex;
-			this.toRegex = toRegex;
-		}
-	}
 
 	/***
 	 * 给图片增加灰色
@@ -165,41 +135,6 @@ public class ImageUtil {
 			return null;
 		}
 	}
-
-	/**
-	 * 读取图片属性：旋转的角度
-	 * 
-	 * @param path
-	 *            图片绝对路径
-	 * @return degree旋转的角度
-	 */
-	public static int readPictureDegree(String path) {
-		if (StringUtil.isBlank(path)) {
-			return 0;
-		}
-		int degree = 0;
-		try {
-			ExifInterface exifInterface = new ExifInterface(path);
-			int orientation = exifInterface.getAttributeInt(
-					ExifInterface.TAG_ORIENTATION,
-					ExifInterface.ORIENTATION_NORMAL);
-			switch (orientation) {
-			case ExifInterface.ORIENTATION_ROTATE_90:
-				degree = 90;
-				break;
-			case ExifInterface.ORIENTATION_ROTATE_180:
-				degree = 180;
-				break;
-			case ExifInterface.ORIENTATION_ROTATE_270:
-				degree = 270;
-				break;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return degree;
-	}
-
 	/**
 	 * * 旋转图片
 	 * 
@@ -218,21 +153,6 @@ public class ImageUtil {
 		Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0,
 				bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 		return resizedBitmap;
-	}
-
-	/***
-	 * 图片剪切
-	 * 
-	 * @param bitmap
-	 * @return
-	 */
-	public static Bitmap getThumbnailBitMap(Bitmap bitmap) {
-		Log.d("iu", "图片剪切");
-		if (bitmap == null) {
-			return bitmap;
-		}
-		bitmap = cropBitmapPortrait(bitmap);
-		return bitmap;
 	}
 
 	/***
@@ -299,8 +219,7 @@ public class ImageUtil {
 		height = height == 0 ? drawable.getIntrinsicHeight() : height;
 
 		// 取 drawable 的颜色格式
-		Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Config.ARGB_8888
-				: Config.RGB_565;
+		Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Config.ARGB_8888 : Config.RGB_565;
 		// 建立对应 bitmap
 		Bitmap bitmap = Bitmap.createBitmap(width, height, config);
 		// 建立对应 bitmap 的画布
@@ -373,17 +292,6 @@ public class ImageUtil {
 		return output;
 	}
 
-	/***
-	 * 保存图片
-	 */
-	private static void insertWallpaper(Context paramContext,
-			ContentValues values) {
-		Uri localUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-		ContentResolver localContentResolver = paramContext
-				.getContentResolver();
-		localContentResolver.insert(localUri, values);
-	}
-
 	private static final int HARD_CACHE_CAPACITY = 100;
 
 	public static volatile HashMap<String, SoftReference<Bitmap>> bitmapCache = new LinkedHashMap<String, SoftReference<Bitmap>>(
@@ -400,110 +308,6 @@ public class ImageUtil {
 				return false;
 		}
 	};
-
-	static ReentrantReadWriteLock cacheLock = new ReentrantReadWriteLock();
-	static ReadLock cacheReadLock = cacheLock.readLock();
-	static WriteLock cacheWriteLock = cacheLock.writeLock();
-
-	public static void addBitmapToCache(String url, Bitmap bitmap) {
-		try {
-			cacheWriteLock.lock();
-			if (bitmap != null) {
-				// Log.d("ImageUtil", "save cache " + bitmapCache.size() + ":" +
-				// url);
-				bitmapCache.put(url, new SoftReference<Bitmap>(bitmap));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			cacheWriteLock.unlock();
-		}
-	}
-
-	public static Bitmap getBitmapCache(String url) {
-		try {
-			cacheReadLock.lock();
-			// Log.d("ImageUtil", "get cache " + bitmapCache.size() + " :" +
-			// url);
-			SoftReference<Bitmap> bitmapReference = bitmapCache.get(url);
-			if (bitmapReference != null) {
-				Bitmap bitmap = bitmapReference.get();
-				bitmapCache.remove(url);
-				if (bitmap != null) {
-					bitmapCache.put(url, bitmapReference);
-					return bitmap;
-				} else {
-					bitmapCache.remove(url);
-				}
-			}
-			return null;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			cacheReadLock.unlock();
-		}
-	}
-
-	public synchronized static Bitmap process(Bitmap bitmap, int pixels,
-			boolean square, boolean huidu, boolean yuanjiao, int px) {
-		if (bitmap == null) {
-			return null;
-		}
-		if (square) {
-			bitmap = cropBitmapPortrait(bitmap);
-		}
-		if (huidu) {
-			bitmap = removeHuiDu(bitmap);
-		}
-		if (yuanjiao) {
-			bitmap = removeYuanjiao(bitmap, px);
-		}
-		return bitmap;
-	}
-
-	/***
-	 * 根据资源文件获取Bitmap
-	 * 
-	 * @param context
-	 * @param drawableId
-	 * @param screenWidth
-	 * @param screenHight
-	 * @return
-	 */
-	public static Bitmap ReadBitmapById(Context context, int drawableId,
-			int screenWidth, int screenHight) {
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inPreferredConfig = Config.ARGB_8888;
-		options.inInputShareable = true;
-		options.inPurgeable = true;
-		InputStream stream = context.getResources().openRawResource(drawableId);
-		Bitmap bitmap = BitmapFactory.decodeStream(stream, null, options);
-		return getBitmap(bitmap, screenWidth, screenHight);
-	}
-
-	/***
-	 * 等比例压缩图片
-	 * 
-	 * @param bitmap
-	 * @param screenWidth
-	 * @param screenHight
-	 * @return
-	 */
-	public static Bitmap getBitmap(Bitmap bitmap, int screenWidth,
-			int screenHight) {
-		return bitmap;
-		// int w = bitmap.getWidth();
-		// int h = bitmap.getHeight();
-		// Matrix matrix = new Matrix();
-		// float scale = (float) screenWidth / w;
-		// float scale2 = (float) screenHight / h;
-		// // scale = scale < scale2 ? scale : scale2;
-		// // 保证图片不变形.
-		// matrix.postScale(scale, scale);
-		// // w,h是原图的属性.
-		// return Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
-	}
 
 	/***
 	 * 判断图片是存在
@@ -532,8 +336,7 @@ public class ImageUtil {
 	}
 
 	// 根据宽度等比例放大 压缩图片
-	public static Bitmap compressImageByWidth(int mWidth, Activity context,
-			Bitmap bitmap) {
+	public static Bitmap compressImageByWidth(int mWidth, Activity context, Bitmap bitmap) {
 		int rWidth;
 		if (mWidth == 0) {
 			DisplayMetrics dm = new DisplayMetrics();
@@ -553,8 +356,6 @@ public class ImageUtil {
 				bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 		return resizedBitmap;
 	}
-
-
 
 	/**
 	 * 以最省内存的方式读取本地资源的图片

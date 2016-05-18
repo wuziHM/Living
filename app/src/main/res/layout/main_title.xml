@@ -6,6 +6,7 @@
     android:background="@color/colorAccent">
 
     <ImageView
+        android:id="@+id/iv_main_activity_back"
         android:layout_width="20dip"
         android:layout_height="20dip"
         android:layout_centerVertical="true"
