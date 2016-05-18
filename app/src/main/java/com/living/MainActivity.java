@@ -1,6 +1,8 @@
 package com.living;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,8 @@ import com.living.util.LogUtil;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -59,13 +63,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void handleCrop(int resultCode, Intent result) {
         if (resultCode == RESULT_OK) {
-            iv_crop.setImageURI(Crop.getOutput(result));
-            LogUtil.e("tobin result: " + Crop.getOutput(result) + "//result" + "");
+//            iv_crop.setImageURI(Crop.getOutput(result));
+            try {
+                Bitmap test = BitmapFactory.decodeStream(new FileInputStream(Crop.getOutput(result).getPath()));
+                iv_crop.setImageBitmap(test);
+            }catch (FileNotFoundException e){
+                e.printStackTrace();
+            }
+            LogUtil.e("tobin result: " + Crop.getOutput(result).toString() + " //img_path: " + Crop.getOutput(result).getPath());
         } else if (resultCode == Crop.RESULT_ERROR) {
             Toast.makeText(this, Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
