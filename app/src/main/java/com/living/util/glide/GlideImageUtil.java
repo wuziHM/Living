@@ -27,7 +27,6 @@ public class GlideImageUtil {
 			return;
 		}
 		if (transformations != null) {
-			//crossFade()默认动画，fitCenter()，placeholder()占位图，error()错误图
 			Glide.with(activity).load(uri).centerCrop().transform(transformations).error(defaultPhoto).into(imageView);
 		} else {
 			Glide.with(activity).load(uri).centerCrop().error(defaultPhoto).crossFade(0).into(imageView);
@@ -48,7 +47,7 @@ public class GlideImageUtil {
 			return;
 		}
 		if(transformations == null){
-			// placeholder 表示图片加载时的站位图 、 error 加载失败时显示的占位图
+            //crossFade()默认动画，fitCenter()，placeholder()占位图，error()错误图
 //			Glide.with(activity).load(resourceId).placeholder(R.drawable.loading_ios).error(R.drawable.ic_launcher).crossFade().into(imageView);
 			Glide.with(activity).load(resourceId).centerCrop().into(imageView);
 		}else{

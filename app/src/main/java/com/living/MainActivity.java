@@ -1,21 +1,26 @@
 package com.living;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.living.ui.activity.ChatListActivity;
 import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
+import com.soundcloud.android.crop.Crop;
+
+import java.io.File;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private LinearLayout ll_news;
+    private ImageView iv_crop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +31,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void initView() {
-        ll_news = (LinearLayout) findViewById(R.id.ll_news);
-        ll_news.setOnClickListener(this);
+
+        findViewById(R.id.iv_main_activity_back).setOnClickListener(this);
+
+        iv_crop = (ImageView) findViewById(R.id.iv_crop);
+
+        findViewById(R.id.ll_news).setOnClickListener(this);
         findViewById(R.id.ll_weather).setOnClickListener(this);
         findViewById(R.id.ll_robot).setOnClickListener(this);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent result) {
+        if (requestCode == Crop.REQUEST_PICK && resultCode == RESULT_OK) {
+            beginCrop(result.getData());
+        } else if (requestCode == Crop.REQUEST_CROP) {
+            handleCrop(resultCode, result);
+        }
+    }
+
+    private void beginCrop(Uri source) {
+        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+        Crop.of(source, destination).asSquare().start(this);
+    }
+
+    private void handleCrop(int resultCode, Intent result) {
+        if (resultCode == RESULT_OK) {
+            iv_crop.setImageURI(Crop.getOutput(result));
+        } else if (resultCode == Crop.RESULT_ERROR) {
+            Toast.makeText(this, Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -39,20 +71,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, NewsActivity.class));
                 break;
             case R.id.ll_weather:
-
                 startActivity(new Intent(MainActivity.this, WeatherActivity.class));
-
-//                LivingNetUtils.getWeather("shanghai", new Response.Listener<CountryWeatherBean>() {
-//                    @Override
-//                    public void onResponse(CountryWeatherBean response) {
-//
-//                    }
-//                }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//
-//                    }
-//                });
+                break;
+            case R.id.iv_main_activity_back:
+                Crop.pickImage(this);
                 break;
             case R.id.ll_robot:
                 startActivity(new Intent(MainActivity.this, ChatListActivity.class));
