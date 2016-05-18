@@ -7,4 +7,265 @@
     android:gravity="left"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/forecast_menu1_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:background="@mipmap/yjjc_b_01"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/forecast_menu1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="今日天气"
+            android:textSize="@dimen/sp_18" />
+
+        <LinearLayout
+            android:id="@+id/forecast_shili_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--内容-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/yjjc_b_02"
+        android:gravity="left"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/today_yubao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left">
+                <!--动画效果-->
+                <RelativeLayout
+                    android:id="@+id/weather_qing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="你好"
+                        android:textSize="@dimen/sp_25" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_duoyun"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_yin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_night_yin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_wu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_mai"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_sha"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_move1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/m1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_move2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/m2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_move3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/m3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_move4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/m4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_move5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/m5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_move6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/m6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_move7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/m7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_move8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/m8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_move9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/m9"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_move10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/m10"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dp_50">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/content"
+                        android:text="此处放天气的内容"
+                        android:textSize="@dimen/sp_18"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

@@ -33,7 +33,6 @@ public class LivingNetUtils extends LivingAPI {
 //        request.setHeader(header);
 //        volleySingleton.addToRequestQueue(request);
 //        VolleySingleton.getInstance().addToRequestQueue(request);
-
         post(URL_NEWS_CHANNEL, NewsChannelBean.class, listener, errorListener, map);
     }
 
@@ -41,12 +40,6 @@ public class LivingNetUtils extends LivingAPI {
      * 根据频道获取新闻
      */
     public static void getNewsSearch(Response.Listener<NewsSearchBean> listener, Response.ErrorListener errorListener, TreeMap<String, String> map) {
-//        LivingRequest<NewsSearchBean> request = new LivingRequest<>(Request.Method.POST,
-//                URL_NEWS_SEARCH, NewsSearchBean.class, listener, errorListener, map);
-//        Map<String, String> header = new HashMap<>();
-//        header.put("apikey", ApiStoreSDK.getAppKey());
-//        request.setHeader(header);
-//        VolleySingleton.getInstance().addToRequestQueue(request);
         post(URL_NEWS_SEARCH, NewsSearchBean.class, listener, errorListener, map);
     }
 
