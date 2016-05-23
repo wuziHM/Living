@@ -15,7 +15,7 @@ android {
     signingConfigs {
         // 签名密码写在gradle中不安全
         release {
-            storeFile file('/living.jks')
+            storeFile file('living.jks')
             storePassword '123456'
             keyAlias 'living'
             keyPassword '123456'
@@ -27,7 +27,7 @@ android {
             // 不显示Log
             buildConfigField "boolean", "LOG_DEBUG", "false"
             // 加入签名配置信息
-            signingConfig  signingConfigs.release
+//            signingConfig  signingConfigs.release
             // 混淆
             minifyEnabled false
             // Zipalign优化
@@ -36,11 +36,6 @@ android {
             shrinkResources true
             // 加载默认混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            // 显示Log
-            buildConfigField "boolean", "LOG_DEBUG", "true"
-            signingConfig signingConfigs.release
         }
     }
 
@@ -56,7 +51,6 @@ android {
         }
         c360 {}
         uc {}
-
         productFlavors.all {
             flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
