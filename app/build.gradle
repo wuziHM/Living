@@ -11,12 +11,58 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
+
+    signingConfigs {
+        // 签名密码写在gradle中不安全
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file('/living.jks')
+            storePassword '123456'
+            keyAlias 'living'
+            keyPassword '123456'
         }
     }
+
+    buildTypes {
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            // 加入签名配置信息
+            signingConfig  signingConfigs.release
+            // 混淆
+            minifyEnabled false
+            // Zipalign优化
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources true
+            // 加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            signingConfig signingConfigs.release
+        }
+    }
+
+    // 多渠道打包配置
+    productFlavors {
+        official {}
+        wandoujia {}
+        baidu {
+            //这里可以配置不同的包名 版本号
+            applicationId = "com.living.baidu"
+            versionCode = "2"
+            versionName = "1.1"
+        }
+        c360 {}
+        uc {}
+
+        productFlavors.all {
+            flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+
+
     useLibrary 'org.apache.http.legacy'
 }
 

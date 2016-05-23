@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
     }
 
-
     private void initView() {
 
         findViewById(R.id.iv_main_activity_back).setOnClickListener(this);
