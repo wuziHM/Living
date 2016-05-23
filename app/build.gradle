@@ -16,7 +16,17 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0.0"
+
+        // dex突破65535的限制
+        multiDexEnabled true
+
+        // 设置AndroidManifest.xml 里面UMENG_CHANNEL的value默认值
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: 'dev']
+    }
+
+    //执行lint检查，有任何的错误或者警告提示，都会终止构建，我们可以将其关掉。
+    lintOptions {
+        abortOnError false
     }
 
     signingConfigs {
