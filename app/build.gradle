@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMdd')
+    return formattedDate
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.3'
@@ -9,12 +15,12 @@ android {
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: 'dev']
     }
 
     signingConfigs {
-        // 签名密码写在gradle中不安全
-        release {
+        myConfig {
             storeFile file('living.jks')
             storePassword '123456'
             keyAlias 'living'
@@ -27,7 +33,7 @@ android {
             // 不显示Log
             buildConfigField "boolean", "LOG_DEBUG", "false"
             // 加入签名配置信息
-//            signingConfig  signingConfigs.release
+            signingConfig  signingConfigs.myConfig
             // 混淆
             minifyEnabled false
             // Zipalign优化
@@ -36,26 +42,34 @@ android {
             shrinkResources true
             // 加载默认混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+
+                    if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
+                        def apkFile = new File(output.outputFile.getParent(), "Living_${variant.flavorName}_v${variant.versionName}_${buildTime()}_${variant.buildType.name}.apk")
+                        output.outputFile = apkFile
+                    }
+                }
+            }
+
         }
     }
 
     // 多渠道打包配置
     productFlavors {
-        official {}
-        wandoujia {}
+        dev {
+        }
         baidu {
             //这里可以配置不同的包名 版本号
             applicationId = "com.living.baidu"
             versionCode = "2"
-            versionName = "1.1"
+            versionName = "1.1.0"
         }
-        c360 {}
-        uc {}
         productFlavors.all {
             flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
     }
-
 
     useLibrary 'org.apache.http.legacy'
 }
@@ -65,8 +79,8 @@ dependencies {
     compile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
-    compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.android.support:design:23.3.0'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'cn.pedant.sweetalert:library:1.3'
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     compile project(':zixing')
