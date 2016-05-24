@@ -41,8 +41,11 @@
         <activity android:name=".ui.activity.WebViewActivity" />
         <activity android:name=".ui.activity.WeatherActivity" />
         <activity android:name=".ui.activity.ChatListActivity"></activity>
-        <!-- ImageCropLib 模块 用于图片裁剪 -->
-        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+        <!--Add UCropActivity-->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
     </application>
 </manifest>

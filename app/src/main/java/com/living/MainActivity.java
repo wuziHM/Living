@@ -1,8 +1,6 @@
 package com.living;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,12 +12,10 @@ import android.widget.Toast;
 import com.living.ui.activity.ChatListActivity;
 import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
-import com.living.util.LogUtil;
-import com.soundcloud.android.crop.Crop;
+
+import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -48,32 +44,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-        if (requestCode == Crop.REQUEST_PICK && resultCode == RESULT_OK) {
-            beginCrop(result.getData());
-        } else if (requestCode == Crop.REQUEST_CROP) {
-            handleCrop(resultCode, result);
-        }
-    }
-
-    private void beginCrop(Uri source) {
-        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped.png"));
-        Crop.of(source, destination).asSquare().start(this);
-    }
-
-    private void handleCrop(int resultCode, Intent result) {
         if (resultCode == RESULT_OK) {
-//            iv_crop.setImageURI(Crop.getOutput(result));
-            try {
-                Bitmap test = BitmapFactory.decodeStream(new FileInputStream(Crop.getOutput(result).getPath()));
-                iv_crop.setImageBitmap(test);
-            }catch (FileNotFoundException e){
-                e.printStackTrace();
+            if (requestCode == REQUEST_SELECT_PICTURE) {
+                final Uri selectedUri = result.getData();
+                if (selectedUri != null) {
+                    UCrop uCrop = UCrop.of(selectedUri, Uri.fromFile(new File(getCacheDir(), "u_crop.png")));
+                    uCrop.start(MainActivity.this);
+                } else {
+                    Toast.makeText(MainActivity.this, "Cannot retrieve selected image", Toast.LENGTH_SHORT).show();
+                }
+            } else if (requestCode == UCrop.REQUEST_CROP) {
+                final Uri resultUri = UCrop.getOutput(result);
+                iv_crop.setImageURI(resultUri);
             }
-            LogUtil.e("tobin result: " + Crop.getOutput(result).toString() + " //img_path: " + Crop.getOutput(result).getPath());
-        } else if (resultCode == Crop.RESULT_ERROR) {
-            Toast.makeText(this, Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();
         }
+        if (resultCode == UCrop.RESULT_ERROR) {
+            Toast.makeText(MainActivity.this, UCrop.getError(result).getMessage() + "", Toast.LENGTH_LONG).show();
+        }
+
     }
+
+    private static final int REQUEST_SELECT_PICTURE = 0x01;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -84,7 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, WeatherActivity.class));
                 break;
             case R.id.iv_main_activity_back:
-                Crop.pickImage(this);
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                startActivityForResult(Intent.createChooser(intent, "图片选择"), REQUEST_SELECT_PICTURE);
                 break;
             case R.id.ll_robot:
                 startActivity(new Intent(MainActivity.this, ChatListActivity.class));

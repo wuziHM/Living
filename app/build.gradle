@@ -73,17 +73,16 @@ android {
     // 多渠道打包配置
     productFlavors {
         dev {
-        }
-        baidu {
             //这里可以配置不同的包名 版本号
-            applicationId = "com.living.baidu"
-            versionCode = "2"
-            versionName = "1.1.0"
+            applicationId = "com.living"
+            versionCode = "1"
+            versionName = "1.0.0"
         }
         productFlavors.all {
             flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
     }
+
 
     useLibrary 'org.apache.http.legacy'
 }
@@ -98,5 +97,6 @@ dependencies {
     compile 'cn.pedant.sweetalert:library:1.3'
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     compile project(':zixing')
-    compile project(':imagecroplib')
+    compile project(':appintro')
+    compile project(':ucrop')
 }
