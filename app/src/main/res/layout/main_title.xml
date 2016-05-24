@@ -7,12 +7,10 @@
 
     <ImageView
         android:id="@+id/iv_main_activity_back"
-        android:layout_width="20dip"
-        android:layout_height="20dip"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
         android:layout_centerVertical="true"
         android:layout_gravity="start"
-        android:layout_marginLeft="10dip"
-        android:layout_marginStart="10dip"
         android:contentDescription="@string/app_name"
         android:src="@mipmap/main" />
 
