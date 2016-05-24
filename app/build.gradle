@@ -31,7 +31,7 @@ android {
 
     signingConfigs {
         myConfig {
-            storeFile file('living.jks')
+            storeFile file('../living.jks')
             storePassword '123456'
             keyAlias 'living'
             keyPassword '123456'
