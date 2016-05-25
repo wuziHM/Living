@@ -15,12 +15,13 @@ import com.living.R;
 import com.living.ui.activity.ChatListActivity;
 import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
+import com.living.util.LogUtil;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 
 public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
-    View view;
+    View rootView;
 
     private ImageView iv_crop;
 
@@ -31,20 +32,30 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_tab1, container, false);
+        if(rootView == null){
+            rootView=inflater.inflate(R.layout.fragment_tab1, null);
+            LogUtil.e("Tab1Fragment onCreateView rootView == null");
+        }else{
+            LogUtil.e("Tab1Fragment onCreateView rootView != null 无需重新加载UI");
+        }
+        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
+        ViewGroup parent = (ViewGroup) rootView.getParent();
+        if (parent != null) {
+            parent.removeView(rootView);
+        }
         initView();
-        return view ;
+        return rootView ;
     }
 
     private void initView() {
 
-        view.findViewById(R.id.iv_main_activity_back).setOnClickListener(this);
+        rootView.findViewById(R.id.iv_main_activity_back).setOnClickListener(this);
 
-        iv_crop = (ImageView)view.findViewById(R.id.iv_crop);
+        iv_crop = (ImageView)rootView.findViewById(R.id.iv_crop);
 
-        view.findViewById(R.id.ll_news).setOnClickListener(this);
-        view.findViewById(R.id.ll_weather).setOnClickListener(this);
-        view.findViewById(R.id.ll_robot).setOnClickListener(this);
+        rootView.findViewById(R.id.ll_news).setOnClickListener(this);
+        rootView.findViewById(R.id.ll_weather).setOnClickListener(this);
+        rootView.findViewById(R.id.ll_robot).setOnClickListener(this);
 
     }
 

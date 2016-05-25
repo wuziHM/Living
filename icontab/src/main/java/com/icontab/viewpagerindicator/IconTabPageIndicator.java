@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.viewpagerindicator.IconPagerAdapter;
 import com.viewpagerindicator.PageIndicator;
 
-
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
