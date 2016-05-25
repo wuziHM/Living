@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -69,10 +70,10 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
             View view = tabw.getChildAt(i);
             ImageView iv = (ImageView) view.findViewById(R.id.ivImg);
             if (i == tabHost.getCurrentTab()) {
-                ((TextView) view.findViewById(R.id.tvTab)).setTextColor(Color.RED);
+                ((TextView) view.findViewById(R.id.tvTab)).setTextColor(ContextCompat.getColor(this,R.color.foot_txt_light));
                 iv.setImageResource(tabsImgLight[i]);
             } else {
-                ((TextView) view.findViewById(R.id.tvTab)).setTextColor(getResources().getColor(R.color.foot_txt_gray));
+                ((TextView) view.findViewById(R.id.tvTab)).setTextColor(ContextCompat.getColor(this,R.color.foot_txt_gray));
                 iv.setImageResource(tabImg[i]);
             }
         }

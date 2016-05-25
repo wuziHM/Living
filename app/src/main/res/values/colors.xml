@@ -15,4 +15,5 @@
     <color name="transparent">#00000000</color>
 
     <color name="foot_txt_gray">#AEAEAE</color>
+    <color name="foot_txt_light">#FC2828</color>
 </resources>
