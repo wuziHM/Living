@@ -20,7 +20,6 @@ android {
         // dex突破65535的限制
         multiDexEnabled true
 
-
         // 设置AndroidManifest.xml 里面UMENG_CHANNEL的value默认值
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: 'dev']
     }
@@ -44,7 +43,7 @@ android {
             // 不显示Log
             buildConfigField "boolean", "LOG_DEBUG", "false"
             // 加入签名配置信息
-            signingConfig  signingConfigs.myConfig
+            signingConfig signingConfigs.myConfig
             // 混淆
             minifyEnabled false
             // Zipalign优化
@@ -67,7 +66,7 @@ android {
 
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
-            signingConfig  signingConfigs.myConfig
+            signingConfig signingConfigs.myConfig
         }
     }
 
@@ -87,16 +86,19 @@ android {
     useLibrary 'org.apache.http.legacy'
 }
 
+
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:support-v4:23.3.0'
-    compile 'com.android.support:design:23.3.0'
-    compile 'com.github.bumptech.glide:glide:3.6.1'
-    compile 'cn.pedant.sweetalert:library:1.3'
-    compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     compile project(':zixing')
     compile project(':appintro')
     compile project(':ucrop')
+    compile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'cn.pedant.sweetalert:library:1.3'
+    compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
 }

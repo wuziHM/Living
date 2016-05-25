@@ -13,4 +13,6 @@
 
     <color name="half_transparent">#01FFFFFF</color>
     <color name="transparent">#00000000</color>
+
+    <color name="foot_txt_gray">#AEAEAE</color>
 </resources>

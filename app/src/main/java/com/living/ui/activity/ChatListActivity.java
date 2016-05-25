@@ -30,4 +30,6 @@ public class ChatListActivity extends BaseAppCompatActivity implements View.OnCl
                 break;
         }
     }
+
+
 }

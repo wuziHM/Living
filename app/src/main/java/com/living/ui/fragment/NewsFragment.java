@@ -35,10 +35,6 @@ public class NewsFragment extends BaseFragment {
     private String channelId;
     private int page = 1;
 
-    public NewsFragment() {
-        super(R.layout.fragment_news);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +44,7 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view =  super.onCreateView(inflater, container, savedInstanceState);
+        view =  inflater.inflate(R.layout.fragment_news, container, false);
         initView();
         initEvent();
         return view;
