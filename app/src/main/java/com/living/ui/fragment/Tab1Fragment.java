@@ -72,7 +72,7 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
             }
         }
         if (resultCode == UCrop.RESULT_ERROR) {
-            Toast.makeText(getActivity(), UCrop.getError(result).getMessage() + "", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),  "" + UCrop.getError(result).getMessage(), Toast.LENGTH_LONG).show();
         }
 
     }
