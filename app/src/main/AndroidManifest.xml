@@ -35,17 +35,24 @@
         </activity>
         <activity
             android:name=".ui.activity.NewsActivity"
+            android:launchMode="standard"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".ui.activity.BaseAppCompatActivity" />
-        <activity android:name=".ui.activity.WebViewActivity" />
-        <activity android:name=".ui.activity.WeatherActivity" />
-        <activity android:name=".ui.activity.ChatListActivity"></activity>
+        <activity
+            android:name=".ui.activity.WebViewActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".ui.activity.WeatherActivity"
+            android:launchMode="singleInstance" />/>
+        <activity
+            android:name=".ui.activity.ChatListActivity"
+            android:launchMode="standard"></activity>
         <!--Add UCropActivity-->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
     </application>
 </manifest>
