@@ -16,37 +16,6 @@ public class Constant {
     public static final String FILE_VOICE_CACHE = Environment.getExternalStorageDirectory() + "/living/voice/";
     public static final String FILE_DOWNLOAD = Environment.getExternalStorageDirectory() + "/living/download/";
 
-    /**
-     * 默认横坐标
-     */
-    public final static double LOC_LONGITUDE = 116.403119;
-    /**
-     * 默认纵坐标
-     */
-    public final static double LOC_LATITUDE = 39.915378;
-    /**
-     * 实时定位地址
-     */
-    public final static String ADDRESS = "ADDRESS";
-    /**
-     * 实时定位城市
-     */
-    public final static String CITY = "CITY";
-    /**
-     * 实时定位坐标
-     */
-    public final static String LOCTION = "LOCTION";
-
-    /**
-     * 版本号,如果版本更新时更新了引导图，则将"VERSION_CODE"名改变即可,没有更新则不改变；
-     * 为了统一，更改策略为：
-     * VERSION_CODE="VERSION_CODE_1"
-     * VERSION_CODE="VERSION_CODE_2"
-     * VERSION_CODE="VERSION_CODE_3"
-     * 。。。。。。
-     */
-    public final static String VERSION_CODE = "VERSION_CODE";
-
     //静态地图API
     public static  final String LOCATION_URL_S = "http://api.map.baidu.com/staticimage?width=320&height=240&zoom=17&center=";
     public static  final String LOCATION_URL_L = "http://api.map.baidu.com/staticimage?width=480&height=800&zoom=17&center=";

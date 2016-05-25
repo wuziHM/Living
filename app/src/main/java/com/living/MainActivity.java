@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
                 iv.setImageResource(tabImg[i]);
             }
         }
+
     }
 
     @Override
