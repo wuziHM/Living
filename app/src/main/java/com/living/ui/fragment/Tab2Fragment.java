@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.living.R;
 import com.living.util.LogUtil;
@@ -24,6 +25,10 @@ public class Tab2Fragment extends BaseFragment {
         LogUtil.e("Tab2Fragment onCreate");
     }
 
+    private void initView(){
+        ((TextView) rootView.findViewById(R.id.tv_main_title)).setText("发现");
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(rootView == null){
@@ -37,7 +42,9 @@ public class Tab2Fragment extends BaseFragment {
         if (parent != null) {
             parent.removeView(rootView);
         }
-        return super.onCreateView(inflater, container, savedInstanceState);
+
+        initView();
+        return rootView;
     }
 
     @Override

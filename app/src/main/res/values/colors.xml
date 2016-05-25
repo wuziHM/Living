@@ -16,4 +16,5 @@
 
     <color name="foot_txt_gray">#AEAEAE</color>
     <color name="foot_txt_light">#FC2828</color>
+    <color name="foot_tab_background">#F6F6F6</color>
 </resources>

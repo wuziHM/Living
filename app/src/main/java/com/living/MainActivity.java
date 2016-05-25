@@ -1,7 +1,6 @@
 package com.living;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
@@ -22,7 +21,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity  implements TabHost.OnTabChangeListener {
 
-    String[] tabsTxt = {"生活", "发现", " 我"};
+    String[] tabsTxt = {"首页", "发现", " 我"};
     int[] tabImg = {R.mipmap.tab1, R.mipmap.tab2, R.mipmap.tab3};
     int[] tabsImgLight = {R.mipmap.tab1, R.mipmap.tab2, R.mipmap.tab3};
     Class[] clz = {Tab1Fragment.class, Tab2Fragment.class, Tab1Fragment.class};
@@ -32,26 +31,29 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tabHost=(FragmentTabHost)super.findViewById(android.R.id.tabhost);
-        tabHost.setup(this,super.getSupportFragmentManager(),R.id.contentLayout);
-        tabHost.getTabWidget().setDividerDrawable(null);
-        tabHost.setOnTabChangedListener(this);
         initTab();
     }
 
     private void initTab() {
+        tabHost=(FragmentTabHost)super.findViewById(android.R.id.tabhost);
+        tabHost.setup(this,super.getSupportFragmentManager(),R.id.contentLayout);
+        tabHost.getTabWidget().setDividerDrawable(null);
+        tabHost.setOnTabChangedListener(this);
         for (int i = 0; i < tabsTxt.length; i++) {
             TabHost.TabSpec tabSpec = tabHost.newTabSpec(tabsTxt[i]).setIndicator(getTabView(i));
             tabHost.addTab(tabSpec, clz[i], null);
             tabHost.setTag(i);
+
         }
+        //设置初始显示Tab页 默认位0显示第一个Tab
+        tabHost.setCurrentTab(1);
     }
 
     private View getTabView(int idx) {
         View view = LayoutInflater.from(this).inflate(R.layout.footer_tabs, null);
         ((TextView) view.findViewById(R.id.tvTab)).setText(tabsTxt[idx]);
         if (idx == 0) {
-            ((TextView) view.findViewById(R.id.tvTab)).setTextColor(Color.RED);
+            ((TextView) view.findViewById(R.id.tvTab)).setTextColor(ContextCompat.getColor(this,R.color.foot_txt_light));
             ((ImageView) view.findViewById(R.id.ivImg)).setImageResource(tabsImgLight[idx]);
         } else {
             ((ImageView) view.findViewById(R.id.ivImg)).setImageResource(tabImg[idx]);
