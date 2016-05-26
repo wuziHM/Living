@@ -38,13 +38,11 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener{
 
     public void testGreenDao(){
         User user=new User();
-        user.setAccount("张三");
+        user.setAccount("最会写代码的厨师，最会做饭的程序员");
         user.setHeight(168);
 
         DbUtil.getUserService().save(user);
-
         List<User> test = DbUtil.getUserService().queryAll();
-
         if (test != null && test.size()>0){
             LogUtil.e("User: " + test.get(0).toString() + " //getAccount: " + test.get(0).getAccount());
         }
