@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -41,6 +42,7 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
 
     private void initView() {
         findViewById(R.id.iv_back).setOnClickListener(this);
+        ((TextView) findViewById(R.id.tv_title)).setText(getString(R.string.title_activity_news));
         mViewPager = (ViewPager) findViewById(R.id.vp_view);
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
     }
@@ -57,7 +59,7 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
         NewsClassifyAdapter mAdapter = new NewsClassifyAdapter(getSupportFragmentManager(), fragments, mTitleList);
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
-//        mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器 // 新的版本不需要设置，会自动根据ViewPage找到mAdapter
+        mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器 // 新的版本不需要设置，会自动根据ViewPage找到mAdapter
         mViewPager.addOnPageChangeListener(pageListener);
         mViewPager.setOffscreenPageLimit(4);
     }

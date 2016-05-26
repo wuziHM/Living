@@ -1,17 +1,23 @@
 package com.living.ui.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.living.R;
+import com.living.ui.activity.TuLingChatActivity;
 import com.living.util.LogUtil;
 
-public class Tab2Fragment extends BaseFragment {
+public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
     private View rootView;//缓存Fragment view
+
+    LinearLayout ll_chat;
+    TextView tv_content, tv_time;
 
     @Override
     public void onAttach(Activity activity) {
@@ -27,6 +33,10 @@ public class Tab2Fragment extends BaseFragment {
 
     private void initView(){
         ((TextView) rootView.findViewById(R.id.tv_main_title)).setText("发现");
+        ll_chat = (LinearLayout) rootView.findViewById(R.id.ll_chat);
+        tv_content = (TextView) rootView.findViewById(R.id.tv_content);
+        tv_time = (TextView) rootView.findViewById(R.id.tv_time);
+        ll_chat.setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +55,17 @@ public class Tab2Fragment extends BaseFragment {
 
         initView();
         return rootView;
+    }
+
+    @Override
+    public void onClick(View arg0) {
+        switch (arg0.getId()) {
+            case R.id.ll_chat:
+                startActivity(new Intent(getActivity(), TuLingChatActivity.class));
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

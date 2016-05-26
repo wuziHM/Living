@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
 
         }
         //设置初始显示Tab页 默认位0显示第一个Tab
-        tabHost.setCurrentTab(2);
+        tabHost.setCurrentTab(1);
     }
 
     private View getTabView(int idx) {

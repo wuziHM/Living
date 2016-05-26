@@ -19,6 +19,6 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="@string/title_activity_news" />
+        android:text="Title" />
 
 </RelativeLayout>

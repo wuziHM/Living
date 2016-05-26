@@ -85,7 +85,7 @@
                     android:id="@+id/iv_robot"
                     android:layout_width="100dip"
                     android:layout_height="100dip"
-                    android:src="@mipmap/robot" />
+                    android:src="@mipmap/test_jt" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@mipmap/refresh" />
+                    android:src="@mipmap/test_fm" />
 
                 <TextView
                     android:layout_width="wrap_content"
