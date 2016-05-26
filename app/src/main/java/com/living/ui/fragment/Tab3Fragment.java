@@ -69,7 +69,6 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener{
                 final Uri resultUri = UCrop.getOutput(result);
 //                iv_header.setImageURI(resultUri);
                 GlideImageUtil.setPhotoFast(getActivity(), GlideCircleTransform.getInstance(getActivity()),resultUri.toString(),iv_header,R.mipmap.ic_launcher);
-//                GlideImageUtil.setPhotoResourceId(getActivity(), GlideCircleTransform.getInstance(getActivity()),R.mipmap.ic_launcher,iv_header);
             }
         }
         if (resultCode == UCrop.RESULT_ERROR) {
