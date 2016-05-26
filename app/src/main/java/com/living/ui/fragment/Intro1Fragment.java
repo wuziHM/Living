@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.living.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 第一个欢迎界面
  */
 public class Intro1Fragment extends Fragment {
 
