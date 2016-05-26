@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/intro_03"
+    android:background="@mipmap/intro_background_01"
     tools:context="com.living.ui.fragment.Intro1Fragment">
 
     <TextView
