@@ -8,11 +8,13 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        minSdkVersion 11
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 11
         versionName "3.3.0"
     }
+
+
     buildTypes {
         release {
             minifyEnabled false

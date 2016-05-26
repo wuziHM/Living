@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public abstract class AppIntroBase extends AppCompatActivity implements AppIntroViewPager.OnNextPageRequestedListener{
+public abstract class AppIntroBase extends AppCompatActivity implements AppIntroViewPager.OnNextPageRequestedListener {
 
     public final static int DEFAULT_COLOR = 1;
 
@@ -71,10 +71,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     private int currentlySelectedItem = -1;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState)
-    {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         super.onCreate(savedInstanceState);
 
         setContentView(getLayoutId());
@@ -89,13 +87,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
         pager = (AppIntroViewPager) findViewById(R.id.view_pager);
 
-        doneButton.setOnClickListener(new View.OnClickListener()
-        {
+        doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(@NonNull View v)
-            {
-                if (isVibrateOn)
-                {
+            public void onClick(@NonNull View v) {
+                if (isVibrateOn) {
                     mVibrator.vibrate(vibrateIntensity);
                 }
 
@@ -103,23 +98,19 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
                 boolean isSlideChangingAllowed = handleBeforeSlideChanged();
 
-                if(isSlideChangingAllowed) {
+                if (isSlideChangingAllowed) {
                     handleSlideChanged(currentFragment, null);
                     onDonePressed(currentFragment);
-                }
-                else {
+                } else {
                     handleIllegalSlideChangeAttempt();
                 }
             }
         });
 
-        skipButton.setOnClickListener(new View.OnClickListener()
-        {
+        skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(@NonNull View v)
-            {
-                if (isVibrateOn)
-                {
+            public void onClick(@NonNull View v) {
+                if (isVibrateOn) {
                     mVibrator.vibrate(vibrateIntensity);
                 }
                 onSkipPressed(mPagerAdapter.getItem(pager.getCurrentItem()));
@@ -136,19 +127,17 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     }
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState)
-    {
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
         // Call deprecated init method only if no fragments have been added trough onCreate() or onStart()
-        if(fragments.size() == 0) {
+        if (fragments.size() == 0) {
             init(null);
         }
 
         // required for triggering onPageSelected and onSlideChanged for first page
         pager.setCurrentItem(savedCurrentItem);
-        pager.post(new Runnable()
-        {
+        pager.post(new Runnable() {
             @Override
             public void run() {
                 handleSlideChanged(null, mPagerAdapter.getItem(pager.getCurrentItem()));
@@ -162,28 +151,25 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         // Do nothing if go back lock is enabled or slide has custom policy.
-        if(!isGoBackLockEnabled) {
+        if (!isGoBackLockEnabled) {
             super.onBackPressed();
         }
     }
 
     @Override
-    public void onWindowFocusChanged(boolean hasFocus)
-    {
+    public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        if(hasFocus && isImmersiveModeEnabled) {
+        if (hasFocus && isImmersiveModeEnabled) {
             setImmersiveMode(true, isImmersiveModeSticky);
         }
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent event)
-    {
-        if(isImmersiveModeEnabled) {
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (isImmersiveModeEnabled) {
             gestureDetector.onTouchEvent(event);
         }
         return super.dispatchTouchEvent(event);
@@ -206,8 +192,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState)
-    {
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
         this.baseProgressButtonEnabled = savedInstanceState.getBoolean("baseProgressButtonEnabled");
@@ -229,8 +214,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     }
 
     @Override
-    public void onIllegallyRequestedNextPage()
-    {
+    public void onIllegallyRequestedNextPage() {
         handleIllegalSlideChangeAttempt();
     }
 
@@ -253,10 +237,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     private void handleIllegalSlideChangeAttempt() {
         Fragment currentFragment = mPagerAdapter.getItem(pager.getCurrentItem());
 
-        if(currentFragment != null && currentFragment instanceof ISlidePolicy) {
-            ISlidePolicy slide = (ISlidePolicy)currentFragment;
+        if (currentFragment != null && currentFragment instanceof ISlidePolicy) {
+            ISlidePolicy slide = (ISlidePolicy) currentFragment;
 
-            if(!slide.isPolicyRespected()) {
+            if (!slide.isPolicyRespected()) {
                 slide.onUserIllegallyRequestedNextPage();
             }
         }
@@ -264,6 +248,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Called before a slide change happens. By returning false, one can disallow the slide change.
+     *
      * @return true, if the slide change should be allowed, else false
      */
     private boolean handleBeforeSlideChanged() {
@@ -272,13 +257,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
         Log.d(TAG, String.format("User wants to move away from slide: %s. Checking if this should be allowed...", currentFragment));
 
         // Check if the current fragment implements ISlidePolicy, else a change is always allowed
-        if(currentFragment instanceof ISlidePolicy) {
-            ISlidePolicy slide = (ISlidePolicy)currentFragment;
+        if (currentFragment instanceof ISlidePolicy) {
+            ISlidePolicy slide = (ISlidePolicy) currentFragment;
 
             Log.d(TAG, "Current fragment implements ISlidePolicy.");
 
             // Check if policy is fulfilled
-            if(!slide.isPolicyRespected()) {
+            if (!slide.isPolicyRespected()) {
                 Log.d(TAG, "Slide policy not respected, denying change request.");
                 return false;
             }
@@ -290,13 +275,13 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     private void handleSlideChanged(Fragment oldFragment, Fragment newFragment) {
         // Check if oldFragment implements ISlideSelectionListener
-        if(oldFragment != null && oldFragment instanceof ISlideSelectionListener) {
-            ((ISlideSelectionListener)oldFragment).onSlideDeselected();
+        if (oldFragment != null && oldFragment instanceof ISlideSelectionListener) {
+            ((ISlideSelectionListener) oldFragment).onSlideDeselected();
         }
 
         // Check if newFragment implements ISlideSelectionListener
-        if(newFragment != null && newFragment instanceof ISlideSelectionListener) {
-            ((ISlideSelectionListener)newFragment).onSlideSelected();
+        if (newFragment != null && newFragment instanceof ISlideSelectionListener) {
+            ((ISlideSelectionListener) newFragment).onSlideSelected();
         }
 
         onSlideChanged(oldFragment, newFragment);
@@ -304,12 +289,14 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Gets the layout id of the layout used by the current activity
+     *
      * @return Layout to use
      */
     protected abstract int getLayoutId();
 
     /**
      * Called after a new slide has been selected
+     *
      * @param position Position of the new selected slide
      */
     protected void onPageSelected(int position) {
@@ -322,6 +309,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Called when the user clicked the skip button
+     *
      * @param currentFragment Instance of the currently displayed fragment
      */
     public void onSkipPressed(Fragment currentFragment) {
@@ -334,8 +322,9 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Helper method for displaying a view
+     *
      * @param button View which visibility should be changed
-     * @param show Whether the view should be visible or not
+     * @param show   Whether the view should be visible or not
      */
     protected void setButtonState(View button, boolean show) {
         if (show) {
@@ -347,6 +336,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Returns the used ViewPager instance
+     *
      * @return Instance of the used ViewPager
      */
     public AppIntroViewPager getPager() {
@@ -355,6 +345,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Returns all current slides.
+     *
      * @return List of the current slides
      */
     @NonNull
@@ -364,6 +355,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Adds a new slide
+     *
      * @param fragment Instance of Fragment which should be added as slide
      */
     public void addSlide(@NonNull Fragment fragment) {
@@ -405,10 +397,12 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     }
 
     /**
-     * @deprecated It is strongly recommended to use {@link #onCreate(Bundle)} instead. Be sure calling super.onCreate() in your method.
-     * Please note that this method WILL NOT be called when the activity gets recreated i.e. the fragment instances get restored.
-     * The method will only be called when there are no fragments registered to the intro at all.
      * @param savedInstanceState Null
+     * @deprecated It is strongly recommended to use {@link #onCreate(Bundle)} instead. Be sure calling super
+     * .onCreate() in your method.
+     * Please note that this method WILL NOT be called when the activity gets recreated i.e. the fragment instances
+     * get restored.
+     * The method will only be called when there are no fragments registered to the intro at all.
      */
     public void init(@Nullable Bundle savedInstanceState) {
 
@@ -416,6 +410,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Called when the user clicked the next button which triggered a fragment change
+     *
      * @deprecated Obsolete, use {@link #onSlideChanged(Fragment, Fragment)} instead
      */
     public void onNextPressed() {
@@ -424,6 +419,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Called when the user clicked the done button
+     *
      * @deprecated Override {@link #onDonePressed(Fragment)} instead
      */
     public void onDonePressed() {
@@ -432,6 +428,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Called when the user clicked the skip button
+     *
      * @deprecated Override {@link #onSkipPressed(Fragment)} instead
      */
     public void onSkipPressed() {
@@ -440,6 +437,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Called when the selected fragment changed
+     *
      * @deprecated Override {@link #onSlideChanged(Fragment, Fragment)} instead
      */
     public void onSlideChanged() {
@@ -448,6 +446,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
     /**
      * Called when the user clicked the done button
+     *
      * @param currentFragment Instance of the currently displayed fragment
      */
     public void onDonePressed(Fragment currentFragment) {
@@ -455,11 +454,14 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     }
 
     /**
-     * Called when the selected fragment changed. This will be called automatically if the into starts or is finished via the done button.
-     * @param oldFragment Instance of the fragment which was displayed before. This might be null if the the intro has just started.
+     * Called when the selected fragment changed. This will be called automatically if the into starts or is finished
+     * via the done button.
+     *
+     * @param oldFragment Instance of the fragment which was displayed before. This might be null if the the intro
+     *                    has just started.
      * @param newFragment Instance of the fragment which is displayed now. This might be null if the intro has finished
      */
-    public void onSlideChanged(@Nullable Fragment oldFragment,@Nullable Fragment newFragment) {
+    public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         onSlideChanged();
     }
 
@@ -552,6 +554,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     /**
      * Sets whether color transitions between slides should be enabled.
      * Please note, that all slides have to implement ISlideBackgroundColorHolder.
+     *
      * @param colorTransitionsEnabled Whether color transitions should be enabled
      */
     public void setColorTransitionsEnabled(boolean colorTransitionsEnabled) {
@@ -662,6 +665,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     /**
      * Enables/Disables leaving the intro via the device's software/hardware back button.
      * Note, that does does NOT lock swiping back through the slides.
+     *
      * @param lockEnabled Whether leaving the intro via the phone's back button is locked.
      */
     public void setGoBackLock(boolean lockEnabled) {
@@ -671,8 +675,10 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     /**
      * Specifies whether to enable the non-sticky immersive mode.
      * This is a shorthand method for {@link #setImmersiveMode(boolean, boolean)} the second parameter set to false.
-     * If you want to enable the sticky immersive mode (transcluent bars), use {@link #setImmersiveMode(boolean, boolean)} instead.
+     * If you want to enable the sticky immersive mode (transcluent bars), use
+     * {@link #setImmersiveMode(boolean, boolean)} instead.
      * Note that immersive mode is only supported on Kitkat and newer.
+     *
      * @param isEnabled Whether the immersive mode (non-sticky) should be enabled or not.
      */
     public void setImmersiveMode(boolean isEnabled) {
@@ -682,28 +688,29 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     /**
      * Specifies whether to enable the immersive mode.
      * Note that immersive mode is only supported on Kitkat and newer.
+     *
      * @param isEnabled Whether the immersive mode should be enabled or not.
-     * @param isSticky Whether to use the sticky immersive mode or not
+     * @param isSticky  Whether to use the sticky immersive mode or not
      */
     public void setImmersiveMode(boolean isEnabled, boolean isSticky) {
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if(!isEnabled && isImmersiveModeEnabled) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (!isEnabled && isImmersiveModeEnabled) {
                 getWindow().getDecorView().setSystemUiVisibility(
                         View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
                 isImmersiveModeEnabled = false;
-            } else if(isEnabled) {
+            } else if (isEnabled) {
 
-                int flags =  View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN;
 
-                if(isSticky) {
+                if (isSticky) {
                     flags |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
                     isImmersiveModeSticky = true;
                 } else {
@@ -753,7 +760,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
             boolean isSlideChangingAllowed = handleBeforeSlideChanged();
 
             // Check if changing to the next slide is allowed
-            if(isSlideChangingAllowed) {
+            if (isSlideChangingAllowed) {
 
                 boolean requestPermission = false;
                 int position = 0;
@@ -776,8 +783,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                     pager.setCurrentItem(pager.getCurrentItem() + 1);
                     onNextPressed();
                 }
-            }
-            else {
+            } else {
                 handleIllegalSlideChangeAttempt();
             }
         }
@@ -791,20 +797,19 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
                 if (position < mPagerAdapter.getCount() - 1) {
                     if (mPagerAdapter.getItem(position) instanceof ISlideBackgroundColorHolder && mPagerAdapter.getItem(position + 1) instanceof ISlideBackgroundColorHolder) {
                         Fragment currentSlide = mPagerAdapter.getItem(position);
-                        Fragment nextSlide =  mPagerAdapter.getItem(position + 1);
+                        Fragment nextSlide = mPagerAdapter.getItem(position + 1);
 
                         ISlideBackgroundColorHolder currentSlideCasted = (ISlideBackgroundColorHolder) currentSlide;
                         ISlideBackgroundColorHolder nextSlideCasted = (ISlideBackgroundColorHolder) nextSlide;
 
                         // Check if both fragments are attached to an activity, otherwise getDefaultBackgroundColor may fail.
-                        if(currentSlide.isAdded() && nextSlide.isAdded()) {
+                        if (currentSlide.isAdded() && nextSlide.isAdded()) {
                             int newColor = (int) argbEvaluator.evaluate(positionOffset, currentSlideCasted.getDefaultBackgroundColor(), nextSlideCasted.getDefaultBackgroundColor());
 
                             currentSlideCasted.setBackgroundColor(newColor);
                             nextSlideCasted.setBackgroundColor(newColor);
                         }
-                    }
-                    else {
+                    } else {
                         throw new IllegalStateException("Color transitions are only available if all slides implement ISlideBackgroundColorHolder.");
                     }
                 }
@@ -831,8 +836,8 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
 
             AppIntroBase.this.onPageSelected(position);
 
-            if(slidesNumber > 0) {
-                if(currentlySelectedItem == -1) {
+            if (slidesNumber > 0) {
+                if (currentlySelectedItem == -1) {
                     handleSlideChanged(null, mPagerAdapter.getItem(position));
                 } else {
                     handleSlideChanged(mPagerAdapter.getItem(currentlySelectedItem), mPagerAdapter.getItem(pager.getCurrentItem()));
@@ -851,7 +856,7 @@ public abstract class AppIntroBase extends AppCompatActivity implements AppIntro
     private final class WindowGestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            if(isImmersiveModeEnabled && !isImmersiveModeSticky) {
+            if (isImmersiveModeEnabled && !isImmersiveModeSticky) {
                 setImmersiveMode(true, isImmersiveModeSticky);
             }
             return false;

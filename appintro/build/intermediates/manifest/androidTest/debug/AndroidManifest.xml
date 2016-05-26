@@ -3,7 +3,7 @@
     package="com.github.paolorotolo.appintro.test" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="23" />
 
     <instrumentation
@@ -12,6 +12,11 @@
         android:handleProfiling="false"
         android:label="Tests for com.github.paolorotolo.appintro.test"
         android:targetPackage="com.github.paolorotolo.appintro.test" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application>
         <uses-library android:name="android.test.runner" />
