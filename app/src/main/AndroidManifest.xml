@@ -26,17 +26,18 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.IntroActivity"
+            android:label="IntroActivity"
+            android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".ui.activity.IntroActivity"
-            android:label="IntroActivity"
-            android:theme="@style/FullscreenTheme" />
 
         <activity
             android:name=".ui.activity.NewsActivity"

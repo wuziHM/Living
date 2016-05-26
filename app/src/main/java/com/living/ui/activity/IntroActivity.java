@@ -23,12 +23,15 @@ public class IntroActivity extends AppIntro {
 
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest.
-        addSlide(AppIntroFragment.newInstance("标题", "", R.mipmap.tab3, ContextCompat.getColor(this,R.color.foot_txt_light)));
+        addSlide(AppIntroFragment.newInstance("Living", "This is a cattle force application", R.mipmap.ic_launcher, ContextCompat.getColor(this,R.color.foot_txt_light)));
 
         // OPTIONAL METHODS
         // Override bar/separator color.
 //        setBarColor(Color.parseColor("#3F51B5"));
-//        setSeparatorColor(Color.parseColor("#2196F3"));
+        setSeparatorColor(ContextCompat.getColor(this,android.R.color.transparent));
+
+        setSkipText("跳过");
+        setDoneText("进入应用");
 
         // Hide Skip/Done button.
         showSkipButton(true);
@@ -39,34 +42,6 @@ public class IntroActivity extends AppIntro {
         setVibrate(true);
         setVibrateIntensity(30);
     }
-
-    // Please DO NOT override onCreate. Use init.
-//    @Override
-//    public void init(Bundle savedInstanceState) {
-//
-//        // Add your slide's fragments here.
-//        // AppIntro will automatically generate the dots indicator and buttons.
-//        addSlide(new Intro1Fragment());
-//        addSlide(new Intro1Fragment());
-//
-//        // Instead of fragments, you can also use our default slide
-//        // Just set a title, description, background and image. AppIntro will do the rest.
-//        addSlide(AppIntroFragment.newInstance("标题", "", R.mipmap.tab3, ContextCompat.getColor(this,R.color.foot_txt_light)));
-//
-//        // OPTIONAL METHODS
-//        // Override bar/separator color.
-////        setBarColor(Color.parseColor("#3F51B5"));
-////        setSeparatorColor(Color.parseColor("#2196F3"));
-//
-//        // Hide Skip/Done button.
-//        showSkipButton(true);
-//        setProgressButtonEnabled(true);
-//
-//        // Turn vibration on and set intensity.
-//        // NOTE: you will probably need to ask VIBRATE permisssion in Manifest.
-//        setVibrate(true);
-//        setVibrateIntensity(30);
-//    }
 
     @Override
     public void onSkipPressed(Fragment currentFragment) {
