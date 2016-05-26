@@ -51,7 +51,7 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener{
         ((TextView) rootView.findViewById(R.id.tv_main_title)).setText("我");
         iv_header = (ImageView)rootView.findViewById(R.id.iv_header);
         iv_header.setOnClickListener(this);
-        GlideImageUtil.setPhotoResourceId(getActivity(), GlideCircleTransform.getInstance(getActivity()),R.mipmap.tab3,iv_header);
+        GlideImageUtil.setPhotoResourceId(getActivity(), GlideCircleTransform.getInstance(getActivity()),R.mipmap.test_header,iv_header);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener{
             if (requestCode == REQUEST_SELECT_PICTURE) {
                 final Uri selectedUri = result.getData();
                 if (selectedUri != null) {
-                    UCrop uCrop = UCrop.of(selectedUri, Uri.fromFile(new File(getActivity().getCacheDir(), "u_crop.png"))).withMaxResultSize(200,200);
+                    UCrop uCrop = UCrop.of(selectedUri, Uri.fromFile(new File(getActivity().getCacheDir(), "u_crop.png"))).withAspectRatio(1, 1).withMaxResultSize(200,200);
                     uCrop.start(getActivity());
                 } else {
                     Toast.makeText(getActivity(), "Cannot retrieve selected image", Toast.LENGTH_SHORT).show();
@@ -82,7 +82,6 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_header:
-
                 new SweetAlertDialog(getActivity(), SweetAlertDialog.NORMAL_TYPE)
                     .setTitleText("修改头像！")
                     .setConfirmText("图库")
@@ -106,7 +105,7 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener{
                         }
                     })
                     .show();
-
+                break;
             default:
                 break;
         }
