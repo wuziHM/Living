@@ -30,7 +30,6 @@
 
         <activity
             android:name=".ui.activity.IntroActivity"
-            android:label="IntroActivity"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

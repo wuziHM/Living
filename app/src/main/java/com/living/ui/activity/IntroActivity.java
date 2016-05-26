@@ -49,6 +49,7 @@ public class IntroActivity extends AppIntro {
         // Do something when users tap on Skip button.
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        this.finish();
     }
 
     @Override
@@ -56,6 +57,7 @@ public class IntroActivity extends AppIntro {
         super.onDonePressed(currentFragment);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        this.finish();
         // Do something when users tap on Done button.
     }
 
