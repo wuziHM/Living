@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.living.R;
 import com.living.ui.activity.TuLingChatActivity;
@@ -16,7 +17,7 @@ import com.living.util.LogUtil;
 public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
     private View rootView;//缓存Fragment view
 
-    LinearLayout ll_chat;
+    LinearLayout ll_chat,ll_mood;
     TextView tv_content, tv_time;
 
     @Override
@@ -37,6 +38,9 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
         tv_content = (TextView) rootView.findViewById(R.id.tv_content);
         tv_time = (TextView) rootView.findViewById(R.id.tv_time);
         ll_chat.setOnClickListener(this);
+
+        ll_mood = (LinearLayout) rootView.findViewById(R.id.ll_mood);
+        ll_mood.setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +66,9 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
         switch (arg0.getId()) {
             case R.id.ll_chat:
                 startActivity(new Intent(getActivity(), TuLingChatActivity.class));
+                break;
+            case R.id.ll_mood:
+                Toast.makeText(getActivity(),"该功能计划中.....",Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
