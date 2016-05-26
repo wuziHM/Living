@@ -12,11 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.living.R;
+import com.living.greendao.model.User;
+import com.living.greendao.util.DbUtil;
+import com.living.util.LogUtil;
 import com.living.util.glide.GlideCircleTransform;
 import com.living.util.glide.GlideImageUtil;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -32,6 +36,20 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener{
 
     }
 
+    public void testGreenDao(){
+        User user=new User();
+        user.setAccount("张三");
+        user.setHeight(168);
+
+        DbUtil.getUserService().save(user);
+
+        List<User> test = DbUtil.getUserService().queryAll();
+
+        if (test != null && test.size()>0){
+            LogUtil.e("User: " + test.get(0).toString() + " //getAccount: " + test.get(0).getAccount());
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(rootView == null) {
@@ -42,9 +60,7 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener{
             parent.removeView(rootView);
         }
 
-
         initView();
-
         return rootView;
     }
 
