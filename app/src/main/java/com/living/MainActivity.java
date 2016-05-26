@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.living.ui.fragment.Tab1Fragment;
 import com.living.ui.fragment.Tab2Fragment;
+import com.living.ui.fragment.Tab3Fragment;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
     String[] tabsTxt = {"首页", "发现", " 我"};
     int[] tabImg = {R.mipmap.tab1, R.mipmap.tab2, R.mipmap.tab3};
     int[] tabsImgLight = {R.mipmap.tab1, R.mipmap.tab2, R.mipmap.tab3};
-    Class[] clz = {Tab1Fragment.class, Tab2Fragment.class, Tab1Fragment.class};
+    Class[] clz = {Tab1Fragment.class, Tab2Fragment.class, Tab3Fragment.class};
     private FragmentTabHost tabHost;
 
     @Override
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
 
         }
         //设置初始显示Tab页 默认位0显示第一个Tab
-        tabHost.setCurrentTab(1);
+        tabHost.setCurrentTab(2);
     }
 
     private View getTabView(int idx) {

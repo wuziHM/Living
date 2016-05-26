@@ -63,6 +63,7 @@ android {
                 }
             }
         }
+
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             signingConfig signingConfigs.myConfig
@@ -84,6 +85,8 @@ android {
 
     useLibrary 'org.apache.http.legacy'
 }
+
+
 
 
 

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.living.R;
 import com.living.ui.activity.ChatListActivity;
+import com.living.ui.activity.IntroActivity;
 import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
 import com.yalantis.ucrop.UCrop;
@@ -52,6 +53,7 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
         rootView.findViewById(R.id.ll_news).setOnClickListener(this);
         rootView.findViewById(R.id.ll_weather).setOnClickListener(this);
         rootView.findViewById(R.id.ll_robot).setOnClickListener(this);
+        rootView.findViewById(R.id.ll_xxxx).setOnClickListener(this);
 
     }
 
@@ -96,6 +98,9 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.ll_robot:
                 startActivity(new Intent(getActivity(), ChatListActivity.class));
+                break;
+            case R.id.ll_xxxx:
+                startActivity(new Intent(getActivity(), IntroActivity.class));
                 break;
             default:
                 break;
