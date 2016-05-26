@@ -9,7 +9,7 @@ import de.greenrobot.dao.query.QueryBuilder;
  *
  *
  *
- * @author tobin
+ * Created by tobin on 2016/5/26.
  */
 public class DbService<T, K> {
     private AbstractDao<T, K> mDao;
@@ -18,7 +18,6 @@ public class DbService<T, K> {
     public DbService(AbstractDao dao) {
         mDao = dao;
     }
-
 
     public void save(T item) {
         mDao.insert(item);

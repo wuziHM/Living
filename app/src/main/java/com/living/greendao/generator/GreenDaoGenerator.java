@@ -6,8 +6,7 @@ import de.greenrobot.daogenerator.Property;
 import de.greenrobot.daogenerator.Schema;
 
 /**
- *
- * @author tobin
+ * Created by tobin on 2016/5/26.
  */
 public class GreenDaoGenerator {
     public static void main(String[] args) throws Exception {

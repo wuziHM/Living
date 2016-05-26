@@ -8,8 +8,8 @@ import com.living.greendao.dao.DaoSession;
 import de.greenrobot.dao.query.QueryBuilder;
 
 /**
- * @author  tobin
  *
+ * Created by tobin on 2016/5/26.
  */
 public class DbCore {
     private static final String DEFAULT_DB_NAME = "living.db";
