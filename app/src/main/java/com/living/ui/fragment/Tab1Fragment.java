@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.living.R;
 import com.living.ui.activity.ChatListActivity;
@@ -14,9 +13,7 @@ import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
 
 public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
-    View rootView;
-
-    private ImageView iv_crop;
+    private View rootView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +23,7 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(rootView == null){
-            rootView=inflater.inflate(R.layout.fragment_tab1, null);
+            rootView=inflater.inflate(R.layout.fragment_tab1, container, false);
         }
         //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
         ViewGroup parent = (ViewGroup) rootView.getParent();
@@ -41,8 +38,7 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
 
         rootView.findViewById(R.id.iv_main_activity_back).setOnClickListener(this);
 
-        iv_crop = (ImageView)rootView.findViewById(R.id.iv_crop);
-
+        rootView.findViewById(R.id.iv_crop).setOnClickListener(this);
         rootView.findViewById(R.id.ll_news).setOnClickListener(this);
         rootView.findViewById(R.id.ll_weather).setOnClickListener(this);
         rootView.findViewById(R.id.ll_robot).setOnClickListener(this);
@@ -66,7 +62,8 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), ChatListActivity.class));
                 break;
             case R.id.ll_xxxx:
-//                startActivity(new Intent(getActivity(), IntroActivity.class));
+
+
                 break;
             default:
                 break;
