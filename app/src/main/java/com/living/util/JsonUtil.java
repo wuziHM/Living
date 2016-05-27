@@ -14,9 +14,9 @@ import java.util.List;
  * Json序列化工具包
  *
  * @author Sun
- * @author tobin
- * @modify 2015-12-12
  * @since 2012-1-19
+ * @author tobin
+ * @modify 2016-5-27
  */
 public class JsonUtil {
 
