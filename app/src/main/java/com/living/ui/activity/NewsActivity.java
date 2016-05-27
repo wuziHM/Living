@@ -111,7 +111,9 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
         }
     }
 
-    //获取全部新闻分类
+    /**
+     * 获取全部新闻分类
+     */
     private void getChannelNews() {
         Parameters para = new Parameters();
         para.put("apikey", ApiStoreSDK.getAppKey());
