@@ -131,7 +131,6 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
                     initTabView();
                     ProgressUtil.loading(NewsActivity.this,false);
                 }
-
             }
 
             @Override
