@@ -10,13 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.living.R;
 import com.living.bean.NewsSearchBean;
 import com.living.util.DensityUtils;
 import com.living.util.LogUtil;
 import com.living.util.ScreenUtils;
 import com.living.util.glide.GlideImageUtil;
-import com.living.widget.ProgressWheel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,11 +130,13 @@ public class NewsAdapter extends RecyclerView.Adapter {
         if (holder instanceof FootHolder) {
             ((FootHolder) holder).foot.setVisibility(isLoading ? View.VISIBLE : View.GONE);
             if (mError != null) {
-                ((FootHolder) holder).progressBar.setVisibility(View.GONE);
-                ((FootHolder) holder).message.setText(mError);
+                ((FootHolder) holder).progressView.setVisibility(View.GONE);
+                ((FootHolder) holder).message.setText(mError.substring(0,22));
             } else {
-                ((FootHolder) holder).progressBar.setVisibility(View.VISIBLE);
                 ((FootHolder) holder).message.setText("加载中....");
+                ((FootHolder) holder).progressView.setVisibility(View.VISIBLE);
+                ((FootHolder) holder).progressView.startAnimation();
+
             }
         }
     }
@@ -171,12 +173,14 @@ public class NewsAdapter extends RecyclerView.Adapter {
 
     class FootHolder extends RecyclerView.ViewHolder {
         LinearLayout foot;
-        ProgressWheel progressBar;
+
+        CircularProgressView progressView;
         TextView message;
         public FootHolder(View itemView) {
             super(itemView);
             foot = (LinearLayout) itemView.findViewById(R.id.item_news_foot);
-            progressBar = (ProgressWheel) itemView.findViewById(R.id.item_news_progressbar);
+
+            progressView = (CircularProgressView) itemView.findViewById(R.id.progress_view);
             message = (TextView) itemView.findViewById(R.id.item_news_message);
         }
     }

@@ -154,11 +154,12 @@ public class NewsFragment extends BaseFragment {
                     return;
                 }
                 contentListBean = response.getShowapi_res_body().getPagebean().getContentlist();
-                if (isLoadMore)
+                if (isLoadMore) {
                     mAdapter.addDatas(contentListBean);
-                else
+                    mAdapter.setmError(null);
+                } else {
                     mAdapter.setDatas(contentListBean);
-
+                }
                 mSwipeRefresh.setRefreshing(false);
             }
         }, new Response.ErrorListener() {

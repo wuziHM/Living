@@ -118,20 +118,18 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
 //                new ApiCallBack() {
 //                    @Override
 //                    public void onSuccess(int status, String responseString) {
-//                        Log.i("tobin", "onSuccess" + responseString);
-//                        jsonResult(responseString);
+//                        LogUtil.e("tobin : " + status + " //response: " + responseString);
 //                    }
 //
 //                    @Override
 //                    public void onComplete() {
-//                        Log.i("tobin", "onComplete");
+//                        LogUtil.e("tobin channel_news" + "onComplete");
 //
 //                    }
 //
 //                    @Override
 //                    public void onError(int status, String responseString, Exception e) {
-//                        Log.i("tobin", "onError, status: " + status);
-//                        Log.i("tobin", "errMsg: " + (e == null ? "" : e.getMessage()));
+//                        LogUtil.e("tobin errMsg: " + (e == null ? "" : e.getMessage()));
 //                    }
 //                }
 //        );
@@ -139,13 +137,14 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
             @Override
             public void onResponse(NewsChannelBean response) {
                 newsChannelBean = response;
+                LogUtil.e("tobin response: " + response + "//error: " + response.getShowapi_res_error() + "//code:" + response.getShowapi_res_code());
                 channelListBean = response.getShowapi_res_body().getChannelList();
                 initTabView();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                LogUtil.e("tobin", "tobin getChannelNew onErrorResponse: " + error.getMessage());
+                LogUtil.e("tobin getChannelNew onErrorResponse: " + error.getMessage());
             }
         }, null);
     }

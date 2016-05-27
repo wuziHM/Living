@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ProgressWheel="http://schemas.android.com/tools"
     android:id="@+id/item_news_foot"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:gravity="center"
     android:orientation="horizontal">
 
-    <com.living.widget.ProgressWheel
-        android:id="@+id/item_news_progressbar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        ProgressWheel:pwBarColor="#339BB9"
-        ProgressWheel:pwBarLength="60dp"
-        ProgressWheel:pwBarWidth="25dp"
-        ProgressWheel:pwRimColor="#44000000"
-        ProgressWheel:pwRimWidth="25dp"
-        ProgressWheel:pwSpinSpeed="3dp"
-        ProgressWheel:pwTextColor="#222222"
-        ProgressWheel:pwTextSize="14sp" />
+    <com.github.rahatarmanahmed.cpv.CircularProgressView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progress_view"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:cpv_indeterminate="true"/>
 
     <TextView
         android:id="@+id/item_news_message"
