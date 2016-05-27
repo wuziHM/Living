@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.apistore.sdk.ApiCallBack;
 import com.baidu.apistore.sdk.ApiStoreSDK;
@@ -118,44 +119,25 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
             @Override
             public void onSuccess(int status, String responseString) {
                 LogUtil.e("tobin : " + status + " //response: " + responseString);
-
                 newsChannelBean = JsonUtil.Json2T(responseString,NewsChannelBean.class);
-
                 if (newsChannelBean == null){
                     getChannelNews();
                 }else{
                     channelListBean = newsChannelBean.getShowapi_res_body().getChannelList();
                     initTabView();
                 }
-//
-//
             }
 
             @Override
             public void onComplete() {
-                LogUtil.e("tobin channel_news" + "onComplete");
-
+                LogUtil.e("tobin getChannelNews" + "onComplete + 获取全部新闻分类结束");
             }
 
             @Override
             public void onError(int status, String responseString, Exception e) {
-                LogUtil.e("tobin errMsg: " + (e == null ? "" : e.getMessage()));
+                Toast.makeText(NewsActivity.this,"网络错误：" + (e == null ? "" : e.getMessage()) + responseString,Toast.LENGTH_SHORT).show();
             }
         });
-//        LivingNetUtils.getChannelNew(new Response.Listener<NewsChannelBean>() {
-//            @Override
-//            public void onResponse(NewsChannelBean response) {
-//                newsChannelBean = response;
-//                LogUtil.e("tobin response: " + response + "//error: " + response.getShowapi_res_error() + "//code:" + response.getShowapi_res_code());
-//                channelListBean = response.getShowapi_res_body().getChannelList();
-//                initTabView();
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                LogUtil.e("tobin getChannelNew onErrorResponse: " + error.getMessage());
-//            }
-//        }, null);
     }
 
     @Override

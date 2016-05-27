@@ -122,11 +122,12 @@ public class NewsFragment extends BaseFragment {
      * @param isLoadMore 是否加载更多数据
      */
     private void getNewsData(final boolean isLoadMore) {
-        if (isLoadMore)
+        if (isLoadMore) {
             page++;
-        else
+        }
+        else {
             page = 1;
-
+        }
         Parameters para = new Parameters();
         para.put("apikey", ApiStoreSDK.getAppKey());
         para.put("channelId", channelId);// 新闻频道id，必须精确匹配
@@ -137,7 +138,11 @@ public class NewsFragment extends BaseFragment {
                 LogUtil.e("tobin getNewsData status: " + status + " //response: " + responseString);
                 newsSearchBean = JsonUtil.Json2T(responseString, NewsSearchBean.class);
                 if (newsSearchBean == null) {
-    //                            getNewsData();
+                    if (isLoadMore){
+                        Toast.makeText(getActivity(),"加载更多失败,请稍后再试！",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getActivity(),"新闻数据刷新失败，请尝试下拉刷新！",Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     if (newsSearchBean.getShowapi_res_code() == 300301) {
                         Toast.makeText(NewsFragment.this.getActivity(), "内部错误 : " + newsSearchBean
@@ -187,10 +192,8 @@ public class NewsFragment extends BaseFragment {
 
             @Override
             public void onError(int status, String responseString, Exception e) {
-                LogUtil.e("tobin getNewsData errMsg: " + (e == null ? "" : e.getMessage()));
                 mSwipeRefresh.setRefreshing(false);
-                mAdapter.setmError(responseString);
-                LogUtil.e("tobin", "tobin getNewsSearch onErrorResponse: " + responseString);
+                mAdapter.setmError(responseString + (e == null ? "" : e.getMessage()));
             }
         });
 
