@@ -126,10 +126,10 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
                 newsChannelBean = JsonUtil.Json2T(responseString,NewsChannelBean.class);
                 if (newsChannelBean == null){
                     getChannelNews();
-                    ProgressUtil.loading(NewsActivity.this,false);
                 }else{
                     channelListBean = newsChannelBean.getShowapi_res_body().getChannelList();
                     initTabView();
+                    ProgressUtil.loading(NewsActivity.this,false);
                 }
 
             }
