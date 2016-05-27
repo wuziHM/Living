@@ -139,7 +139,7 @@ public class NewsFragment extends BaseFragment {
                     if (isLoadMore){
                         Toast.makeText(getActivity(),"加载更多失败,请稍后再试！",Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(getActivity(),"新闻数据刷新失败，请尝试下拉刷新！",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),"新闻数据刷新失败，请尝试下拉刷新！",Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     if (newsSearchBean.getShowapi_res_code() == 300301) {
@@ -179,12 +179,12 @@ public class NewsFragment extends BaseFragment {
                     } else {
                         mAdapter.setDatas(contentListBean);
                     }
-                    mSwipeRefresh.setRefreshing(false);
                 }
             }
 
             @Override
             public void onComplete() {
+                mSwipeRefresh.setRefreshing(false);
                 LogUtil.e("tobin getNewsData" + "onComplete");
             }
 
