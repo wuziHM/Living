@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.living.R;
-import com.living.ui.activity.ChatListActivity;
 import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
 
@@ -59,7 +58,7 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
 
                 break;
             case R.id.ll_robot:
-                startActivity(new Intent(getActivity(), ChatListActivity.class));
+
                 break;
             case R.id.ll_xxxx:
 
