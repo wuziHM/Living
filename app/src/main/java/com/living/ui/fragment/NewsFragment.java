@@ -143,33 +143,27 @@ public class NewsFragment extends BaseFragment {
                     }
                 } else {
                     if (newsSearchBean.getShowapi_res_code() == 300301) {
-                        Toast.makeText(NewsFragment.this.getActivity(), "内部错误 : " + newsSearchBean
-                                .getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewsFragment.this.getActivity(), "内部错误 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if (newsSearchBean.getShowapi_res_code() == 300302) {
-                        Toast.makeText(NewsFragment.this.getActivity(), "系统繁忙稍候再试 : " + newsSearchBean
-                                .getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewsFragment.this.getActivity(), "系统繁忙稍候再试 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if (newsSearchBean.getShowapi_res_code() == 300101) {
-                        Toast.makeText(NewsFragment.this.getActivity(), "用户请求过期 : " + newsSearchBean
-                                .getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewsFragment.this.getActivity(), "用户请求过期 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if (newsSearchBean.getShowapi_res_code() == 300102) {
-                        Toast.makeText(NewsFragment.this.getActivity(), "用户日调用量超限 : " + newsSearchBean
-                                .getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewsFragment.this.getActivity(), "用户日调用量超限 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if (newsSearchBean.getShowapi_res_code() == 300103) {
-                        Toast.makeText(NewsFragment.this.getActivity(), "服务每秒调用量超限 : " + newsSearchBean
-                                .getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewsFragment.this.getActivity(), "服务每秒调用量超限 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if (newsSearchBean.getShowapi_res_code() == 300104) {
-                        Toast.makeText(NewsFragment.this.getActivity(), "服务日调用量超限 : " + newsSearchBean
-                                .getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewsFragment.this.getActivity(), "服务日调用量超限 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     contentListBean = newsSearchBean.getShowapi_res_body().getPagebean().getContentlist();
