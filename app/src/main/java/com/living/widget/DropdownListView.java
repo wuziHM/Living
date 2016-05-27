@@ -86,8 +86,7 @@ public class DropdownListView extends ListView implements OnScrollListener {
 		headView.setPadding(0, -1 * headContentHeight, 0, 0);
 		headView.invalidate();
 
-		Log.v("size", "width:" + headContentWidth + " height:"
-				+ headContentHeight);
+		Log.v("size", "width:" + headContentWidth + " height:" + headContentHeight);
 
 		addHeaderView(fl, null, false);
 //		addHeaderView(headView, null, false);

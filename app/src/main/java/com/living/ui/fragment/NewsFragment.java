@@ -103,8 +103,7 @@ public class NewsFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                intent.putExtra("link", contentListBean.get(position).getLink() == null ? "http://blog.csdn" +
-                        ".net/aprilqq" : contentListBean.get(position).getLink());
+                intent.putExtra("link", mAdapter.getDatas().get(position).getLink() == null ? "http://blog.csdn.net/aprilqq" : mAdapter.getDatas().get(position).getLink());
                 getActivity().startActivity(intent);
             }
 
