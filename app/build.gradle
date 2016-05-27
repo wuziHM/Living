@@ -82,7 +82,6 @@ android {
             flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
     }
-
     
     useLibrary 'org.apache.http.legacy'
 }
