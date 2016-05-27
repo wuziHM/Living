@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.view.KeyEvent;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -69,5 +70,18 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onNextPressed() {
         // Do something when users tap on Next button.
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) { //监控/拦截/屏蔽返回键
+            return false;
+        } else if(keyCode == KeyEvent.KEYCODE_MENU) {
+            return false;
+        } else if(keyCode == KeyEvent.KEYCODE_HOME) {
+            //由于Home键为系统键，此处不能捕获，需要重写onAttachedToWindow()
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -1,6 +1,5 @@
 package com.living.ui.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,12 +18,6 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
 
     LinearLayout ll_chat,ll_mood;
     TextView tv_content, tv_time;
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        LogUtil.e("Tab2Fragment onAttach");
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,39 +64,4 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
         }
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        LogUtil.e("Tab2Fragment onPause");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        LogUtil.e("Tab2Fragment onStart");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        LogUtil.e("Tab2Fragment onStop");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        LogUtil.e("Tab2Fragment onResume");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        LogUtil.e("Tab2Fragment onDestroy");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        LogUtil.e("Tab2Fragment onDetach");
-    }
 }

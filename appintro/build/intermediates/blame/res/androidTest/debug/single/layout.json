@@ -152,12 +152,12 @@
         "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\bundles\\debug\\res\\layout\\intro_layout.xml"
     },
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_activity_chooser_view_list_item.xml"
-    },
-    {
         "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_chronometer.xml",
         "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
         "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_lines.xml",
