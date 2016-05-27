@@ -7,13 +7,15 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
+import com.baidu.apistore.sdk.ApiCallBack;
+import com.baidu.apistore.sdk.ApiStoreSDK;
+import com.baidu.apistore.sdk.network.Parameters;
 import com.living.R;
 import com.living.adapter.NewsClassifyAdapter;
 import com.living.bean.NewsChannelBean;
+import com.living.config.Constant;
 import com.living.ui.fragment.NewsFragment;
-import com.living.util.LivingNetUtils;
+import com.living.util.JsonUtil;
 import com.living.util.LogUtil;
 
 import java.util.ArrayList;
@@ -110,43 +112,50 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
 
     //获取全部新闻分类
     private void getChannelNews() {
-//        Parameters para = new Parameters();
-//        para.put("apikey", ApiStoreSDK.getAppKey());
-//        ApiStoreSDK.execute("http://apis.baidu.com/showapi_open_bus/channel_news/channel_news",
-//                ApiStoreSDK.GET,
-//                para,
-//                new ApiCallBack() {
-//                    @Override
-//                    public void onSuccess(int status, String responseString) {
-//                        LogUtil.e("tobin : " + status + " //response: " + responseString);
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        LogUtil.e("tobin channel_news" + "onComplete");
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(int status, String responseString, Exception e) {
-//                        LogUtil.e("tobin errMsg: " + (e == null ? "" : e.getMessage()));
-//                    }
-//                }
-//        );
-        LivingNetUtils.getChannelNew(new Response.Listener<NewsChannelBean>() {
+        Parameters para = new Parameters();
+        para.put("apikey", ApiStoreSDK.getAppKey());
+        ApiStoreSDK.execute(Constant.URL_NEWS_CHANNEL, ApiStoreSDK.POST, para, new ApiCallBack() {
             @Override
-            public void onResponse(NewsChannelBean response) {
-                newsChannelBean = response;
-                LogUtil.e("tobin response: " + response + "//error: " + response.getShowapi_res_error() + "//code:" + response.getShowapi_res_code());
-                channelListBean = response.getShowapi_res_body().getChannelList();
-                initTabView();
+            public void onSuccess(int status, String responseString) {
+                LogUtil.e("tobin : " + status + " //response: " + responseString);
+
+                newsChannelBean = JsonUtil.Json2T(responseString,NewsChannelBean.class);
+
+                if (newsChannelBean == null){
+                    getChannelNews();
+                }else{
+                    channelListBean = newsChannelBean.getShowapi_res_body().getChannelList();
+                    initTabView();
+                }
+//
+//
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error) {
-                LogUtil.e("tobin getChannelNew onErrorResponse: " + error.getMessage());
+            public void onComplete() {
+                LogUtil.e("tobin channel_news" + "onComplete");
+
             }
-        }, null);
+
+            @Override
+            public void onError(int status, String responseString, Exception e) {
+                LogUtil.e("tobin errMsg: " + (e == null ? "" : e.getMessage()));
+            }
+        });
+//        LivingNetUtils.getChannelNew(new Response.Listener<NewsChannelBean>() {
+//            @Override
+//            public void onResponse(NewsChannelBean response) {
+//                newsChannelBean = response;
+//                LogUtil.e("tobin response: " + response + "//error: " + response.getShowapi_res_error() + "//code:" + response.getShowapi_res_code());
+//                channelListBean = response.getShowapi_res_body().getChannelList();
+//                initTabView();
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                LogUtil.e("tobin getChannelNew onErrorResponse: " + error.getMessage());
+//            }
+//        }, null);
     }
 
     @Override
