@@ -18,6 +18,7 @@ import com.living.config.Constant;
 import com.living.ui.fragment.NewsFragment;
 import com.living.util.JsonUtil;
 import com.living.util.LogUtil;
+import com.living.util.ProgressUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,6 +116,7 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
      * 获取全部新闻分类
      */
     private void getChannelNews() {
+        ProgressUtil.loading(NewsActivity.this,true);
         Parameters para = new Parameters();
         para.put("apikey", ApiStoreSDK.getAppKey());
         ApiStoreSDK.execute(Constant.URL_NEWS_CHANNEL, ApiStoreSDK.POST, para, new ApiCallBack() {
@@ -124,10 +126,12 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
                 newsChannelBean = JsonUtil.Json2T(responseString,NewsChannelBean.class);
                 if (newsChannelBean == null){
                     getChannelNews();
+                    ProgressUtil.loading(NewsActivity.this,false);
                 }else{
                     channelListBean = newsChannelBean.getShowapi_res_body().getChannelList();
                     initTabView();
                 }
+
             }
 
             @Override

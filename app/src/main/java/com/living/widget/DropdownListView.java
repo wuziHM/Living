@@ -70,7 +70,7 @@ public class DropdownListView extends ListView implements OnScrollListener {
 	}
 
 	private void init(Context context) {
-		setCacheColorHint(context.getResources().getColor(R.color.transparent));
+		setCacheColorHint(context.getResources().getColor(android.R.color.transparent));
 		inflater = LayoutInflater.from(context);
 		
 		fl = (FrameLayout)inflater.inflate(R.layout.dropdown_lv_head, null);

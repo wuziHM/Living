@@ -82,7 +82,8 @@ android {
             flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
     }
-    
+
+
     useLibrary 'org.apache.http.legacy'
 }
 
@@ -99,7 +100,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.6.1'
     // 一个精美的对话框
     compile 'cn.pedant.sweetalert:library:1.3'
-    // 过自定义view的方式实现的Material风格的加载提示控件
+    // 通过自定义view的方式实现的Material风格的加载提示控件
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     // GreenDao  数据库ORM
     compile 'org.greenrobot:greendao:2.2.1'
