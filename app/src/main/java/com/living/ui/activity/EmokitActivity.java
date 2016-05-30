@@ -46,15 +46,11 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
                     String[] str = ((String) msg.obj).split("&&");
                     LogUtil.e("tobin test: " + str.length);
                     analyzeResult(str[0]);
-//                    txt_test_result.setVisibility(View.VISIBLE);
-//                    txt_test_result.setText((String) msg.obj);
                     break;
                 case 1901:
                     LogUtil.e("tobin test Result: " +  msg.obj);
                     if (msg.obj != null)
                         analyzeResult((String) msg.obj);
-//                    txt_test_result.setVisibility(View.VISIBLE);
-//                    txt_test_result.setText((String) msg.obj);
                     break;
                 default:
                     break;
@@ -294,7 +290,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
         public void onInit(int code) {
             // 获取设备ID
             AdvancedInformation pp = AdvancedInformation.getSingleton(context);
-            //// 注册用户信息: platflag 应用名; userName 用户名或设备 ID;password 用户登录密码(可为空)
+            // 注册用户信息: platflag 应用名; userName 用户名或设备 ID;password 用户登录密码(可为空)
             SDKAppInit.registerforuid("Living", pp.getp().getSimSerial(), "123456");
         }
     };
