@@ -10,14 +10,6 @@ import com.living.util.ProgressUtil;
 
 public abstract class BaseFragment extends Fragment {
 
-    protected View view; // 当前界面的根
-    private int layoutId; // 当前界面对应的布局
-
-    public BaseFragment(int layoutId) {
-        super();
-        this.layoutId = layoutId;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +18,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-		view = inflater.inflate(layoutId, container, false);
-        return view;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
 

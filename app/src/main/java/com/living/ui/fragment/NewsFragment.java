@@ -11,21 +11,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-
+import com.baidu.apistore.sdk.ApiCallBack;
+import com.baidu.apistore.sdk.ApiStoreSDK;
+import com.baidu.apistore.sdk.network.Parameters;
 import com.living.R;
 import com.living.adapter.NewsAdapter;
 import com.living.bean.NewsSearchBean;
+import com.living.config.Constant;
 import com.living.ui.activity.WebViewActivity;
-import com.living.util.LivingNetUtils;
+import com.living.util.JsonUtil;
 import com.living.util.LogUtil;
 
 import java.util.List;
-import java.util.TreeMap;
 
 public class NewsFragment extends BaseFragment {
     View view;
+
+    private NewsSearchBean newsSearchBean;
     private List<NewsSearchBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> contentListBean;
     private SwipeRefreshLayout mSwipeRefresh;
     private RecyclerView mRecycleView;
@@ -34,10 +36,6 @@ public class NewsFragment extends BaseFragment {
 
     private String channelId;
     private int page = 1;
-
-    public NewsFragment() {
-        super(R.layout.fragment_news);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,15 +46,15 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view =  super.onCreateView(inflater, container, savedInstanceState);
+        view = inflater.inflate(R.layout.fragment_news, container, false);
         initView();
         initEvent();
         return view;
     }
 
-    private void initView(){
+    private void initView() {
         mSwipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_news);
-        mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimary, R.color.colorPrimary, R.color.colorPrimary);
+        mSwipeRefresh.setColorSchemeResources(R.color.red, R.color.colorAccent, R.color.title_color, R.color.colorPrimary);
         mRecycleView = (RecyclerView) view.findViewById(R.id.recycle_view_news);
         mManager = new LinearLayoutManager(getActivity());
         mRecycleView.setLayoutManager(mManager);
@@ -87,8 +85,9 @@ public class NewsFragment extends BaseFragment {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 int last = mManager.findLastVisibleItemPosition();
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && last + 1 == mAdapter.getItemCount() && mAdapter.getItemCount() > 1) {
-                    if (contentListBean.size() >= 20){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && last + 1 == mAdapter.getItemCount() && mAdapter
+                        .getItemCount() > 1) {
+                    if (contentListBean.size() >= 20) {
                         mAdapter.setIsLoading(true);
                         getNewsData(true);
                     }
@@ -104,7 +103,7 @@ public class NewsFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                intent.putExtra("link",contentListBean.get(position).getLink() == null ? "http://blog.csdn.net/aprilqq":contentListBean.get(position).getLink());
+                intent.putExtra("link", mAdapter.getDatas().get(position).getLink() == null ? "http://blog.csdn.net/aprilqq" : mAdapter.getDatas().get(position).getLink());
                 getActivity().startActivity(intent);
             }
 
@@ -116,62 +115,79 @@ public class NewsFragment extends BaseFragment {
     }
 
     /**
-     *  获取新闻数据
+     * 获取新闻数据
+     *
      * @param isLoadMore 是否加载更多数据
      */
-    private void getNewsData(final boolean isLoadMore){
-        if (isLoadMore)
-            page ++;
-        else
+    private void getNewsData(final boolean isLoadMore) {
+        if (isLoadMore) {
+            page++;
+        }
+        else {
             page = 1;
-        TreeMap<String,String> map = new TreeMap<>();
-        map.put("channelId",channelId);// 新闻频道id，必须精确匹配
-//        map.put("channelName",channelName);// 新闻频道名称，可模糊匹配
-//        map.put("title",title); // 新闻标题，模糊匹配
-        map.put("page",page + ""); // 页数，默认1。每页最多20条记录。
-
-        LivingNetUtils.getNewsSearch(new Response.Listener<NewsSearchBean>() {
+        }
+        Parameters para = new Parameters();
+        para.put("apikey", ApiStoreSDK.getAppKey());
+        para.put("channelId", channelId);// 新闻频道id，必须精确匹配
+        para.put("page", page + ""); // 页数，默认1。每页最多20条记录。
+        ApiStoreSDK.execute(Constant.URL_NEWS_SEARCH, ApiStoreSDK.POST, para, new ApiCallBack() {
             @Override
-            public void onResponse(NewsSearchBean response) {
-                if (response.getShowapi_res_code() == 300301){
-                    Toast.makeText(NewsFragment.this.getActivity(), "内部错误 : " + response.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
-                    return;
+            public void onSuccess(int status, String responseString) {
+                LogUtil.e("tobin getNewsData status: " + status + " //response: " + responseString);
+                newsSearchBean = JsonUtil.Json2T(responseString, NewsSearchBean.class);
+                if (newsSearchBean == null) {
+                    if (isLoadMore){
+                        Toast.makeText(getActivity(),"加载更多失败,请稍后再试！",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getActivity(),"新闻数据刷新失败，请尝试下拉刷新！",Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if (newsSearchBean.getShowapi_res_code() == 300301) {
+                        Toast.makeText(NewsFragment.this.getActivity(), "内部错误 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (newsSearchBean.getShowapi_res_code() == 300302) {
+                        Toast.makeText(NewsFragment.this.getActivity(), "系统繁忙稍候再试 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (newsSearchBean.getShowapi_res_code() == 300101) {
+                        Toast.makeText(NewsFragment.this.getActivity(), "用户请求过期 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (newsSearchBean.getShowapi_res_code() == 300102) {
+                        Toast.makeText(NewsFragment.this.getActivity(), "用户日调用量超限 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (newsSearchBean.getShowapi_res_code() == 300103) {
+                        Toast.makeText(NewsFragment.this.getActivity(), "服务每秒调用量超限 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (newsSearchBean.getShowapi_res_code() == 300104) {
+                        Toast.makeText(NewsFragment.this.getActivity(), "服务日调用量超限 : " + newsSearchBean.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    contentListBean = newsSearchBean.getShowapi_res_body().getPagebean().getContentlist();
+                    if (isLoadMore) {
+                        mAdapter.addDatas(contentListBean);
+                        mAdapter.setmError(null);
+                    } else {
+                        mAdapter.setDatas(contentListBean);
+                    }
                 }
-                if (response.getShowapi_res_code() == 300302){
-                    Toast.makeText(NewsFragment.this.getActivity(), "系统繁忙稍候再试 : " + response.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (response.getShowapi_res_code() == 300101){
-                    Toast.makeText(NewsFragment.this.getActivity(), "用户请求过期 : " + response.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (response.getShowapi_res_code() == 300102){
-                    Toast.makeText(NewsFragment.this.getActivity(), "用户日调用量超限 : " + response.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (response.getShowapi_res_code() == 300103){
-                    Toast.makeText(NewsFragment.this.getActivity(), "服务每秒调用量超限 : " + response.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (response.getShowapi_res_code() == 300104){
-                    Toast.makeText(NewsFragment.this.getActivity(), "服务日调用量超限 : " + response.getShowapi_res_error(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                contentListBean = response.getShowapi_res_body().getPagebean().getContentlist();
-                if (isLoadMore)
-                    mAdapter.addDatas(contentListBean);
-                else
-                    mAdapter.setDatas(contentListBean);
+            }
 
-                mSwipeRefresh.setRefreshing(false);
-            }
-        }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onComplete() {
                 mSwipeRefresh.setRefreshing(false);
-                mAdapter.setmError(error.getMessage());
-                LogUtil.e("tobin", "tobin getNewsSearch onErrorResponse: " + error.getMessage());
+                LogUtil.e("tobin getNewsData" + "onComplete");
             }
-        }, map);
+
+            @Override
+            public void onError(int status, String responseString, Exception e) {
+                mSwipeRefresh.setRefreshing(false);
+                mAdapter.setmError(responseString + (e == null ? "" : e.getMessage()));
+            }
+        });
+
     }
 }

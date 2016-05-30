@@ -52,12 +52,11 @@ public class LivingRequest<NetModel> extends Request<NetModel> {
     protected Response<NetModel> parseNetworkResponse(NetworkResponse response) {
         try {
             //得到返回数据
-            String jsonString = new String(response.data,
-                    HttpHeaderParser.parseCharset(response.headers));
+            String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+//            String jsonString = new String(response.data, "UTF-8");
             LogUtil.e("返回结果:" + jsonString);
             // 转化成对象返回
-            return Response.success(mGson.fromJson(jsonString, mClass),
-                    HttpHeaderParser.parseCacheHeaders(response));
+            return Response.success(mGson.fromJson(jsonString, mClass), HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
         } catch (Exception e) {

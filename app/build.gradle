@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMdd')
+    return formattedDate
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.3'
@@ -9,26 +15,94 @@ android {
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
+
+        // dex突破65535的限制
+        multiDexEnabled true
+
+        // 设置AndroidManifest.xml 里面UMENG_CHANNEL的value默认值
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: 'dev']
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+    //执行lint检查，有任何的错误或者警告提示，都会终止构建，我们可以将其关掉。
+    lintOptions {
+        abortOnError false
+    }
+
+    signingConfigs {
+        myConfig {
+            storeFile file('../living.jks')
+            storePassword '123456'
+            keyAlias 'living'
+            keyPassword '123456'
         }
     }
+
+    buildTypes {
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            // 加入签名配置信息
+            signingConfig signingConfigs.myConfig
+            // 混淆
+            minifyEnabled false
+            // Zipalign优化
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources true
+            // 加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+
+                    if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
+                        def apkFile = new File(output.outputFile.getParent(), "Living_${variant.flavorName}_v${variant.versionName}_${buildTime()}_${variant.buildType.name}.apk")
+                        output.outputFile = apkFile
+                    }
+                }
+            }
+        }
+
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            signingConfig signingConfigs.myConfig
+        }
+    }
+
+    // 多渠道打包配置
+    productFlavors {
+        dev {
+            //这里可以配置不同的包名 版本号
+            applicationId = "com.living"
+            versionCode = "1"
+            versionName = "1.0.0"
+        }
+        productFlavors.all {
+            flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+
     useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':zixing')
+    compile project(':appintro')
+    compile project(':ucrop')
     compile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
-    compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.android.support:design:23.3.0'
+    // Glide 图片加载库
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+    // 一个精美的对话框
     compile 'cn.pedant.sweetalert:library:1.3'
+    // 通过自定义view的方式实现的Material风格的加载提示控件
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
-    compile project(':zixing')
-    compile project(':imagecroplib')
+    // GreenDao  数据库ORM
+    compile 'org.greenrobot:greendao:2.2.1'
+    // GreenDao 生成dao和model的generator的项目 发布时可以去掉
+    compile 'org.greenrobot:greendao-generator:2.2.0'
 }

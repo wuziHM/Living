@@ -11,6 +11,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="half_transparent">#01FFFFFF</color>
-    <color name="transparent">#00000000</color>
+    <color name="foot_txt_gray">#AEAEAE</color>
+    <color name="foot_txt_light">#AA0F5C</color>
+    <color name="foot_tab_background">#F6F6F6</color>
+
+    <color name="test">#3F51B5</color>
+
+
 </resources>

@@ -10,7 +10,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/imagecroplib" />
+            <option value="$PROJECT_DIR$/appintro" />
+            <option value="$PROJECT_DIR$/ucrop" />
             <option value="$PROJECT_DIR$/zixing" />
           </set>
         </option>
@@ -18,7 +19,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/imagecroplib" />
+            <option value="$PROJECT_DIR$/appintro" />
+            <option value="$PROJECT_DIR$/ucrop" />
             <option value="$PROJECT_DIR$/zixing" />
           </set>
         </option>

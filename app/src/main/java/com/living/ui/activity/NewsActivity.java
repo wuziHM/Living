@@ -5,15 +5,20 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
+import com.baidu.apistore.sdk.ApiCallBack;
+import com.baidu.apistore.sdk.ApiStoreSDK;
+import com.baidu.apistore.sdk.network.Parameters;
 import com.living.R;
 import com.living.adapter.NewsClassifyAdapter;
 import com.living.bean.NewsChannelBean;
+import com.living.config.Constant;
 import com.living.ui.fragment.NewsFragment;
-import com.living.util.LivingNetUtils;
+import com.living.util.JsonUtil;
 import com.living.util.LogUtil;
+import com.living.util.ProgressUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +46,7 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
 
     private void initView() {
         findViewById(R.id.iv_back).setOnClickListener(this);
+        ((TextView) findViewById(R.id.tv_title)).setText(getString(R.string.title_activity_news));
         mViewPager = (ViewPager) findViewById(R.id.vp_view);
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
     }
@@ -57,7 +63,7 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
         NewsClassifyAdapter mAdapter = new NewsClassifyAdapter(getSupportFragmentManager(), fragments, mTitleList);
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
-//        mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器 // 新的版本不需要设置，会自动根据ViewPage找到mAdapter
+        mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器 // 新的版本不需要设置，会自动根据ViewPage找到mAdapter
         mViewPager.addOnPageChangeListener(pageListener);
         mViewPager.setOffscreenPageLimit(4);
     }
@@ -106,46 +112,37 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
         }
     }
 
-    //获取全部新闻分类
+    /**
+     * 获取全部新闻分类
+     */
     private void getChannelNews() {
-//        Parameters para = new Parameters();
-//        para.put("apikey", ApiStoreSDK.getAppKey());
-//        ApiStoreSDK.execute("http://apis.baidu.com/showapi_open_bus/channel_news/channel_news",
-//                ApiStoreSDK.GET,
-//                para,
-//                new ApiCallBack() {
-//                    @Override
-//                    public void onSuccess(int status, String responseString) {
-//                        Log.i("tobin", "onSuccess" + responseString);
-//                        jsonResult(responseString);
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        Log.i("tobin", "onComplete");
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(int status, String responseString, Exception e) {
-//                        Log.i("tobin", "onError, status: " + status);
-//                        Log.i("tobin", "errMsg: " + (e == null ? "" : e.getMessage()));
-//                    }
-//                }
-//        );
-        LivingNetUtils.getChannelNew(new Response.Listener<NewsChannelBean>() {
+        ProgressUtil.loading(NewsActivity.this,true);
+        Parameters para = new Parameters();
+        para.put("apikey", ApiStoreSDK.getAppKey());
+        ApiStoreSDK.execute(Constant.URL_NEWS_CHANNEL, ApiStoreSDK.POST, para, new ApiCallBack() {
             @Override
-            public void onResponse(NewsChannelBean response) {
-                newsChannelBean = response;
-                channelListBean = response.getShowapi_res_body().getChannelList();
-                initTabView();
+            public void onSuccess(int status, String responseString) {
+                LogUtil.e("tobin : " + status + " //response: " + responseString);
+                newsChannelBean = JsonUtil.Json2T(responseString,NewsChannelBean.class);
+                if (newsChannelBean == null){
+                    getChannelNews();
+                }else{
+                    channelListBean = newsChannelBean.getShowapi_res_body().getChannelList();
+                    initTabView();
+                    ProgressUtil.loading(NewsActivity.this,false);
+                }
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error) {
-                LogUtil.e("tobin", "tobin getChannelNew onErrorResponse: " + error.getMessage());
+            public void onComplete() {
+                LogUtil.e("tobin getChannelNews" + "onComplete + 获取全部新闻分类结束");
             }
-        }, null);
+
+            @Override
+            public void onError(int status, String responseString, Exception e) {
+                Toast.makeText(NewsActivity.this,"网络错误：" + (e == null ? "" : e.getMessage()) + responseString,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

@@ -26,7 +26,7 @@ public class LivingNetUtils extends LivingAPI {
 //        volleySingleton.addToRequestQueue(request);
 //        VolleySingleton.getInstance().addToRequestQueue(request);
 
-        post(Constant.URL_NEWS_CHANNEL, NewsChannelBean.class, listener, errorListener, map);
+        get(Constant.URL_NEWS_CHANNEL, NewsChannelBean.class, listener, errorListener, map);
     }
 
     /**
