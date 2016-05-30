@@ -43,8 +43,11 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SDKConstant.VIEWFINSIH:
-                    txt_test_result.setVisibility(View.VISIBLE);
-                    txt_test_result.setText((String) msg.obj);
+                    String[] str = ((String) msg.obj).split("&&");
+                    LogUtil.e("tobin test: " + str.length);
+                    analyzeResult(str[0]);
+//                    txt_test_result.setVisibility(View.VISIBLE);
+//                    txt_test_result.setText((String) msg.obj);
                     break;
                 case 1901:
                     analyzeResult((String) msg.obj);
@@ -58,7 +61,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
     };
 
     private void analyzeResult(String result){
-        if ("200".equals(JsonUtil.json2JsonObject(result).get("resultcode"))){
+        if (JsonUtil.json2JsonObject(result).get("resultcode")!= null && "200".equals(JsonUtil.json2JsonObject(result).get("resultcode"))){
             String str = JsonUtil.json2JsonObject(result).get("rc_main").toString();
 
             switch (str){
@@ -146,7 +149,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
             }
         }else{
             txtResult = JsonUtil.json2JsonObject(result).get("reason").toString();
-            enTxtResult = "Facial expression recognition error";
+            enTxtResult = "Emotion recognition failure";
         }
 
         String time = StringUtils.getStrDateFromLong(Long.valueOf(JsonUtil.json2JsonObject(result).get("servertime").toString()));
@@ -231,7 +234,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 
         @Override
         public void onVolumeChanged(int volume) {
-            LogUtil.e("当前正在说话，音量大小：", volume + "");
+//            LogUtil.e("当前正在说话，音量大小：", volume + "");
         }
 
         @Override
@@ -247,7 +250,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
         @Override
         public void onVoiceResult(String Result) {
             Message msg = new Message();
-            msg.what = 1901;
+            msg.what = SDKConstant.VIEWFINSIH;
             msg.obj = Result;
             mainHandler.sendMessage(msg);
             LogUtil.i("ENDINFO", "THE RESULT INFO IS" + Result);
@@ -270,7 +273,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 
             LogUtil.i("MainActivity get the result is", "[" + result + "]");
             Message msg = new Message();
-            msg.what = SDKConstant.VIEWFINSIH;
+            msg.what = 1901;
             msg.obj = result;
             mainHandler.sendMessage(msg);
         }
@@ -290,7 +293,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
             // 获取设备ID
             AdvancedInformation pp = AdvancedInformation.getSingleton(context);
             //// 注册用户信息: platflag 应用名; userName 用户名或设备 ID;password 用户登录密码(可为空)
-            SDKAppInit.registerforuid("Living", pp.getp().getSimSerial(), null);
+            SDKAppInit.registerforuid("Living", pp.getp().getSimSerial(), "123456");
         }
     };
 
