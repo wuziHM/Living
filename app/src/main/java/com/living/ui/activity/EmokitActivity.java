@@ -49,8 +49,11 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
                     break;
                 case 1901:
                     LogUtil.e("tobin test Result: " +  msg.obj);
-                    if (msg.obj != null)
+                    if (msg.obj != null) {
                         analyzeResult((String) msg.obj);
+                    }else{
+                        txt_test_result.setText("");
+                    }
                     break;
                 default:
                     break;
@@ -142,7 +145,41 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
                     txtResult = "伤感；哭泣；痛心；低落: 抑郁症倾向";
                     enTxtResult = "sentimental; crying; heartbroken; down";
                     break;
+                case "CG-":
+                    txtResult = "怯懦；犹豫；纠结；郁闷: 强迫症倾向";
+                    enTxtResult = "cowardly; hesitating; depressed";
+                    break;
+                case "YC-":
+                    txtResult = "生气；指责；攻击；冲动：敌对症倾向";
+                    enTxtResult = "angry; accusatory; offensive; excited.";
+                    break;
+                case "YL-":
+                    txtResult = "紧张；失调；失控；宣泄: 人际关系敏感症倾向";
+                    enTxtResult = "nervous; disordered; uncontroled; wreaking";
+                    break;
+                case "YV-":
+                    txtResult = "压抑；窝心；别扭；想念: 抑郁症倾向";
+                    enTxtResult = "repressed; annoyed; awkward; missed.";
+                    break;
+                case "ML-":
+                    txtResult = "哀伤；失落；幽怨；寂寞: 偏执症倾向";
+                    enTxtResult = "grieved; frustrated; hidden bitterness; lonely.";
+                    break;
+                case "MS-":
+                    txtResult = "记恨；怨恨；仇恨；哀怨: 偏执症倾向";
+                    enTxtResult = "grudge; resentful; hatred; plaintive";
+                    break;
+                case "WS-":
+                    txtResult = "消极；灰暗；低迷；颓废: 抑郁症倾向";
+                    enTxtResult = "negative; dark; downturn; dispirited";
+                    break;
+                case "WC-":
+                    txtResult = "恐惧；害怕；惊恐；焦虑: 恐怖症倾向";
+                    enTxtResult = "afeared; scared; frightened; anxious";
+                    break;
                 default:
+                    txtResult = "长得太丑，识别不了！";
+                    enTxtResult = "Emotion recognition failure";
                     break;
             }
         }else{
