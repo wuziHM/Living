@@ -50,7 +50,9 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 //                    txt_test_result.setText((String) msg.obj);
                     break;
                 case 1901:
-                    analyzeResult((String) msg.obj);
+                    LogUtil.e("tobin test Result: " +  msg.obj);
+                    if (msg.obj != null)
+                        analyzeResult((String) msg.obj);
 //                    txt_test_result.setVisibility(View.VISIBLE);
 //                    txt_test_result.setText((String) msg.obj);
                     break;
@@ -280,7 +282,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 
         @Override
         public void monitor(double rgb) {
-            LogUtil.i("recognizetag", "" + rgb);
+            LogUtil.e("recognizetag", "" + rgb);
         }
     };
 
