@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.living.R;
+import com.living.ui.activity.EmokitActivity;
 import com.living.ui.activity.TuLingChatActivity;
 import com.living.util.LogUtil;
 
@@ -45,7 +45,6 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
         if (parent != null) {
             parent.removeView(rootView);
         }
-
         initView();
         return rootView;
     }
@@ -57,7 +56,7 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
                 startActivity(new Intent(getActivity(), TuLingChatActivity.class));
                 break;
             case R.id.ll_mood:
-                Toast.makeText(getActivity(),"该功能计划中.....",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), EmokitActivity.class));
                 break;
             default:
                 break;

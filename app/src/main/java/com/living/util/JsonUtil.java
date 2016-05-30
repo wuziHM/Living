@@ -5,17 +5,19 @@ import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
- * Json序列化工具包
+ * FastJson序列化工具包
  *
  * @author Sun
  * @since 2012-1-19
- * @author tobin
+ * @author Tobin
  * @modify 2016-5-27
  */
 public class JsonUtil {
@@ -23,7 +25,27 @@ public class JsonUtil {
     private static final String CHARSET = "UTF-8";
 
     /**
-     * 将json转换成为java对象
+     * 将网络请求下来的数据用fastjson处理空的情况，并将时间戳转化为标准时间格式
+     * @param result
+     * @return
+     */
+    public static String dealResponseResult(String result) {
+        result = JSONObject.toJSONString(result,
+                SerializerFeature.WriteClassName,
+                SerializerFeature.WriteMapNullValue,
+                SerializerFeature.WriteNullBooleanAsFalse,
+                SerializerFeature.WriteNullListAsEmpty,
+                SerializerFeature.WriteNullNumberAsZero,
+                SerializerFeature.WriteNullStringAsEmpty,
+                SerializerFeature.WriteDateUseDateFormat,
+                SerializerFeature.WriteEnumUsingToString,
+                SerializerFeature.WriteSlashAsSpecial,
+                SerializerFeature.WriteTabAsSpecial);
+        return result;
+    }
+
+    /**
+     * 将json转换成为java对象T
      *
      * @param json
      * @param classOfT
@@ -42,7 +64,7 @@ public class JsonUtil {
     }
 
     /**
-     * 将json转换成为java数组
+     * 将json转换成为java对象列表List<T>
      *
      * @param json
      * @param classOfT
@@ -58,6 +80,18 @@ public class JsonUtil {
             Log.e("JsonUtil.Json2T", "msg:" + json + "\r\nclazz:" + classOfT.getName());
             return null;
         }
+    }
+
+    /**
+     * 把JSON数据转换成较为复杂的java对象列表List<Map<String, Object>>
+     *
+     * @param jsonData
+     *            JSON数据
+     * @return
+     * @throws Exception
+     */
+    public static List<Map<String, Object>> json2MapList(String jsonData) throws Exception {
+        return JSON.parseObject(jsonData, new TypeReference<List<Map<String, Object>>>() {});
     }
 
     /**
@@ -132,6 +166,21 @@ public class JsonUtil {
     public static String Object2Json(Object o) {
         try {
             return JSON.toJSONString(o);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 将对象Object转换成更加方便观察的json格式数据，但会增加存储空间
+     *
+     * @param o
+     * @return
+     */
+    public static String Object2JsonPrettyFormat(Object o) {
+        try {
+            return JSON.toJSONString(o, true);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -245,20 +294,4 @@ public class JsonUtil {
             return null;
         }
     }
-
-    /**
-     * 更加方便观察，但会增加存储空间
-     *
-     * @param o
-     * @return
-     */
-    public static String Object2JsonPrettyFormat(Object o) {
-        try {
-            return JSON.toJSONString(o, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 }

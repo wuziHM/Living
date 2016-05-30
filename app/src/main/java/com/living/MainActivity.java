@@ -14,6 +14,7 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import com.emokit.sdk.util.SDKAppInit;
 import com.living.ui.fragment.Tab1Fragment;
 import com.living.ui.fragment.Tab2Fragment;
 import com.living.ui.fragment.Tab3Fragment;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initTab();
+        SDKAppInit.createInstance(this);
     }
 
     private void initTab() {

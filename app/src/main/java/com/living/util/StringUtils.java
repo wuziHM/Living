@@ -80,6 +80,13 @@ public class StringUtils {
 		return cal.get(Calendar.DATE);
 	}
 
+	public static String getStrDateFromLong(long lSysTime1){
+		SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		//前面的lSysTime是秒数，先乘1000得到毫秒数，再转为java.util.Date类型
+		java.util.Date dt = new Date(lSysTime1 * 1000);
+		return sdf.format(dt);  //得到精确到秒的表示：08/31/2006 21:08:00
+	}
+
 	/**
 	 * 将长时间格式字符串转换为时间 yyyy-MM-dd HH:mm:ss
 	 * 
