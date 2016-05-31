@@ -23,6 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * 图灵机器人聊天界面
+ * @author Tobin
+ */
 public class TuLingChatActivity extends AppCompatActivity implements View.OnClickListener{
 
     private MessageInputToolBox box;
@@ -128,7 +132,7 @@ public class TuLingChatActivity extends AppCompatActivity implements View.OnClic
 
         Map<Integer, ArrayList<String>> faceData = new HashMap<>();
 //        faceData.put(R.drawable.em_cate_duck, faceNameList);
-        faceData.put(R.drawable.em_cate_rib, faceNameList);
+//        faceData.put(R.drawable.em_cate_rib, faceNameList);
         faceData.put(R.drawable.em_cate_duck, faceNameList);
         box.setFaceData(faceData);
 

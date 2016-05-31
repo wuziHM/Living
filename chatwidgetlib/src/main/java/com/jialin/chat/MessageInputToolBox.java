@@ -247,7 +247,7 @@ public class MessageInputToolBox extends RelativeLayout {
 	
 	/**
 	 * 隐藏软键盘
-	 * @param activity
+	 * @param context
 	 */
 	public static void hideKeyboard(Context context) {
 		Activity activity = (Activity) context;
@@ -261,7 +261,7 @@ public class MessageInputToolBox extends RelativeLayout {
 
 	/**
 	 * 显示软键盘
-	 * @param activity
+	 * @param context
 	 */
 	public static void showKeyboard(Context context) {
 		Activity activity = (Activity) context;
