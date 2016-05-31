@@ -1,1 +1,1 @@
-include ':app', ':zixing', ':appintro', ':ucrop'
+include ':app', ':zixing', ':appintro', ':ucrop', ':chatwidgetlib'
