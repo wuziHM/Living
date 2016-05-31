@@ -43,7 +43,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
             switch (msg.what) {
                 case SDKConstant.VIEWFINSIH:
                     String[] str = ((String) msg.obj).split("&&");
-                    LogUtil.e("tobin test: " + str.length);
+                    LogUtil.e("tobin 语音识别监听器返回结果((String) msg.obj).split(\"&&\").length: " + str.length);
                     analyzeResult(str[0]);
                     break;
                 case 1901:
@@ -246,12 +246,10 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 
         @Override
         public void endDetect(String result) {
-            LogUtil.e("EMOKITSDK>>>", "THE Express result IS" + result.toString());
             Message msg = new Message();
             msg.what = 1901;
             msg.obj = result;
             mainHandler.sendMessage(msg);
-            LogUtil.e("ENDINFO", "THE RESULT INFO IS" + result);
         }
         @Override
         public void beginDetect() {
@@ -284,7 +282,6 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
             msg.what = SDKConstant.VIEWFINSIH;
             msg.obj = Result;
             mainHandler.sendMessage(msg);
-            LogUtil.i("ENDINFO", "THE RESULT INFO IS" + Result);
         }
 
     };
@@ -301,8 +298,6 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 
         @Override
         public void endDetect(String result) {
-
-            LogUtil.i("MainActivity get the result is", "[" + result + "]");
             Message msg = new Message();
             msg.what = 1901;
             msg.obj = result;

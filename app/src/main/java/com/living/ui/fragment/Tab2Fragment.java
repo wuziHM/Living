@@ -22,7 +22,6 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogUtil.e("Tab2Fragment onCreate");
     }
 
     private void initView(){
