@@ -34,7 +34,6 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
     private EmotionDetect emotionDetect;
     private ExpressionDetect expressDetect;
     RateDetect rt;
-
     TextView txt_test_result;
     private String txtResult = "",enTxtResult = "";
 
@@ -183,15 +182,12 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
                     break;
             }
         }else{
-            txtResult = JsonUtil.json2JsonObject(result).get("reason").toString();
+            txtResult = JsonUtil.json2JsonObject(result).get("reason").toString() + "\n长得太丑，吓到人了!";
             enTxtResult = "Emotion recognition failure";
         }
-
-        String time = StringUtils.getStrDateFromLong(Long.valueOf(JsonUtil.json2JsonObject(result).get("servertime").toString()));
-
+        String time = StringUtils.changeDateStr(JsonUtil.json2JsonObject(result).get("servertime").toString());
         txt_test_result.setVisibility(View.VISIBLE);
-        txt_test_result.setText("测试结果：\n\n中文描述：\n" + txtResult + "\n\nEnglish description：\n" + enTxtResult);
-
+        txt_test_result.setText("测试结果：\n\n中文描述：\n" + txtResult + "\n\nEnglish description：\n" + enTxtResult+"\n\n服务时间：\n" + time);
     }
 
     @Override

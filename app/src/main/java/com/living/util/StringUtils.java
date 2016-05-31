@@ -80,6 +80,17 @@ public class StringUtils {
 		return cal.get(Calendar.DATE);
 	}
 
+	public static String changeDateStr(String date){
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddhhmmss");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		try {
+			return sdf2.format(sdf1.parse(date));
+		} catch (ParseException pe) {
+			pe.printStackTrace();
+			return "";
+		}
+	}
+
 	public static String getStrDateFromLong(long lSysTime1){
 		SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		//前面的lSysTime是秒数，先乘1000得到毫秒数，再转为java.util.Date类型
