@@ -83,6 +83,7 @@ android {
         }
     }
 
+
     useLibrary 'org.apache.http.legacy'
 }
 
@@ -91,6 +92,7 @@ dependencies {
     compile project(':zixing')
     compile project(':appintro')
     compile project(':ucrop')
+    compile project(':chatwidgetlib')
     compile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'

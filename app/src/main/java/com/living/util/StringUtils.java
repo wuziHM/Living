@@ -1,7 +1,6 @@
 package com.living.util;
 
 import java.text.ParseException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,8 +13,6 @@ public class StringUtils {
 	private static final long TIME_MINUTE = 60 * TIME_SECOND;
 	private static final long TIME_HOUR = 60 * TIME_MINUTE;
 	private static final long TIME_DAY = 24 * TIME_HOUR;
-	private static final long TIME_WEEK = 7 * TIME_DAY;
-	private static final long TIME_MONTH = 4 * TIME_WEEK;
 
 	private static final SimpleDateFormat HmFormat = new SimpleDateFormat("H:m");
 	private static final SimpleDateFormat weekFormat = new SimpleDateFormat("E");
@@ -28,6 +25,22 @@ public class StringUtils {
 	public static long str2Long(String src) {
 		return src.trim().matches("^\\d+$") ? new Long(src.trim()) : 0L;
 	}
+
+    public static boolean isSameWeekDates(Calendar cal1, Calendar cal2) {
+        int subYear = cal1.get(Calendar.YEAR) - cal2.get(Calendar.YEAR);
+        if (0 == subYear) {
+            if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR))
+                return true;
+        } else if (1 == subYear && 11 == cal2.get(Calendar.MONTH)) {
+            // 如果12月的最后一周横跨来年第一周的话则最后一周即算做来年的第一周
+            if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR))
+                return true;
+        } else if (-1 == subYear && 11 == cal1.get(Calendar.MONTH)) {
+            if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR))
+                return true;
+        }
+        return false;
+    }
 
 	/**
 	 * 如果是当分,则N秒前 如果是当前小时,则 N分钟前 如果是当日,则 H:m 如果是昨天,则 昨天 H:m 如果是一周内,则 星期 H:m
@@ -68,56 +81,34 @@ public class StringUtils {
 		return MdHmFormat.format(pre.getTime());
 	}
 
-	public static Integer getMonth(long time) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTimeInMillis(time);
-		return cal.get(Calendar.MONTH) + 1;
-	}
-
-	public static Integer getDay(long time) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTimeInMillis(time);
-		return cal.get(Calendar.DATE);
-	}
-
-	public static String getStrDateFromLong(long lSysTime1){
-		SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-		//前面的lSysTime是秒数，先乘1000得到毫秒数，再转为java.util.Date类型
-		java.util.Date dt = new Date(lSysTime1 * 1000);
-		return sdf.format(dt);  //得到精确到秒的表示：08/31/2006 21:08:00
-	}
-
 	/**
-	 * 将长时间格式字符串转换为时间 yyyy-MM-dd HH:mm:ss
-	 * 
-	 * @param strDate
+	 * 将yyyyMMddhhmmss格式的时间转换成MM/dd/yyyy HH:mm:ss的格式
+     * 可以根据想要的格式做不同的修改
+	 * @param date
 	 * @return
-	 */
-	public static Date strToDate(String strDate) {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		ParsePosition pos = new ParsePosition(0);
-		return formatter.parse(strDate, pos);
-	}
-
-	public static String longToDate(long currentTime, String formatType) throws ParseException {
-		Date dateOld = new Date(currentTime); // 根据long类型的毫秒数生命一个date类型的时间
-		return new SimpleDateFormat(formatType).format(dateOld);
-	}
-
-	public static boolean isSameWeekDates(Calendar cal1, Calendar cal2) {
-		int subYear = cal1.get(Calendar.YEAR) - cal2.get(Calendar.YEAR);
-		if (0 == subYear) {
-			if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR))
-				return true;
-		} else if (1 == subYear && 11 == cal2.get(Calendar.MONTH)) {
-			// 如果12月的最后一周横跨来年第一周的话则最后一周即算做来年的第一周
-			if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR))
-				return true;
-		} else if (-1 == subYear && 11 == cal1.get(Calendar.MONTH)) {
-			if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR))
-				return true;
+     */
+	public static String changeDateStr(String date){
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddhhmmss");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		try {
+			return sdf2.format(sdf1.parse(date));
+		} catch (ParseException pe) {
+			pe.printStackTrace();
+			return "00/00/0000 00:00:00";
 		}
-		return false;
+	}
+
+    /**
+     * Long 转成Date字符串
+     * @param time
+     * @param formatType "MM/dd/yyyy HH:mm:ss"
+     * @return
+     */
+	public static String long2DateStr(long time,String formatType){
+		SimpleDateFormat sdf= new SimpleDateFormat(formatType);
+		//前面的lSysTime是秒数，先乘1000得到毫秒数，再转为java.util.Date类型
+		Date dt = new Date(time * 1000);
+		return sdf.format(dt);  //得到精确到秒的表示：08/31/2006 21:08:00
 	}
 
 	/**

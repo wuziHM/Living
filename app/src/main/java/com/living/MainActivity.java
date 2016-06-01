@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         /**
-         * 在fragment的管理类中，我们要实现这部操作，而他的主要作用是，当MainActivity回传数据到fragnment中时,
+         * 在fragment的管理类中，我们要实现这步操作，而他的主要作用是，当MainActivity回传数据到fragnment中时,
          * 往往会经过这个管理器中的onActivityResult的方法。
          * 在这里，我们通过碎片管理器中的Tag，就是每个碎片的名称，来获取对应的fragment
          * 然后在碎片中调用重写的onActivityResult方法
