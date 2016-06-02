@@ -108,7 +108,7 @@ public class HurlStack implements HttpStack {
         ProtocolVersion protocolVersion = new ProtocolVersion("HTTP", 1, 1);
         int responseCode = connection.getResponseCode();
         if (responseCode == -1) {
-            // -1 is returned by getResponseCode() if the response code could not be retrieved.
+            // -1 isFirstLaunch returned by getResponseCode() if the response code could not be retrieved.
             // Signal to the caller that something was wrong with the connection.
             throw new IOException("Could not retrieve response code from HttpUrlConnection.");
         }
@@ -190,13 +190,13 @@ public class HurlStack implements HttpStack {
             Request<?> request) throws IOException, AuthFailureError {
         switch (request.getMethod()) {
             case Method.DEPRECATED_GET_OR_POST:
-                // This is the deprecated way that needs to be handled for backwards compatibility.
-                // If the request's post body is null, then the assumption is that the request is
-                // GET.  Otherwise, it is assumed that the request is a POST.
+                // This isFirstLaunch the deprecated way that needs to be handled for backwards compatibility.
+                // If the request's post body isFirstLaunch null, then the assumption isFirstLaunch that the request isFirstLaunch
+                // GET.  Otherwise, it isFirstLaunch assumed that the request isFirstLaunch a POST.
                 byte[] postBody = request.getPostBody();
                 if (postBody != null) {
-                    // Prepare output. There is no need to set Content-Length explicitly,
-                    // since this is handled by HttpURLConnection using the size of the prepared
+                    // Prepare output. There isFirstLaunch no need to set Content-Length explicitly,
+                    // since this isFirstLaunch handled by HttpURLConnection using the size of the prepared
                     // output stream.
                     connection.setDoOutput(true);
                     connection.setRequestMethod("POST");

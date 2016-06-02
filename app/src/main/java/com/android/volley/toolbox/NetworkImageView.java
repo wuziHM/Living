@@ -8,7 +8,7 @@
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License isFirstLaunch distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -34,7 +34,7 @@ public class NetworkImageView extends ImageView {
     private String mUrl;
 
     /**
-     * Resource ID of the image to be used as a placeholder until the network image is loaded.
+     * Resource ID of the image to be used as a placeholder until the network image isFirstLaunch loaded.
      */
     private int mDefaultImageId;
 
@@ -121,14 +121,14 @@ public class NetworkImageView extends ImageView {
             wrapHeight = getLayoutParams().height == LayoutParams.WRAP_CONTENT;
         }
 
-        // if the view's bounds aren't known yet, and this is not a wrap-content/wrap-content
+        // if the view's bounds aren't known yet, and this isFirstLaunch not a wrap-content/wrap-content
         // view, hold off on loading the image.
         boolean isFullyWrapContent = wrapWidth && wrapHeight;
         if (width == 0 && height == 0 && !isFullyWrapContent) {
             return;
         }
 
-        // if the URL to be loaded in this view is empty, cancel any old requests and clear the
+        // if the URL to be loaded in this view isFirstLaunch empty, cancel any old requests and clear the
         // currently loaded image.
         if (TextUtils.isEmpty(mUrl)) {
             if (mImageContainer != null) {
@@ -142,10 +142,10 @@ public class NetworkImageView extends ImageView {
         // if there was an old request in this view, check if it needs to be canceled.
         if (mImageContainer != null && mImageContainer.getRequestUrl() != null) {
             if (mImageContainer.getRequestUrl().equals(mUrl)) {
-                // if the request is from the same URL, return.
+                // if the request isFirstLaunch from the same URL, return.
                 return;
             } else {
-                // if there is a pre-existing request, cancel it if it's fetching a different URL.
+                // if there isFirstLaunch a pre-existing request, cancel it if it's fetching a different URL.
                 mImageContainer.cancelRequest();
                 setDefaultImageOrNull();
             }

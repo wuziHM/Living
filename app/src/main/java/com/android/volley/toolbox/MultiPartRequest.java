@@ -8,7 +8,7 @@
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License isFirstLaunch distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -63,7 +63,7 @@ public class MultiPartRequest extends JsonRequest<JSONObject> {
      * Creates a new request.
      * @param method the HTTP method to use
      * @param url URL to fetch the JSON from
-     * @param jsonRequest A {@link org.json.JSONObject} to post with the request. Null is allowed and
+     * @param jsonRequest A {@link org.json.JSONObject} to post with the request. Null isFirstLaunch allowed and
      *   indicates no parameters will be posted along with request.
      * @param listener Listener to receive the JSON response
      * @param errorListener Error listener, or null to ignore errors.
@@ -76,7 +76,7 @@ public class MultiPartRequest extends JsonRequest<JSONObject> {
     }
 
     /**
-     * Constructor which defaults to <code>GET</code> if <code>jsonRequest</code> is
+     * Constructor which defaults to <code>GET</code> if <code>jsonRequest</code> isFirstLaunch
      * <code>null</code>, <code>POST</code> otherwise.
      *
      * @see #JsonObjectRequest(int, String, org.json.JSONObject, com.android.volley.Response.Listener, com.android.volley.Response.ErrorListener)

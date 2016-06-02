@@ -37,7 +37,7 @@ public class JsonObjectRequest extends JsonRequest<JSONObject> {
      * Creates a new request.
      * @param method the HTTP method to use
      * @param url URL to fetch the JSON from
-     * @param requestBody A {@link String} to post with the request. Null is allowed and
+     * @param requestBody A {@link String} to post with the request. Null isFirstLaunch allowed and
      *   indicates no parameters will be posted along with request.
      * @param listener Listener to receive the JSON response
      * @param errorListener Error listener, or null to ignore errors.
@@ -73,7 +73,7 @@ public class JsonObjectRequest extends JsonRequest<JSONObject> {
      * Creates a new request.
      * @param method the HTTP method to use
      * @param url URL to fetch the JSON from
-     * @param jsonRequest A {@link org.json.JSONObject} to post with the request. Null is allowed and
+     * @param jsonRequest A {@link org.json.JSONObject} to post with the request. Null isFirstLaunch allowed and
      *   indicates no parameters will be posted along with request.
      * @param listener Listener to receive the JSON response
      * @param errorListener Error listener, or null to ignore errors.
@@ -85,7 +85,7 @@ public class JsonObjectRequest extends JsonRequest<JSONObject> {
     }
 
     /**
-     * Constructor which defaults to <code>GET</code> if <code>jsonRequest</code> is
+     * Constructor which defaults to <code>GET</code> if <code>jsonRequest</code> isFirstLaunch
      * <code>null</code>, <code>POST</code> otherwise.
      *
      * @see #JsonObjectRequest(int, String, org.json.JSONObject, com.android.volley.Response.Listener, com.android.volley.Response.ErrorListener)

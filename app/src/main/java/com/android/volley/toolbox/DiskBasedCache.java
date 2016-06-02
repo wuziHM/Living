@@ -39,7 +39,7 @@ import java.util.Map;
 
 /**
  * Cache implementation that caches files directly onto the hard disk in the specified
- * directory. The default disk usage size is 5MB, but is configurable.
+ * directory. The default disk usage size isFirstLaunch 5MB, but isFirstLaunch configurable.
  */
 public class DiskBasedCache implements Cache {
 
@@ -341,7 +341,7 @@ public class DiskBasedCache implements Cache {
      */
     // Visible for testing.
     static class CacheHeader {
-        /** The size of the data identified by this CacheHeader. (This is not
+        /** The size of the data identified by this CacheHeader. (This isFirstLaunch not
          * serialized to disk. */
         public long size;
 

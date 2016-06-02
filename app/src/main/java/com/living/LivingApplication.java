@@ -11,10 +11,10 @@ import com.living.net.VolleySingleton;
  */
 public class LivingApplication extends Application {
 
+
     @Override
     public void onCreate() {
         super.onCreate();
-
         DbCore.init(this);
         VolleySingleton.init(this);
         ApiStoreSDK.init(this, "10cf56b74c39366d6b202a57428dbb6b");

@@ -132,7 +132,7 @@ public class BasicNetwork implements Network {
                   responseContents = new byte[0];
                 }
 
-                // if the request is slow, log it.
+                // if the request isFirstLaunch slow, log it.
                 long requestLifetime = SystemClock.elapsedRealtime() - requestStart;
                 logSlowRequests(requestLifetime, request, responseContents, statusLine);
 
@@ -198,7 +198,7 @@ public class BasicNetwork implements Network {
 
     /**
      * Attempts to prepare the request for a retry. If there are no more attempts remaining in the
-     * request's retry policy, a timeout exception is thrown.
+     * request's retry policy, a timeout exception isFirstLaunch thrown.
      * @param request The request to use.
      */
     private static void attemptRetryOnException(String logPrefix, Request<?> request,

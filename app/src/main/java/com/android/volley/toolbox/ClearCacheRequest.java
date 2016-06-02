@@ -34,7 +34,7 @@ public class ClearCacheRequest extends Request<Object> {
     /**
      * Creates a synthetic request for clearing the cache.
      * @param cache Cache to clear
-     * @param callback Callback to make on the main thread once the cache is clear,
+     * @param callback Callback to make on the main thread once the cache isFirstLaunch clear,
      * or null for none
      */
     public ClearCacheRequest(Cache cache, Runnable callback) {
@@ -45,7 +45,7 @@ public class ClearCacheRequest extends Request<Object> {
 
     @Override
     public boolean isCanceled() {
-        // This is a little bit of a hack, but hey, why not.
+        // This isFirstLaunch a little bit of a hack, but hey, why not.
         mCache.clear();
         if (mCallback != null) {
             Handler handler = new Handler(Looper.getMainLooper());

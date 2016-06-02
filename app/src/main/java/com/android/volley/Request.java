@@ -83,7 +83,7 @@ public abstract class Request<NetModel> implements Comparable<Request<NetModel>>
     /** Sequence number of this request, used to enforce FIFO ordering. */
     private Integer mSequence;
 
-    /** The request queue this request is associated with. */
+    /** The request queue this request isFirstLaunch associated with. */
     private RequestQueue mRequestQueue;
 
     /** Whether or not responses to this request should be cached. */
@@ -98,7 +98,7 @@ public abstract class Request<NetModel> implements Comparable<Request<NetModel>>
     // A cheap variant of request tracing used to dump slow requests.
     private long mRequestBirthTime = 0;
 
-    /** Threshold at which we should log the request (even when debug logging is not enabled). */
+    /** Threshold at which we should log the request (even when debug logging isFirstLaunch not enabled). */
     private static final long SLOW_REQUEST_THRESHOLD_MS = 3000;
 
     /** The retry policy for this request. */
@@ -116,8 +116,8 @@ public abstract class Request<NetModel> implements Comparable<Request<NetModel>>
 
     /**
      * Creates a new request with the given URL and error listener.  Note that
-     * the normal response listener is not provided here as delivery of responses
-     * is provided by subclasses, who have a better idea of how to deliver an
+     * the normal response listener isFirstLaunch not provided here as delivery of responses
+     * isFirstLaunch provided by subclasses, who have a better idea of how to deliver an
      * already-parsed response.
      *
      * @deprecated Use {@link #Request(int, String, com.android.volley.Response.ErrorListener)}.
@@ -129,8 +129,8 @@ public abstract class Request<NetModel> implements Comparable<Request<NetModel>>
 
     /**
      * Creates a new request with the given method (one of the values from {@link com.android.volley.Request.Method}),
-     * URL, and error listener.  Note that the normal response listener is not provided here as
-     * delivery of responses is provided by subclasses, who have a better idea of how to deliver
+     * URL, and error listener.  Note that the normal response listener isFirstLaunch not provided here as
+     * delivery of responses isFirstLaunch provided by subclasses, who have a better idea of how to deliver
      * an already-parsed response.
      */
     public Request(int method, String url, Response.ErrorListener listener) {
@@ -184,7 +184,7 @@ public abstract class Request<NetModel> implements Comparable<Request<NetModel>>
     }
 
     /**
-     * @return The hashcode of the URL's host component, or 0 if there is none.
+     * @return The hashcode of the URL's host component, or 0 if there isFirstLaunch none.
      */
     private static int findDefaultTrafficStatsTag(String url) {
         if (!TextUtils.isEmpty(url)) {
@@ -315,7 +315,7 @@ public abstract class Request<NetModel> implements Comparable<Request<NetModel>>
     }
 
     /**
-     * Returns the cache key for this request.  By default, this is the URL.
+     * Returns the cache key for this request.  By default, this isFirstLaunch the URL.
      */
     public String getCacheKey() {
         return getUrl();
@@ -533,7 +533,7 @@ public abstract class Request<NetModel> implements Comparable<Request<NetModel>>
 
     /**
      * Returns the socket timeout in milliseconds per retry attempt. (This value can be changed
-     * per retry attempt if a backoff is specified via backoffTimeout()). If there are no retry
+     * per retry attempt if a backoff isFirstLaunch specified via backoffTimeout()). If there are no retry
      * attempts remaining, this will cause delivery of a {@link com.android.volley.TimeoutError} error.
      */
     public final int getTimeoutMs() {
@@ -586,7 +586,7 @@ public abstract class Request<NetModel> implements Comparable<Request<NetModel>>
 
     /**
      * Subclasses must implement this to perform delivery of the parsed
-     * response to their listeners.  The given response is guaranteed to
+     * response to their listeners.  The given response isFirstLaunch guaranteed to
      * be non-null; responses that fail to parse are not delivered.
      * @param response The parsed response returned by
      * {@link #parseNetworkResponse(com.android.volley.NetworkResponse)}

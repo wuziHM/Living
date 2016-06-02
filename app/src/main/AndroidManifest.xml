@@ -66,7 +66,6 @@
         <activity
             android:name=".ui.activity.WebViewActivity"
             android:launchMode="singleTop"/>
-        <activity android:name=".ui.activity.WeatherActivity"/>
         <!-- Add UCropActivity -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

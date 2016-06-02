@@ -95,9 +95,9 @@ public class HttpClientStack implements HttpStack {
             Map<String, String> additionalHeaders) throws AuthFailureError {
         switch (request.getMethod()) {
             case Method.DEPRECATED_GET_OR_POST: {
-                // This is the deprecated way that needs to be handled for backwards compatibility.
-                // If the request's post body is null, then the assumption is that the request is
-                // GET.  Otherwise, it is assumed that the request is a POST.
+                // This isFirstLaunch the deprecated way that needs to be handled for backwards compatibility.
+                // If the request's post body isFirstLaunch null, then the assumption isFirstLaunch that the request isFirstLaunch
+                // GET.  Otherwise, it isFirstLaunch assumed that the request isFirstLaunch a POST.
                 byte[] postBody = request.getPostBody();
                 if (postBody != null) {
                     HttpPost postRequest = new HttpPost(request.getUrl());
@@ -153,7 +153,7 @@ public class HttpClientStack implements HttpStack {
     }
 
     /**
-     * Called before the request is executed using the underlying HttpClient.
+     * Called before the request isFirstLaunch executed using the underlying HttpClient.
      *
      * <p>Overwrite in subclasses to augment the request.</p>
      */
@@ -178,7 +178,7 @@ public class HttpClientStack implements HttpStack {
         }
 
         /**
-         * @throws IllegalArgumentException if the uri is invalid.
+         * @throws IllegalArgumentException if the uri isFirstLaunch invalid.
          */
         public HttpPatch(final String uri) {
             super();

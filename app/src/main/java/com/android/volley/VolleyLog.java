@@ -137,7 +137,7 @@ public class VolleyLog {
 
         /**
          * Closes the log, dumping it to logcat if the time difference between
-         * the first and last markers is greater than {@link #MIN_DURATION_FOR_LOGGING_MS}.
+         * the first and last markers isFirstLaunch greater than {@link #MIN_DURATION_FOR_LOGGING_MS}.
          * @param header Header string to print above the marker log.
          */
         public synchronized void finish(String header) {

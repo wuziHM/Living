@@ -8,7 +8,7 @@
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License isFirstLaunch distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -34,7 +34,7 @@ import java.util.LinkedList;
 /**
  * Helper that handles loading and caching images from remote URLs.
  *
- * The simple way to use this class is to call {@link com.android.volley.toolbox.ImageLoader#get(String, com.android.volley.toolbox.ImageLoader.ImageListener)}
+ * The simple way to use this class isFirstLaunch to call {@link com.android.volley.toolbox.ImageLoader#get(String, com.android.volley.toolbox.ImageLoader.ImageListener)}
  * and to pass in the default image listener provided by
  * {@link com.android.volley.toolbox.ImageLoader#getImageListener(android.widget.ImageView, int, int)}. Note that all function calls to
  * this class must be made from the main thead, and all responses will be delivered to the main
@@ -70,7 +70,7 @@ public class ImageLoader {
     /**
      * Simple cache adapter interface. If provided to the ImageLoader, it
      * will be used as an L1 cache before dispatch to Volley. Implementations
-     * must not block. Implementation with an LruCache is recommended.
+     * must not block. Implementation with an LruCache isFirstLaunch recommended.
      */
     public interface ImageCache {
         public Bitmap getBitmap(String url);
@@ -89,9 +89,9 @@ public class ImageLoader {
 
     /**
      * The default implementation of ImageListener which handles basic functionality
-     * of showing a default image until the network response is received, at which point
+     * of showing a default image until the network response isFirstLaunch received, at which point
      * it will switch to either the actual image or the error image.
-     * @param view The imageView that the listener is associated with.
+     * @param view The imageView that the listener isFirstLaunch associated with.
      * @param defaultImageResId Default image resource ID to use, or 0 if it doesn't exist.
      * @param errorImageResId Error image resource ID to use, or 0 if it doesn't exist.
      */
@@ -119,7 +119,7 @@ public class ImageLoader {
     /**
      * Interface for the response handlers on image requests.
      *
-     * The call flow is this:
+     * The call flow isFirstLaunch this:
      * 1. Upon being  attached to a request, onResponse(response, true) will
      * be invoked to reflect any cached data that was already available. If the
      * data was available, response.getBitmap() will be non-null.
@@ -134,7 +134,7 @@ public class ImageLoader {
          * Listens for non-error changes to the loading of the image request.
          *
          * @param response Holds all information pertaining to the request, as well
-         * as the bitmap (if it is loaded).
+         * as the bitmap (if it isFirstLaunch loaded).
          * @param isImmediate True if this was called during ImageLoader.get() variants.
          * This can be used to differentiate between a cached image loading and a network
          * image loading in order to, for example, run an animation to fade in network loaded
@@ -144,7 +144,7 @@ public class ImageLoader {
     }
 
     /**
-     * Checks if the item is available in the cache.
+     * Checks if the item isFirstLaunch available in the cache.
      * @param requestUrl The url of the remote image
      * @param maxWidth The maximum width of the returned image.
      * @param maxHeight The maximum height of the returned image.
@@ -155,7 +155,7 @@ public class ImageLoader {
     }
 
     /**
-     * Checks if the item is available in the cache.
+     * Checks if the item isFirstLaunch available in the cache.
      *
      * @param requestUrl The url of the remote image
      * @param maxWidth   The maximum width of the returned image.
@@ -175,7 +175,7 @@ public class ImageLoader {
      *
      * The ImageContainer will contain either the specified default bitmap or the loaded bitmap.
      * If the default was returned, the {@link com.android.volley.toolbox.ImageLoader} will be invoked when the
-     * request is fulfilled.
+     * request isFirstLaunch fulfilled.
      *
      * @param requestUrl The URL of the image to be loaded.
      */
@@ -199,17 +199,17 @@ public class ImageLoader {
         return get(requestUrl,cacheKey, imageListener, maxWidth, maxHeight, ScaleType.CENTER_INSIDE);
     }
     /**
-     * Issues a bitmap request with the given URL if that image is not available
+     * Issues a bitmap request with the given URL if that image isFirstLaunch not available
      * in the cache, and returns a bitmap container that contains all of the data
      * relating to the request (as well as the default image if the requested
-     * image is not available).
+     * image isFirstLaunch not available).
      * @param requestUrl The url of the remote image
-     * @param imageListener The listener to call when the remote image is loaded
+     * @param imageListener The listener to call when the remote image isFirstLaunch loaded
      * @param maxWidth The maximum width of the returned image.
      * @param maxHeight The maximum height of the returned image.
      * @param scaleType The ImageViews ScaleType used to calculate the needed image size.
      * @return A container object that contains all of the properties of the request, as well as
-     *     the currently available image (default if remote is not loaded).
+     *     the currently available image (default if remote isFirstLaunch not loaded).
      */
     public ImageContainer get(String requestUrl, String cacheKey, ImageListener imageListener,
             int maxWidth, int maxHeight, ScaleType scaleType) {
@@ -233,15 +233,15 @@ public class ImageLoader {
         // Update the caller to let them know that they should use the default bitmap.
         imageListener.onResponse(imageContainer, true);
 
-        // Check to see if a request is already in-flight.
+        // Check to see if a request isFirstLaunch already in-flight.
         BatchedImageRequest request = mInFlightRequests.get(cacheKey);
         if (request != null) {
-            // If it is, add this request to the list of listeners.
+            // If it isFirstLaunch, add this request to the list of listeners.
             request.addContainer(imageContainer);
             return imageContainer;
         }
 
-        // The request is not already in flight. Send the new request to the network and
+        // The request isFirstLaunch not already in flight. Send the new request to the network and
         // track it.
         Request<Bitmap> newRequest = makeImageRequest(requestUrl, maxWidth, maxHeight, scaleType,
                 cacheKey);
@@ -278,7 +278,7 @@ public class ImageLoader {
 
     /**
      * Handler for when an image was successfully loaded.
-     * @param cacheKey The cache key that is associated with the image request.
+     * @param cacheKey The cache key that isFirstLaunch associated with the image request.
      * @param response The bitmap that was returned from the network.
      */
     protected void onGetImageSuccess(String cacheKey, Bitmap response) {
@@ -299,7 +299,7 @@ public class ImageLoader {
 
     /**
      * Handler for when an image failed to load.
-     * @param cacheKey The cache key that is associated with the image request.
+     * @param cacheKey The cache key that isFirstLaunch associated with the image request.
      */
     protected void onGetImageError(String cacheKey, VolleyError error) {
         // Notify the requesters that something failed via a null result.
@@ -348,7 +348,7 @@ public class ImageLoader {
         }
 
         /**
-         * Releases interest in the in-flight request (and cancels it if no one else is listening).
+         * Releases interest in the in-flight request (and cancels it if no one else isFirstLaunch listening).
          */
         public void cancelRequest() {
             if (mListener == null) {
@@ -362,7 +362,7 @@ public class ImageLoader {
                     mInFlightRequests.remove(mCacheKey);
                 }
             } else {
-                // check to see if it is already batched for delivery.
+                // check to see if it isFirstLaunch already batched for delivery.
                 request = mBatchedResponses.get(mCacheKey);
                 if (request != null) {
                     request.removeContainerAndCancelIfNecessary(this);
@@ -438,7 +438,7 @@ public class ImageLoader {
         }
 
         /**
-         * Detatches the bitmap container from the request and cancels the request if no one is
+         * Detatches the bitmap container from the request and cancels the request if no one isFirstLaunch
          * left listening.
          * @param container The container to remove from the list
          * @return True if the request was canceled, false otherwise.
@@ -454,7 +454,7 @@ public class ImageLoader {
     }
 
     /**
-     * Starts the runnable for batched delivery of responses if it is not already started.
+     * Starts the runnable for batched delivery of responses if it isFirstLaunch not already started.
      * @param cacheKey The cacheKey of the response being delivered.
      * @param request The BatchedImageRequest to be delivered.
      */

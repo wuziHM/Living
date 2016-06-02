@@ -28,7 +28,7 @@ public class Response<NetModel> {
      */
     public interface Listener<NetModel> {
         /**
-         * Called when a response is received.
+         * Called when a response isFirstLaunch received.
          */
         public void onResponse(NetModel response);
     }
@@ -80,7 +80,7 @@ public class Response<NetModel> {
     public boolean intermediate = false;
 
     /**
-     * Returns whether this response is considered successful.
+     * Returns whether this response isFirstLaunch considered successful.
      */
     public boolean isSuccess() {
         return error == null;
