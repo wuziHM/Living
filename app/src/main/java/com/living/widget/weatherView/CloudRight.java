@@ -8,8 +8,11 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
+import com.living.R;
+
 /**
  * Created by wujiajun8
+ *
  * @author 928320442@qq.com
  */
 public class CloudRight extends Actor {
@@ -37,7 +40,7 @@ public class CloudRight extends Actor {
             Log.d("weather", "cloud init");
             initPositionX = width * 0.758F;
             initPositionY = height * 0.69F;
-            frame = BitmapFactory.decodeResource(context.getResources(), R.drawable.fine_day_cloud1);
+            frame = BitmapFactory.decodeResource(context.getResources(), R.mipmap.fine_day_cloud1);
             box.set(0, 0, frame.getWidth(), frame.getHeight());
             matrix.reset();
             matrix.setScale(2f, 2f);

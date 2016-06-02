@@ -9,6 +9,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
+import com.living.R;
+
 /**
  * Created by wujiajun
  *
@@ -26,7 +28,7 @@ public class RenderThread extends Thread {
         this.surfaceHolder = surfaceHolder;
         scene = new Scene(context);
         //add scene/actor
-        scene.setBg(BitmapFactory.decodeResource(context.getResources(), R.drawable.bg0_fine_day));
+        scene.setBg(BitmapFactory.decodeResource(context.getResources(), R.mipmap.bg0_fine_day));
         scene.add(new BirdUp(context));
         scene.add(new CloudLeft(context));
         scene.add(new CloudRight(context));

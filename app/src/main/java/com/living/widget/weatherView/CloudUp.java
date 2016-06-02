@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
+import com.living.R;
+
 /**
  * Author：燕青 $ on 16/6/1 11:16
  * E-mail：359222347@qq.com
@@ -37,7 +39,7 @@ public class CloudUp extends Actor {
             Log.d("weather", "cloud init");
             initPositionX = width * 0.18F;
             initPositionY = height * 0.22F;
-            frame = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_cloud_1);
+            frame = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_cloud_1);
             box.set(0, 0, frame.getWidth(), frame.getHeight());
             matrix.reset();
             matrix.setScale(2f, 2f);

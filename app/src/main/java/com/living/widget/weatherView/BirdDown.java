@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import com.living.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
  * @author 928320442@qq.com
  */
 public class BirdDown extends Actor {
-    private static final int[] imgs = new int[]{R.drawable.finedaydown_1, R.drawable.finedaydown_2, R.drawable.finedaydown_3, R.drawable.finedaydown_4, R.drawable.finedaydown_5, R.drawable.finedaydown_6, R.drawable.finedaydown_7, R.drawable.finedaydown_8};
+    private static final int[] imgs = new int[]{R.mipmap.finedaydown_1, R.mipmap.finedaydown_2, R.mipmap.finedaydown_3, R.mipmap.finedaydown_4, R.mipmap.finedaydown_5, R.mipmap.finedaydown_6, R.mipmap.finedaydown_7, R.mipmap.finedaydown_8};
 
     float initPositionX;
     float initPositionY;

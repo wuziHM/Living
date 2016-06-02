@@ -25,9 +25,10 @@ import java.util.Random;
 
 /**
  * 图灵机器人聊天界面
+ *
  * @author Tobin
  */
-public class TuLingChatActivity extends AppCompatActivity implements View.OnClickListener{
+public class TuLingChatActivity extends AppCompatActivity implements View.OnClickListener {
 
     private MessageInputToolBox box;
     private ListView listView;
@@ -43,7 +44,7 @@ public class TuLingChatActivity extends AppCompatActivity implements View.OnClic
         initListView();
     }
 
-    private void initListView(){
+    private void initListView() {
         listView = (ListView) findViewById(R.id.messageListview);
 
         //create Data
@@ -83,7 +84,7 @@ public class TuLingChatActivity extends AppCompatActivity implements View.OnClic
     /**
      * init MessageInputToolBox
      */
-    private void initMessageInputToolBox(){
+    private void initMessageInputToolBox() {
         box = (MessageInputToolBox) findViewById(R.id.messageInputToolBox);
         box.setOnOperationListener(new OnOperationListener() {
             @Override
@@ -119,14 +120,14 @@ public class TuLingChatActivity extends AppCompatActivity implements View.OnClic
                     default:
                         break;
                 }
-                Toast.makeText(TuLingChatActivity.this, "Do some thing here, index :" +index, Toast.LENGTH_LONG).show();
+                Toast.makeText(TuLingChatActivity.this, "Do some thing here, index :" + index, Toast.LENGTH_LONG).show();
             }
         });
 
         ArrayList<String> faceNameList = new ArrayList<>();
-        for(int x = 1; x <= 10; x++){
-            faceNameList.add("big"+x);
-            faceNameList.add("big"+(11-x));
+        for (int x = 1; x <= 10; x++) {
+            faceNameList.add("big" + x);
+            faceNameList.add("big" + (11 - x));
         }
 
         Map<Integer, ArrayList<String>> faceData = new HashMap<>();
@@ -143,14 +144,14 @@ public class TuLingChatActivity extends AppCompatActivity implements View.OnClic
         box.setFunctionData(functionData);
     }
 
-    private void createReplayMsg(Message message){
+    private void createReplayMsg(Message message) {
 
         final Message reMessage = new Message(message.getType(), 1, "Tom", "avatar", "Jerry", "avatar", message.getType() == 0 ? "Re:" + message.getContent() : message.getContent(), false, true, new Date());
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1000 * (new Random().nextInt(3) +1));
+                    Thread.sleep(1000 * (new Random().nextInt(3) + 1));
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -166,14 +167,14 @@ public class TuLingChatActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    private void initView(){
+    private void initView() {
         findViewById(R.id.iv_back).setOnClickListener(this);
         ((TextView) findViewById(R.id.tv_title)).setText("聊天");
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.iv_back:
                 this.finish();
                 break;

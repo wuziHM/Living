@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import com.living.R;
+
 /**
  * Created by wujiajun
  * @author 928320442@qq.com
@@ -37,7 +39,7 @@ public class SunShine extends Actor {
         if (!isInit) {
             initPositionX = width * 0.275F;
             initPositionY = height * 0.365F;
-            frame = BitmapFactory.decodeResource(context.getResources(), R.drawable.sunshine);
+            frame = BitmapFactory.decodeResource(context.getResources(), R.mipmap.sunshine);
             box.set(0, 0, frame.getWidth(), frame.getHeight());
             matrix.reset();
             matrix.setScale(2f, 2f);
