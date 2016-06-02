@@ -52,12 +52,15 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_tab3, container, false);
+            LogUtil.e("tobin Tab3Fragment onCreateView rootView == null");
+        }else{
+            LogUtil.e("tobin Tab3Fragment onCreateView rootView != null");
         }
         ViewGroup parent = (ViewGroup) rootView.getParent();
         if (parent != null) {
             parent.removeView(rootView);
         }
-
+        LogUtil.e("tobin Tab3Fragment onCreateView");
         initView();
         return rootView;
     }

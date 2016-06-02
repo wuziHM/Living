@@ -10,7 +10,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
@@ -21,7 +20,7 @@ import com.living.ui.fragment.Tab3Fragment;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class MainActivity extends AppCompatActivity  implements TabHost.OnTabChangeListener {
+public class MainActivity extends AppCompatActivity{
 
     String[] tabsTxt = {"首页", "发现", " 我"};
     int[] tabImg = {R.mipmap.tab1_n, R.mipmap.tab2_n, R.mipmap.tab3_n};
@@ -41,12 +40,16 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
         tabHost=(FragmentTabHost)super.findViewById(android.R.id.tabhost);
         tabHost.setup(this,super.getSupportFragmentManager(),R.id.contentLayout);
         tabHost.getTabWidget().setDividerDrawable(null);
-        tabHost.setOnTabChangedListener(this);
+        tabHost.setOnTabChangedListener(new FragmentTabHost.OnTabChangeListener(){
+            @Override
+            public void onTabChanged(String tabId) {
+                updateTab();
+            }
+        });
         for (int i = 0; i < tabsTxt.length; i++) {
-            TabHost.TabSpec tabSpec = tabHost.newTabSpec(tabsTxt[i]).setIndicator(getTabView(i));
+            FragmentTabHost.TabSpec tabSpec = tabHost.newTabSpec(tabsTxt[i]).setIndicator(getTabView(i));
             tabHost.addTab(tabSpec, clz[i], null);
             tabHost.setTag(i);
-
         }
         //设置初始显示Tab页 默认位0显示第一个Tab
         tabHost.setCurrentTab(1);
@@ -62,11 +65,6 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
             ((ImageView) view.findViewById(R.id.ivImg)).setImageResource(tabImg[idx]);
         }
         return view;
-    }
-
-    @Override
-    public void onTabChanged(String tabId) {
-        updateTab();
     }
 
     private void updateTab() {
