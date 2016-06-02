@@ -40,7 +40,6 @@ public class TuLingChatActivity extends AppCompatActivity implements View.OnClic
         initView();
 
         initMessageInputToolBox();
-
         initListView();
     }
 
