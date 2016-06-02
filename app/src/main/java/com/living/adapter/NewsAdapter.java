@@ -105,7 +105,7 @@ public class NewsAdapter extends RecyclerView.Adapter {
                     LogUtil.e("tobin onBindViewHolder" + mDatas.get(position).getImageurls().get(i).getUrl() + "//position:" + position+ "//size: " + mDatas.get(position).getImageurls().size());
                 }
             }else{
-                LogUtil.e("tobin onBindViewHolder" + "getImageurls is null //position: " + position);
+                LogUtil.e("tobin onBindViewHolder" + "getImageurls isFirstLaunch null //position: " + position);
             }
 
             // 如果设置了回调，则设置点击事件

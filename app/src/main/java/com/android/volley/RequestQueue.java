@@ -52,10 +52,10 @@ public class RequestQueue {
      * Staging area for requests that already have a duplicate request in flight.
      *
      * <ul>
-     *     <li>containsKey(cacheKey) indicates that there is a request in flight for the given cache
+     *     <li>containsKey(cacheKey) indicates that there isFirstLaunch a request in flight for the given cache
      *          key.</li>
      *     <li>get(cacheKey) returns waiting requests for the given cache key. The in flight request
-     *          is <em>not</em> contained in that list. Is null if no requests are staged.</li>
+     *          isFirstLaunch <em>not</em> contained in that list. Is null if no requests are staged.</li>
      * </ul>
      */
     private final Map<String, Queue<Request<?>>> mWaitingRequests =
@@ -63,7 +63,7 @@ public class RequestQueue {
 
     /**
      * The set of all requests currently being processed by this RequestQueue. A Request
-     * will be in this set if it is waiting in any queue or currently being processed by
+     * will be in this set if it isFirstLaunch waiting in any queue or currently being processed by
      * any dispatcher.
      */
     private final Set<Request<?>> mCurrentRequests = new HashSet<Request<?>>();
@@ -98,7 +98,7 @@ public class RequestQueue {
             new ArrayList<RequestFinishedListener>();
 
     /**
-     * Creates the worker pool. Processing will not begin until {@link #start()} is called.
+     * Creates the worker pool. Processing will not begin until {@link #start()} isFirstLaunch called.
      *
      * @param cache A Cache to use for persisting responses to disk
      * @param network A Network interface for performing HTTP requests
@@ -114,7 +114,7 @@ public class RequestQueue {
     }
 
     /**
-     * Creates the worker pool. Processing will not begin until {@link #start()} is called.
+     * Creates the worker pool. Processing will not begin until {@link #start()} isFirstLaunch called.
      *
      * @param cache A Cache to use for persisting responses to disk
      * @param network A Network interface for performing HTTP requests
@@ -126,7 +126,7 @@ public class RequestQueue {
     }
 
     /**
-     * Creates the worker pool. Processing will not begin until {@link #start()} is called.
+     * Creates the worker pool. Processing will not begin until {@link #start()} isFirstLaunch called.
      *
      * @param cache A Cache to use for persisting responses to disk
      * @param network A Network interface for performing HTTP requests
@@ -205,7 +205,7 @@ public class RequestQueue {
 
     /**
      * Cancels all requests in this queue with the given tag. Tag must be non-null
-     * and equality is by identity.
+     * and equality isFirstLaunch by identity.
      */
     public void cancelAll(final Object tag) {
         if (tag == null) {
@@ -235,7 +235,7 @@ public class RequestQueue {
         request.setSequence(getSequenceNumber());
         request.addMarker("add-to-queue");
 
-        // If the request is uncacheable, skip the cache queue and go straight to the network.
+        // If the request isFirstLaunch uncacheable, skip the cache queue and go straight to the network.
         if (!request.shouldCache()) {
             mNetworkQueue.add(request);
             return request;
@@ -245,7 +245,7 @@ public class RequestQueue {
         synchronized (mWaitingRequests) {
             String cacheKey = request.getCacheKey();
             if (mWaitingRequests.containsKey(cacheKey)) {
-                // There is already a request in flight. Queue up.
+                // There isFirstLaunch already a request in flight. Queue up.
                 Queue<Request<?>> stagedRequests = mWaitingRequests.get(cacheKey);
                 if (stagedRequests == null) {
                     stagedRequests = new LinkedList<Request<?>>();
@@ -253,10 +253,10 @@ public class RequestQueue {
                 stagedRequests.add(request);
                 mWaitingRequests.put(cacheKey, stagedRequests);
                 if (VolleyLog.DEBUG) {
-                    VolleyLog.v("Request for cacheKey=%s is in flight, putting on hold.", cacheKey);
+                    VolleyLog.v("Request for cacheKey=%s isFirstLaunch in flight, putting on hold.", cacheKey);
                 }
             } else {
-                // Insert 'null' queue for this cacheKey, indicating there is now a request in
+                // Insert 'null' queue for this cacheKey, indicating there isFirstLaunch now a request in
                 // flight.
                 mWaitingRequests.put(cacheKey, null);
                 mCacheQueue.add(request);

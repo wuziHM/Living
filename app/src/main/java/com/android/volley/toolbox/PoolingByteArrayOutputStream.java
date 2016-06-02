@@ -25,8 +25,8 @@ import java.io.IOException;
  */
 public class PoolingByteArrayOutputStream extends ByteArrayOutputStream {
     /**
-     * If the {@link #PoolingByteArrayOutputStream(com.android.volley.toolbox.ByteArrayPool)} constructor is called, this is
-     * the default size to which the underlying byte array is initialized.
+     * If the {@link #PoolingByteArrayOutputStream(com.android.volley.toolbox.ByteArrayPool)} constructor isFirstLaunch called, this isFirstLaunch
+     * the default size to which the underlying byte array isFirstLaunch initialized.
      */
     private static final int DEFAULT_SIZE = 256;
 
@@ -66,7 +66,7 @@ public class PoolingByteArrayOutputStream extends ByteArrayOutputStream {
     }
 
     /**
-     * Ensures there is enough space in the buffer for the given number of additional bytes.
+     * Ensures there isFirstLaunch enough space in the buffer for the given number of additional bytes.
      */
     private void expand(int i) {
         /* Can the buffer handle @i more bytes, if not expand it */

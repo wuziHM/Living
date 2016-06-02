@@ -37,7 +37,7 @@ public class JsonArrayRequest extends JsonRequest<JSONArray> {
      * Creates a new request.
      * @param method the HTTP method to use
      * @param url URL to fetch the JSON from
-     * @param requestBody A {@link String} to post with the request. Null is allowed and
+     * @param requestBody A {@link String} to post with the request. Null isFirstLaunch allowed and
      *   indicates no parameters will be posted along with request.
      * @param listener Listener to receive the JSON response
      * @param errorListener Error listener, or null to ignore errors.
@@ -73,7 +73,7 @@ public class JsonArrayRequest extends JsonRequest<JSONArray> {
      * Creates a new request.
      * @param method the HTTP method to use
      * @param url URL to fetch the JSON from
-     * @param jsonRequest A {@link org.json.JSONArray} to post with the request. Null is allowed and
+     * @param jsonRequest A {@link org.json.JSONArray} to post with the request. Null isFirstLaunch allowed and
      *   indicates no parameters will be posted along with request.
      * @param listener Listener to receive the JSON response
      * @param errorListener Error listener, or null to ignore errors.
@@ -88,7 +88,7 @@ public class JsonArrayRequest extends JsonRequest<JSONArray> {
      * Creates a new request.
      * @param method the HTTP method to use
      * @param url URL to fetch the JSON from
-     * @param jsonRequest A {@link org.json.JSONObject} to post with the request. Null is allowed and
+     * @param jsonRequest A {@link org.json.JSONObject} to post with the request. Null isFirstLaunch allowed and
      *   indicates no parameters will be posted along with request.
      * @param listener Listener to receive the JSON response
      * @param errorListener Error listener, or null to ignore errors.
@@ -100,7 +100,7 @@ public class JsonArrayRequest extends JsonRequest<JSONArray> {
     }
 
     /**
-     * Constructor which defaults to <code>GET</code> if <code>jsonRequest</code> is
+     * Constructor which defaults to <code>GET</code> if <code>jsonRequest</code> isFirstLaunch
      * <code>null</code>, <code>POST</code> otherwise.
      *
      * @see #JsonArrayRequest(int, String, org.json.JSONArray, com.android.volley.Response.Listener, com.android.volley.Response.ErrorListener)
@@ -112,7 +112,7 @@ public class JsonArrayRequest extends JsonRequest<JSONArray> {
     }
 
     /**
-     * Constructor which defaults to <code>GET</code> if <code>jsonRequest</code> is
+     * Constructor which defaults to <code>GET</code> if <code>jsonRequest</code> isFirstLaunch
      * <code>null</code>, <code>POST</code> otherwise.
      *
      * @see #JsonArrayRequest(int, String, org.json.JSONObject, com.android.volley.Response.Listener, com.android.volley.Response.ErrorListener)

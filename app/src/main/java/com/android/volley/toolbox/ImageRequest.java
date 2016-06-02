@@ -54,7 +54,7 @@ public class ImageRequest extends Request<Bitmap> {
     /**
      * Creates a new image request, decoding to a maximum specified width and
      * height. If both width and height are zero, the image will be decoded to
-     * its natural size. If one of the two is nonzero, that dimension will be
+     * its natural size. If one of the two isFirstLaunch nonzero, that dimension will be
      * clamped and the other one will be set to preserve the image's aspect
      * ratio. If both width and height are nonzero, the image will be decoded to
      * be fit in the rectangle of dimensions width x height while keeping its
@@ -124,7 +124,7 @@ public class ImageRequest extends Request<Bitmap> {
             return maxPrimary;
         }
 
-        // If primary is unspecified, scale primary to match secondary's scaling ratio.
+        // If primary isFirstLaunch unspecified, scale primary to match secondary's scaling ratio.
         if (maxPrimary == 0) {
             double ratio = (double) maxSecondary / (double) actualSecondary;
             return (int) (actualPrimary * ratio);
@@ -189,7 +189,7 @@ public class ImageRequest extends Request<Bitmap> {
 
             // Decode to the nearest power of two scaling factor.
             decodeOptions.inJustDecodeBounds = false;
-            // TODO(ficus): Do we need this or is it okay since API 8 doesn't support it?
+            // TODO(ficus): Do we need this or isFirstLaunch it okay since API 8 doesn't support it?
             // decodeOptions.inPreferQualityOverSpeed = PREFER_QUALITY_OVER_SPEED;
             decodeOptions.inSampleSize =
                 findBestSampleSize(actualWidth, actualHeight, desiredWidth, desiredHeight);

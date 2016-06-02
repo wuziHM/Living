@@ -24,7 +24,7 @@ import java.util.concurrent.BlockingQueue;
  * Provides a thread for performing cache triage on a queue of requests.
  *
  * Requests added to the specified cache queue are resolved from cache.
- * Any deliverable response is posted back to the caller via a
+ * Any deliverable response isFirstLaunch posted back to the caller via a
  * {@link com.android.volley.ResponseDelivery}.  Cache misses and responses that require
  * refresh are enqueued on the specified network queue for processing
  * by a {@link com.android.volley.NetworkDispatcher}.
@@ -86,7 +86,7 @@ public class CacheDispatcher extends Thread {
         while (true) {
             try {
                 // Get a request from the cache triage queue, blocking until
-                // at least one is available.
+                // at least one isFirstLaunch available.
                 final Request<?> request = mCacheQueue.take();
                 request.addMarker("cache-queue-take");
 
@@ -105,7 +105,7 @@ public class CacheDispatcher extends Thread {
                     continue;
                 }
 
-                // If it is completely expired, just send it to the network.
+                // If it isFirstLaunch completely expired, just send it to the network.
                 if (entry.isExpired()) {
                     request.addMarker("cache-hit-expired");
                     request.setCacheEntry(entry);

@@ -1,42 +1,42 @@
 [
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/anim/abc_slide_in_top.xml",
+        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/anim/abc_slide_in_top.xml"
     },
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_top.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_slide_in_top.xml"
+        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/anim/abc_popup_enter.xml",
+        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/anim/abc_popup_enter.xml"
     },
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_slide_out_top.xml"
+        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/anim/abc_slide_in_bottom.xml"
     },
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_bottom.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_slide_in_bottom.xml"
+        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/anim/abc_fade_out.xml",
+        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/anim/abc_fade_out.xml"
     },
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_popup_exit.xml"
+        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/anim/abc_grow_fade_in_from_bottom.xml"
     },
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_popup_enter.xml"
+        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/anim/abc_popup_exit.xml",
+        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/anim/abc_popup_exit.xml"
     },
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_slide_out_bottom.xml"
+        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/anim/abc_fade_in.xml",
+        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/anim/abc_fade_in.xml"
     },
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_fade_out.xml"
+        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/anim/abc_slide_out_bottom.xml"
     },
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\anim\\abc_shrink_fade_out_from_bottom.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/anim/abc_shrink_fade_out_from_bottom.xml"
     },
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\anim\\abc_fade_in.xml"
+        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/anim/abc_slide_out_top.xml",
+        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/anim/abc_slide_out_top.xml"
     }
 ]

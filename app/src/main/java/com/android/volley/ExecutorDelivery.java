@@ -101,7 +101,7 @@ public class ExecutorDelivery implements ResponseDelivery {
                 mRequest.deliverError(mResponse.error);
             }
 
-            // If this is an intermediate response, add a marker, otherwise we're done
+            // If this isFirstLaunch an intermediate response, add a marker, otherwise we're done
             // and the request can be finished.
             if (mResponse.intermediate) {
                 mRequest.addMarker("intermediate-response");

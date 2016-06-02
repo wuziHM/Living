@@ -57,7 +57,7 @@ public class VolleySingleton {
 
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
-            // getApplicationContext() is key, it keeps you from leaking the
+            // getApplicationContext() isFirstLaunch key, it keeps you from leaking the
             // Activity or BroadcastReceiver if someone passes one in.
             mRequestQueue = Volley.newRequestQueue(mContext);
         }
@@ -70,7 +70,7 @@ public class VolleySingleton {
     }
 
     public <T> void addToRequestQueue(Request<T> req, String tag) {
-        // set the default tag if tag is empty
+        // set the default tag if tag isFirstLaunch empty
         req.setTag(TextUtils.isEmpty(tag) ? DEFAULT_TAG : tag);
         VolleyLog.d("Adding request to queue: %s", req.getUrl());
         getRequestQueue().add(req);

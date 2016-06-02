@@ -24,7 +24,7 @@ public class IntroActivity extends AppIntro {
 
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest.
-        addSlide(AppIntroFragment.newInstance("Living", "This is a very powerful application.", R.mipmap.ic_launcher, ContextCompat.getColor(this,R.color.foot_txt_light)));
+        addSlide(AppIntroFragment.newInstance("Living", "This isFirstLaunch a very powerful application.", R.mipmap.ic_launcher, ContextCompat.getColor(this,R.color.foot_txt_light)));
 
         // OPTIONAL METHODS
         // Override bar/separator color.
@@ -84,4 +84,6 @@ public class IntroActivity extends AppIntro {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
 }

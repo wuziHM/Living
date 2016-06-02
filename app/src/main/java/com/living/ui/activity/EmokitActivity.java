@@ -34,6 +34,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
     private EmotionDetect emotionDetect;
     private ExpressionDetect expressDetect;
     RateDetect rt;
+
     TextView txt_test_result;
     private String txtResult = "",enTxtResult = "";
 
@@ -42,17 +43,13 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SDKConstant.VIEWFINSIH:
-                    String[] str = ((String) msg.obj).split("&&");
-                    LogUtil.e("tobin 语音识别监听器返回结果((String) msg.obj).split(\"&&\").length: " + str.length);
-                    analyzeResult(str[0]);
+                    txt_test_result.setVisibility(View.VISIBLE);
+                    txt_test_result.setText((String) msg.obj);
                     break;
                 case 1901:
-                    LogUtil.e("tobin test Result: " +  msg.obj);
-                    if (msg.obj != null) {
-                        analyzeResult((String) msg.obj);
-                    }else{
-                        txt_test_result.setText("");
-                    }
+                    analyzeResult((String) msg.obj);
+//                    txt_test_result.setVisibility(View.VISIBLE);
+//                    txt_test_result.setText((String) msg.obj);
                     break;
                 default:
                     break;
@@ -61,7 +58,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
     };
 
     private void analyzeResult(String result){
-        if (JsonUtil.json2JsonObject(result).get("resultcode")!= null && "200".equals(JsonUtil.json2JsonObject(result).get("resultcode"))){
+        if ("200".equals(JsonUtil.json2JsonObject(result).get("resultcode"))){
             String str = JsonUtil.json2JsonObject(result).get("rc_main").toString();
 
             switch (str){
@@ -144,50 +141,19 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
                     txtResult = "伤感；哭泣；痛心；低落: 抑郁症倾向";
                     enTxtResult = "sentimental; crying; heartbroken; down";
                     break;
-                case "CG-":
-                    txtResult = "怯懦；犹豫；纠结；郁闷: 强迫症倾向";
-                    enTxtResult = "cowardly; hesitating; depressed";
-                    break;
-                case "YC-":
-                    txtResult = "生气；指责；攻击；冲动：敌对症倾向";
-                    enTxtResult = "angry; accusatory; offensive; excited.";
-                    break;
-                case "YL-":
-                    txtResult = "紧张；失调；失控；宣泄: 人际关系敏感症倾向";
-                    enTxtResult = "nervous; disordered; uncontroled; wreaking";
-                    break;
-                case "YV-":
-                    txtResult = "压抑；窝心；别扭；想念: 抑郁症倾向";
-                    enTxtResult = "repressed; annoyed; awkward; missed.";
-                    break;
-                case "ML-":
-                    txtResult = "哀伤；失落；幽怨；寂寞: 偏执症倾向";
-                    enTxtResult = "grieved; frustrated; hidden bitterness; lonely.";
-                    break;
-                case "MS-":
-                    txtResult = "记恨；怨恨；仇恨；哀怨: 偏执症倾向";
-                    enTxtResult = "grudge; resentful; hatred; plaintive";
-                    break;
-                case "WS-":
-                    txtResult = "消极；灰暗；低迷；颓废: 抑郁症倾向";
-                    enTxtResult = "negative; dark; downturn; dispirited";
-                    break;
-                case "WC-":
-                    txtResult = "恐惧；害怕；惊恐；焦虑: 恐怖症倾向";
-                    enTxtResult = "afeared; scared; frightened; anxious";
-                    break;
                 default:
-                    txtResult = "长得太丑，识别不了！";
-                    enTxtResult = "Emotion recognition failure";
                     break;
             }
         }else{
-            txtResult = JsonUtil.json2JsonObject(result).get("reason").toString() + "\n长得太丑，吓到人了!";
-            enTxtResult = "Emotion recognition failure";
+            txtResult = JsonUtil.json2JsonObject(result).get("reason").toString();
+            enTxtResult = "Facial expression recognition error";
         }
-        String time = StringUtils.changeDateStr(JsonUtil.json2JsonObject(result).get("servertime").toString());
+
+        String time = StringUtils.getStrDateFromLong(Long.valueOf(JsonUtil.json2JsonObject(result).get("servertime").toString()));
+
         txt_test_result.setVisibility(View.VISIBLE);
-        txt_test_result.setText("测试结果：\n\n中文描述：\n" + txtResult + "\n\nEnglish description：\n" + enTxtResult+"\n\n服务时间：\n" + time);
+        txt_test_result.setText("测试结果：\n\n中文描述：\n" + txtResult + "\n\nEnglish description：\n" + enTxtResult);
+
     }
 
     @Override
@@ -246,10 +212,12 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 
         @Override
         public void endDetect(String result) {
+            LogUtil.e("EMOKITSDK>>>", "THE Express result IS" + result.toString());
             Message msg = new Message();
             msg.what = 1901;
             msg.obj = result;
             mainHandler.sendMessage(msg);
+            LogUtil.e("ENDINFO", "THE RESULT INFO IS" + result);
         }
         @Override
         public void beginDetect() {
@@ -263,7 +231,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 
         @Override
         public void onVolumeChanged(int volume) {
-//            LogUtil.e("当前正在说话，音量大小：", volume + "");
+            LogUtil.e("当前正在说话，音量大小：", volume + "");
         }
 
         @Override
@@ -279,9 +247,10 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
         @Override
         public void onVoiceResult(String Result) {
             Message msg = new Message();
-            msg.what = SDKConstant.VIEWFINSIH;
+            msg.what = 1901;
             msg.obj = Result;
             mainHandler.sendMessage(msg);
+            LogUtil.i("ENDINFO", "THE RESULT INFO IS" + Result);
         }
 
     };
@@ -298,15 +267,17 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 
         @Override
         public void endDetect(String result) {
+
+            LogUtil.i("MainActivity get the result isFirstLaunch", "[" + result + "]");
             Message msg = new Message();
-            msg.what = 1901;
+            msg.what = SDKConstant.VIEWFINSIH;
             msg.obj = result;
             mainHandler.sendMessage(msg);
         }
 
         @Override
         public void monitor(double rgb) {
-            LogUtil.e("recognizetag", "" + rgb);
+            LogUtil.i("recognizetag", "" + rgb);
         }
     };
 
@@ -318,8 +289,8 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
         public void onInit(int code) {
             // 获取设备ID
             AdvancedInformation pp = AdvancedInformation.getSingleton(context);
-            // 注册用户信息: platflag 应用名; userName 用户名或设备 ID;password 用户登录密码(可为空)
-            SDKAppInit.registerforuid("Living", pp.getp().getSimSerial(), "123456");
+            //// 注册用户信息: platflag 应用名; userName 用户名或设备 ID;password 用户登录密码(可为空)
+            SDKAppInit.registerforuid("Living", pp.getp().getSimSerial(), null);
         }
     };
 

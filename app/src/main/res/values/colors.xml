@@ -2,7 +2,7 @@
 <resources>
 
     <color name="title_color">#ba4cf2</color>
-    <color name="black">#ff000000</color>
+    <color name="black">#000000</color>
     <!-- 白色 -->
     <color name="white">#ffffff</color>
     <color name="red">#FC2828</color>
@@ -13,9 +13,9 @@
 
     <color name="foot_txt_gray">#AEAEAE</color>
     <color name="foot_txt_light">#AA0F5C</color>
-    <color name="foot_tab_background">#F6F6F6</color>
+    <color name="foot_tab_background">#f6f6f6</color>
 
     <color name="test">#3F51B5</color>
-
+    <color name="transparent">#00000000</color>
 
 </resources>
