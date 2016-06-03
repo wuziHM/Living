@@ -27,7 +27,7 @@ import com.living.util.StringUtils;
  * @author Tobin
  * @since 2016-05-30
  */
-public class EmokitActivity extends BaseAppCompatActivity implements View.OnClickListener{
+public class EmokitActivity extends BaseAppCompatActivity implements View.OnClickListener {
 
     private Context context;
 
@@ -36,7 +36,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
     RateDetect rt;
 
     TextView txt_test_result;
-    private String txtResult = "",enTxtResult = "";
+    private String txtResult = "", enTxtResult = "";
 
     Handler mainHandler = new Handler() {
         @Override
@@ -57,11 +57,11 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
         }
     };
 
-    private void analyzeResult(String result){
-        if ("200".equals(JsonUtil.json2JsonObject(result).get("resultcode"))){
+    private void analyzeResult(String result) {
+        if ("200".equals(JsonUtil.json2JsonObject(result).get("resultcode"))) {
             String str = JsonUtil.json2JsonObject(result).get("rc_main").toString();
 
-            switch (str){
+            switch (str) {
                 case "K":
                     txtResult = "平静；放松；专注；出神";
                     enTxtResult = "Calm";
@@ -144,12 +144,12 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
                 default:
                     break;
             }
-        }else{
+        } else {
             txtResult = JsonUtil.json2JsonObject(result).get("reason").toString();
             enTxtResult = "Facial expression recognition error";
         }
 
-        String time = StringUtils.getStrDateFromLong(Long.valueOf(JsonUtil.json2JsonObject(result).get("servertime").toString()));
+        String time = StringUtils.getFormatDate(Long.valueOf(JsonUtil.json2JsonObject(result).get("servertime").toString()));
 
         txt_test_result.setVisibility(View.VISIBLE);
         txt_test_result.setText("测试结果：\n\n中文描述：\n" + txtResult + "\n\nEnglish description：\n" + enTxtResult);
@@ -179,7 +179,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             // 测试表情
             case R.id.btn_isr_expressdetect:
                 expressDetect.setParameter(SDKConstant.FACING, SDKConstant.CAMERA_FACING_FRONT);
@@ -219,6 +219,7 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
             mainHandler.sendMessage(msg);
             LogUtil.e("ENDINFO", "THE RESULT INFO IS" + result);
         }
+
         @Override
         public void beginDetect() {
 
@@ -296,11 +297,11 @@ public class EmokitActivity extends BaseAppCompatActivity implements View.OnClic
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK) { //监控/拦截/屏蔽返回键
+        if (keyCode == KeyEvent.KEYCODE_BACK) { //监控/拦截/屏蔽返回键
             return false;
-        } else if(keyCode == KeyEvent.KEYCODE_MENU) {
+        } else if (keyCode == KeyEvent.KEYCODE_MENU) {
             return false;
-        } else if(keyCode == KeyEvent.KEYCODE_HOME) {
+        } else if (keyCode == KeyEvent.KEYCODE_HOME) {
             return false;
         }
         return super.onKeyDown(keyCode, event);
