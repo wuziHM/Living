@@ -65,9 +65,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".ui.activity.BaseAppCompatActivity" />
-        <activity
-            android:name=".ui.activity.WebViewActivity"
-            android:launchMode="singleTop" />
         <!-- Add UCropActivity -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
@@ -84,6 +81,7 @@
         <!-- EMOKIT SDK end -->
         <activity android:name=".ui.activity.EmokitActivity" />
         <activity android:name=".ui.activity.WeatherActivity" />
+        <activity android:name=".ui.activity.WebViewActivity" />
 
     </application>
 

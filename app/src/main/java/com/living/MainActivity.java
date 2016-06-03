@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity{
 
     String[] tabsTxt = {"首页", "发现", " 我"};
     int[] tabImg = {R.mipmap.tab1_n, R.mipmap.tab2_n, R.mipmap.tab3_n};
-    int[] tabsImgLight = {R.mipmap.tab1_p, R.mipmap.tab2_p, R.mipmap.tab3_p};
+    int[] tabsImgLight = {R.mipmap.tab1_p, R.mipmap.tab2_p, R.mipmap.tab3p};
     Class[] clz = {Tab1Fragment.class, Tab2Fragment.class, Tab3Fragment.class};
     private FragmentTabHost tabHost;
 
