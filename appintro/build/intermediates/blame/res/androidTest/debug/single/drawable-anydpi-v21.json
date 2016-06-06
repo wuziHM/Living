@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/androidTest/debug/drawable-anydpi-v21/ic_skip_white_24px.xml",
-        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/bundles/debug/res/drawable-anydpi-v21/ic_skip_white_24px.xml"
+        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\ic_skip_white_24px.xml",
+        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\bundles\\debug\\res\\drawable-anydpi-v21\\ic_skip_white_24px.xml"
+    },
+    {
+        "merged": "C:\\Users\\minhu\\Documents\\E\\weyee\\testProgram\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\ic_skip_white_24px.xml",
+        "source": "C:\\Users\\minhu\\Documents\\E\\weyee\\testProgram\\Living\\appintro\\build\\intermediates\\bundles\\debug\\res\\drawable-anydpi-v21\\ic_skip_white_24px.xml"
     }
 ]
