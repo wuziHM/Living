@@ -154,7 +154,7 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener{
     private Uri getOutputImageUri(String ImageName) {
         File mediaStorageDir = null;
         try {
-            mediaStorageDir = new File(Constant.FILE_IMG_CACHE, "take_image");
+            mediaStorageDir = new File(Constant.FILE_IMG_CACHE, ImageName);
             LogUtil.e("Successfully created mediaStorageDir: " + mediaStorageDir);
         } catch (Exception e) {
             e.printStackTrace();

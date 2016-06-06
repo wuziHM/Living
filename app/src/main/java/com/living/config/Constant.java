@@ -12,7 +12,7 @@ public class Constant {
 
     public static final String URL_WEATHER = "http://apis.baidu.com/heweather/weather/free";
 
-    public static final String FILE_IMG_CACHE = Environment.getExternalStorageDirectory() + "/living/images/cache/";
+    public static final String FILE_IMG_CACHE = Environment.getExternalStorageDirectory() + "/living/images/";
     public static final String FILE_VOICE_CACHE = Environment.getExternalStorageDirectory() + "/living/voice/";
     public static final String FILE_DOWNLOAD = Environment.getExternalStorageDirectory() + "/living/download/";
 
