@@ -4,8 +4,7 @@
     android:id="@+id/alllayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#fffdf2"
-    android:gravity="left">
+    android:background="#fffdf2">
 
     <com.living.widget.weatherView.SceneSurfaceView
         android:layout_width="match_parent"
@@ -15,6 +14,7 @@
         android:id="@+id/rv_weather"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10">
 
         <TextView
@@ -22,10 +22,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/dp_5"
             android:text="广州"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp_18" />
+
+        <TextView
+            android:id="@+id/tv_fresh_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_location"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12"
+            tools:text="更新时间:2016-06-06 14:23" />
 
         <LinearLayout
             android:id="@+id/ly_wea1"
@@ -100,18 +110,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/ly_wea1"
+            android:layout_marginBottom="@dimen/dp_10"
             android:drawableLeft="@mipmap/icon_windspeed"
             android:drawablePadding="@dimen/dp_5"
             android:textColor="@color/white"
             tools:text="2级" />
 
         <TextView
+            android:id="@+id/tv_wind_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/tv_wind"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_toRightOf="@id/tv_wind"
+            android:textColor="@color/white"
+            tools:text="中雨还会持续至少两小时>" />
+
+        <TextView
             android:id="@+id/tv_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@id/tv_wind"
+            android:layout_marginBottom="@dimen/dp_10"
             android:text="34°"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_25" />
+            android:textSize="@dimen/sp_50" />
+
+        <TextView
+            android:id="@+id/tv_now_wea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_temperature"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_toRightOf="@id/tv_temperature"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            tools:text="多云" />
 
     </RelativeLayout>
 

@@ -55,10 +55,12 @@ android {
 
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
-
-                    if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
-                        def apkFile = new File(output.outputFile.getParent(), "Living_${variant.flavorName}_v${variant.versionName}_${buildTime()}_${variant.buildType.name}.apk")
-                        output.outputFile = apkFile
+                    def oldFile = output.outputFile
+                    if (variant.buildType.name.equals('release')) {
+                        if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
+                            def apkFile = new File(output.outputFile.getParent(), "Living_${variant.flavorName}_v${variant.versionName}_${buildTime()}_${variant.buildType.name}.apk")
+                            output.outputFile = apkFile
+                        }
                     }
                 }
             }
