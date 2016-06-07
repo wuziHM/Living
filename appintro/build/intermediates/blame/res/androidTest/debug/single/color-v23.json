@@ -4,6 +4,10 @@
         "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\color-v23\\abc_color_highlight_material.xml"
     },
     {
+        "merged": "E:\\allenTestSpace\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_color_highlight_material.xml",
+        "source": "E:\\allenTestSpace\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\color-v23\\abc_color_highlight_material.xml"
+    },
+    {
         "merged": "C:\\Users\\minhu\\Documents\\E\\weyee\\testProgram\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_color_highlight_material.xml",
         "source": "C:\\Users\\minhu\\Documents\\E\\weyee\\testProgram\\Living\\appintro\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\color-v23\\abc_color_highlight_material.xml"
     }
