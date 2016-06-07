@@ -1,13 +1,5 @@
 [
     {
-        "merged": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_skip_white_24px.png",
-        "source": "C:\\Workspace\\StudioWorksapce\\Living\\appintro\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_skip_white_24px.png"
-    },
-    {
-        "merged": "C:\\Users\\minhu\\Documents\\E\\weyee\\testProgram\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_skip_white_24px.png",
-        "source": "C:\\Users\\minhu\\Documents\\E\\weyee\\testProgram\\Living\\appintro\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_skip_white_24px.png"
-    },
-    {
         "merged": "E:\\allenTestSpace\\Living\\appintro\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_skip_white_24px.png",
         "source": "E:\\allenTestSpace\\Living\\appintro\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_skip_white_24px.png"
     }

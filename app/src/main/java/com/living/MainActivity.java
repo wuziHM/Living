@@ -13,34 +13,55 @@ import android.widget.ImageView;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.emokit.sdk.util.SDKAppInit;
+import com.living.listener.LivingLoListener;
 import com.living.ui.fragment.Tab1Fragment;
 import com.living.ui.fragment.Tab2Fragment;
 import com.living.ui.fragment.Tab3Fragment;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
+    public LocationClient mLocationClient;//定位SDK的核心类
+    private LivingLoListener loListener;
     String[] tabsTxt = {"首页", "发现", " 我"};
     int[] tabImg = {R.mipmap.tab1_n, R.mipmap.tab2_n, R.mipmap.tab3_n};
     int[] tabsImgLight = {R.mipmap.tab1_p, R.mipmap.tab2_p, R.mipmap.tab3p};
     Class[] clz = {Tab1Fragment.class, Tab2Fragment.class, Tab3Fragment.class};
     private FragmentTabHost tabHost;
+    private static final int UPDATE_TIME = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initTab();
+        initLocation();
         SDKAppInit.createInstance(this);
     }
 
+    private void initLocation() {
+        mLocationClient = new LocationClient(getApplicationContext());
+        LocationClientOption option = new LocationClientOption();
+        option.setOpenGps(true);            //是否打开GPS
+        option.setCoorType("bd09ll");       //设置返回值的坐标类型。
+        option.setPriority(LocationClientOption.NetWorkFirst);  //设置定位优先级
+        option.setProdName("Living");       //设置产品线名称。强烈建议您使用自定义的产品线名称，方便我们以后为您提供更高效准确的定位服务。
+        option.setScanSpan(UPDATE_TIME);    //设置定时定位的时间间隔。单位毫秒
+        mLocationClient.setLocOption(option);
+
+        loListener = new LivingLoListener();
+        mLocationClient.registerLocationListener(loListener);
+    }
+
     private void initTab() {
-        tabHost=(FragmentTabHost)super.findViewById(android.R.id.tabhost);
-        tabHost.setup(this,super.getSupportFragmentManager(),R.id.contentLayout);
+        tabHost = (FragmentTabHost) super.findViewById(android.R.id.tabhost);
+        tabHost.setup(this, super.getSupportFragmentManager(), R.id.contentLayout);
         tabHost.getTabWidget().setDividerDrawable(null);
-        tabHost.setOnTabChangedListener(new FragmentTabHost.OnTabChangeListener(){
+        tabHost.setOnTabChangedListener(new FragmentTabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
                 updateTab();
@@ -59,7 +80,7 @@ public class MainActivity extends AppCompatActivity{
         View view = LayoutInflater.from(this).inflate(R.layout.footer_tabs, null);
         ((TextView) view.findViewById(R.id.tvTab)).setText(tabsTxt[idx]);
         if (idx == 0) {
-            ((TextView) view.findViewById(R.id.tvTab)).setTextColor(ContextCompat.getColor(this,R.color.foot_txt_light));
+            ((TextView) view.findViewById(R.id.tvTab)).setTextColor(ContextCompat.getColor(this, R.color.foot_txt_light));
             ((ImageView) view.findViewById(R.id.ivImg)).setImageResource(tabsImgLight[idx]);
         } else {
             ((ImageView) view.findViewById(R.id.ivImg)).setImageResource(tabImg[idx]);
@@ -73,10 +94,10 @@ public class MainActivity extends AppCompatActivity{
             View view = tabw.getChildAt(i);
             ImageView iv = (ImageView) view.findViewById(R.id.ivImg);
             if (i == tabHost.getCurrentTab()) {
-                ((TextView) view.findViewById(R.id.tvTab)).setTextColor(ContextCompat.getColor(this,R.color.foot_txt_light));
+                ((TextView) view.findViewById(R.id.tvTab)).setTextColor(ContextCompat.getColor(this, R.color.foot_txt_light));
                 iv.setImageResource(tabsImgLight[i]);
             } else {
-                ((TextView) view.findViewById(R.id.tvTab)).setTextColor(ContextCompat.getColor(this,R.color.foot_txt_gray));
+                ((TextView) view.findViewById(R.id.tvTab)).setTextColor(ContextCompat.getColor(this, R.color.foot_txt_gray));
                 iv.setImageResource(tabImg[i]);
             }
         }

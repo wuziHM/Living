@@ -71,6 +71,11 @@ android {
             signingConfig signingConfigs.myConfig
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+    }
 
     // 多渠道打包配置
     productFlavors {
@@ -109,6 +114,5 @@ dependencies {
     compile 'org.greenrobot:greendao:2.2.1'
     // GreenDao 生成dao和model的generator的项目 发布时可以去掉
     compile 'org.greenrobot:greendao-generator:2.2.0'
-    compile files('libs/BaiduLBS_Android.jar')
-    compile files('libs/baidumapapi_util_v3_7_3.jar')
+    compile files('libs/locSDK_6.13.jar')
 }

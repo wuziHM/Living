@@ -13,13 +13,16 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.baidu.location.BDLocation;
 import com.living.R;
 import com.living.bean.CountryWeatherBean;
+import com.living.impl.LocationCallBack;
 import com.living.util.LivingNetUtils;
+import com.living.util.LogUtil;
 
 import java.util.List;
 
-public class WeatherActivity extends BaseAppCompatActivity implements LocationListener {
+public class WeatherActivity extends BaseAppCompatActivity implements LocationCallBack {
 
     private TextView tvLocation;
     private TextView tvRefreshTime;
@@ -28,7 +31,6 @@ public class WeatherActivity extends BaseAppCompatActivity implements LocationLi
     private TextView tvWind, tvWindDes;
     private TextView tvWeaToday, tvTemToday;
     private TextView tvWeaTomorrow, tvTemTomorrow;
-    private LocationManager locationManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,7 @@ public class WeatherActivity extends BaseAppCompatActivity implements LocationLi
     }
 
     public void getLocation() {
-       
+
     }
 
     public void getWeather() {
@@ -102,23 +104,7 @@ public class WeatherActivity extends BaseAppCompatActivity implements LocationLi
     }
 
     @Override
-    public void onLocationChanged(Location location) {
-
+    public void broadcastLocation(BDLocation bdLocation) {
+        LogUtil.e("经度:" + bdLocation.getLongitude());
     }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
 }
