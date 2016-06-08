@@ -36,6 +36,12 @@ android {
             keyAlias 'living'
             keyPassword '123456'
         }
+        debug {
+            storeFile file('../living.jks')
+            storePassword '123456'
+            keyAlias 'living'
+            keyPassword '123456'
+        }
     }
 
     buildTypes {
@@ -114,5 +120,6 @@ dependencies {
     compile 'org.greenrobot:greendao:2.2.1'
     // GreenDao 生成dao和model的generator的项目 发布时可以去掉
     compile 'org.greenrobot:greendao-generator:2.2.0'
+    compile files('libs/ApiStoreSDK1.0.4.jar')
     compile files('libs/locSDK_6.13.jar')
 }

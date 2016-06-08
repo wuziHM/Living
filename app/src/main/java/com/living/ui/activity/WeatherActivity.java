@@ -1,28 +1,20 @@
 package com.living.ui.activity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.baidu.location.BDLocation;
 import com.living.R;
 import com.living.bean.CountryWeatherBean;
-import com.living.impl.LocationCallBack;
 import com.living.util.LivingNetUtils;
-import com.living.util.LogUtil;
 
 import java.util.List;
 
-public class WeatherActivity extends BaseAppCompatActivity implements LocationCallBack {
+public class WeatherActivity extends BaseAppCompatActivity {
 
     private TextView tvLocation;
     private TextView tvRefreshTime;
@@ -101,10 +93,5 @@ public class WeatherActivity extends BaseAppCompatActivity implements LocationCa
             return false;
         }
         return true;
-    }
-
-    @Override
-    public void broadcastLocation(BDLocation bdLocation) {
-        LogUtil.e("经度:" + bdLocation.getLongitude());
     }
 }

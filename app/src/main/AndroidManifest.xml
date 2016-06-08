@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 开启摄像头 -->
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <!-- 设置录音 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -18,17 +19,15 @@
     <!-- sd 卡获得读和写的权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!--百度地图相关权限-->
+    <!-- 百度地图相关权限 -->
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
 
     <application
         android:name=".LivingApplication"
@@ -60,7 +59,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.IntroActivity"
             android:theme="@style/FullscreenTheme">
@@ -81,14 +80,14 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".ui.activity.TuLingChatActivity"></activity>
+        <activity android:name=".ui.activity.TuLingChatActivity" />
         <!-- EMOKIT SDK start -->
         <activity
             android:name="com.emokit.sdk.heartrate.FacedetectActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.emokit.sdk.senseface.CameraActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <!-- EMOKIT SDK end -->
         <activity android:name=".ui.activity.EmokitActivity" />
         <activity android:name=".ui.activity.WeatherActivity" />
@@ -97,7 +96,9 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"/>
+            android:process=":remote"></service>
+
+        <activity android:name=".ui.activity.MapActivity"></activity>
     </application>
 
 </manifest>

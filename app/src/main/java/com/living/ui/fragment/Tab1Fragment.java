@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.living.R;
+import com.living.ui.activity.MapActivity;
 import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
+import com.living.util.LogUtil;
 
 public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
     private View rootView;
@@ -21,8 +23,8 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(rootView == null){
-            rootView=inflater.inflate(R.layout.fragment_tab1, container, false);
+        if (rootView == null) {
+            rootView = inflater.inflate(R.layout.fragment_tab1, container, false);
         }
         //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
         ViewGroup parent = (ViewGroup) rootView.getParent();
@@ -30,14 +32,13 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
             parent.removeView(rootView);
         }
         initView();
-        return rootView ;
+        return rootView;
     }
 
     private void initView() {
 
         rootView.findViewById(R.id.iv_main_activity_back).setOnClickListener(this);
-
-        rootView.findViewById(R.id.iv_crop).setOnClickListener(this);
+//        rootView.findViewById(R.id.iv_crop).setOnClickListener(this);
         rootView.findViewById(R.id.ll_news).setOnClickListener(this);
         rootView.findViewById(R.id.ll_weather).setOnClickListener(this);
         rootView.findViewById(R.id.ll_robot).setOnClickListener(this);
@@ -61,8 +62,7 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
 
                 break;
             case R.id.ll_xxxx:
-
-
+                startActivity(new Intent(getActivity(), MapActivity.class));
                 break;
             default:
                 break;

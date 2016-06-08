@@ -3,6 +3,7 @@ package com.living.listener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.living.impl.LocationCallBack;
+import com.living.util.LogUtil;
 
 /**
  * Author：燕青 $ on 2016/6/7  15:44
@@ -20,6 +21,7 @@ public class LivingLoListener implements BDLocationListener {
 
     @Override
     public void onReceiveLocation(BDLocation bdLocation) {
+        LogUtil.e("获取到地址信息:" + bdLocation.getLatitude());
         if (callBack != null) {
             callBack.broadcastLocation(bdLocation);
         }
