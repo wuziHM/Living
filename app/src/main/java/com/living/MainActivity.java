@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity{
         SDKAppInit.createInstance(this);
     }
 
-
-
     private void initTab() {
         tabHost=(FragmentTabHost)super.findViewById(android.R.id.tabhost);
         tabHost.setup(this,super.getSupportFragmentManager(),R.id.contentLayout);
