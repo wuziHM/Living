@@ -122,4 +122,5 @@ dependencies {
     compile 'org.greenrobot:greendao-generator:2.2.0'
     compile files('libs/ApiStoreSDK1.0.4.jar')
     compile files('libs/locSDK_6.13.jar')
+    compile files('libs/pinyin4j-2.5.0.jar')
 }

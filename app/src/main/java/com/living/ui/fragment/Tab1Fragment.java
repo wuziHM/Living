@@ -3,15 +3,20 @@ package com.living.ui.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.living.MainActivity;
 import com.living.R;
 import com.living.ui.activity.MapActivity;
 import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
 import com.living.util.LogUtil;
+
+import java.io.InterruptedIOException;
 
 public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
     private View rootView;
@@ -53,7 +58,15 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), NewsActivity.class));
                 break;
             case R.id.ll_weather:
-                startActivity(new Intent(getActivity(), WeatherActivity.class));
+
+                String city = ((MainActivity) getActivity()).getCity();
+                Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                if (!TextUtils.isEmpty(city)) {
+                    intent.putExtra(WeatherActivity.LOCATION, city);
+                } else {
+                    intent.putExtra(WeatherActivity.LOCATION, "资兴");
+                }
+                startActivity(intent);
                 break;
             case R.id.iv_main_activity_back:
 

@@ -1,7 +1,5 @@
 package com.living.ui.activity;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,12 +8,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.living.R;
 import com.living.bean.CountryWeatherBean;
+import com.living.util.Cn2SpellUtil;
 import com.living.util.LivingNetUtils;
+import com.living.util.LogUtil;
 
 import java.util.List;
 
 public class WeatherActivity extends BaseAppCompatActivity {
 
+    public static final String LOCATION = "location";
     private TextView tvLocation;
     private TextView tvRefreshTime;
     private TextView tvTemperature;
@@ -52,29 +53,32 @@ public class WeatherActivity extends BaseAppCompatActivity {
     }
 
     public void getWeather() {
+        String city = getIntent().getStringExtra(LOCATION);
+        city = Cn2SpellUtil.converterToSpell(city);
+        LogUtil.e("city:" + city);
         loading(true);
-        LivingNetUtils.getWeather("guangzhou", new Response.Listener<CountryWeatherBean>() {
+        LivingNetUtils.getWeather(city, new Response.Listener<CountryWeatherBean>() {
             @Override
             public void onResponse(CountryWeatherBean response) {
                 loading(false);
 
                 CountryWeatherBean.HeWeatherEntity weatherBean = response.getHeWeather().get(0);
-                tvLocation.setText(weatherBean.getBasic().getCity());
-                tvRefreshTime.setText("更新时间" + weatherBean.getBasic().getUpdate().getLoc());
-                tvTemperature.setText(weatherBean.getNow().getTmp() + "°");
-                tvNowWea.setText(weatherBean.getNow().getCond().getTxt());
-                tvWind.setText(weatherBean.getNow().getWind().getDir() + " " + weatherBean.getNow().getWind().getSc() + "级");
-//                tvWindDes.setText(weatherBean.getSuggestion().getComf().getTxt());
+                if (weatherBean.getStatus().equals("ok")) {
+                    tvLocation.setText(weatherBean.getBasic().getCity());
+                    tvRefreshTime.setText("更新时间" + weatherBean.getBasic().getUpdate().getLoc());
+                    tvTemperature.setText(weatherBean.getNow().getTmp() + "°");
+                    tvNowWea.setText(weatherBean.getNow().getCond().getTxt());
+                    tvWind.setText(weatherBean.getNow().getWind().getDir() + " " + weatherBean.getNow().getWind().getSc() + "级");
 
-                List<CountryWeatherBean.HeWeatherEntity.DailyForecastEntity> days = weatherBean.getDaily_forecast();
-                CountryWeatherBean.HeWeatherEntity.DailyForecastEntity firstDay = days.get(0);
-                tvTemToday.setText(firstDay.getTmp().getMin() + "~" + firstDay.getTmp().getMax() + "°");
-                tvWeaToday.setText(firstDay.getCond().getTxt_d());
+                    List<CountryWeatherBean.HeWeatherEntity.DailyForecastEntity> days = weatherBean.getDaily_forecast();
+                    CountryWeatherBean.HeWeatherEntity.DailyForecastEntity firstDay = days.get(0);
+                    tvTemToday.setText(firstDay.getTmp().getMin() + "~" + firstDay.getTmp().getMax() + "°");
+                    tvWeaToday.setText(firstDay.getCond().getTxt_d());
 
-                CountryWeatherBean.HeWeatherEntity.DailyForecastEntity secDay = days.get(1);
-                tvTemTomorrow.setText(secDay.getTmp().getMin() + "~" + secDay.getTmp().getMax() + "°");
-                tvWeaTomorrow.setText(secDay.getCond().getTxt_d());
-
+                    CountryWeatherBean.HeWeatherEntity.DailyForecastEntity secDay = days.get(1);
+                    tvTemTomorrow.setText(secDay.getTmp().getMin() + "~" + secDay.getTmp().getMax() + "°");
+                    tvWeaTomorrow.setText(secDay.getCond().getTxt_d());
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -85,13 +89,5 @@ public class WeatherActivity extends BaseAppCompatActivity {
         });
     }
 
-    private boolean checkLocationPermission() {
-        PackageManager pkm = getPackageManager();
-        boolean has_permission = (PackageManager.PERMISSION_GRANTED ==
-                pkm.checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, "com.living"));
-        if (!has_permission) {
-            return false;
-        }
-        return true;
-    }
+
 }

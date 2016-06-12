@@ -21,7 +21,6 @@ public class LivingLoListener implements BDLocationListener {
 
     @Override
     public void onReceiveLocation(BDLocation bdLocation) {
-        LogUtil.e("获取到地址信息:" + bdLocation.getLatitude());
         if (callBack != null) {
             callBack.broadcastLocation(bdLocation);
         }

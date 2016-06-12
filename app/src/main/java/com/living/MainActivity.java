@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.animation.PathInterpolatorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -17,6 +18,13 @@ import android.widget.Toast;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.SearchResult;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.emokit.sdk.util.SDKAppInit;
 import com.living.impl.LocationCallBack;
 import com.living.listener.LivingLoListener;
@@ -27,8 +35,9 @@ import com.living.util.LogUtil;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class MainActivity extends AppCompatActivity implements LocationCallBack {
+public class MainActivity extends AppCompatActivity implements LocationCallBack, OnGetGeoCoderResultListener {
 
+    public String city, district;
     String[] tabsTxt = {"首页", "发现", " 我"};
     int[] tabImg = {R.mipmap.tab1_n, R.mipmap.tab2_n, R.mipmap.tab3_n};
     int[] tabsImgLight = {R.mipmap.tab1_p, R.mipmap.tab2_p, R.mipmap.tab3p};
@@ -37,7 +46,8 @@ public class MainActivity extends AppCompatActivity implements LocationCallBack 
     private LocationClient mLocationClient;//定位SDK的核心类
     private LivingLoListener loListener;
     private FragmentTabHost tabHost;
-    private static  final int UPDATE_TIME = 5000;
+    private static final int UPDATE_TIME = 5000;
+    private GeoCoder mSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +72,11 @@ public class MainActivity extends AppCompatActivity implements LocationCallBack 
         option.setScanSpan(UPDATE_TIME);    //设置定时定位的时间间隔。单位毫秒
         mLocationClient.setLocOption(option);
         mLocationClient.start();
+
+
+        // 初始化搜索模块，注册事件监听
+        mSearch = GeoCoder.newInstance();
+        mSearch.setOnGetGeoCodeResultListener(this);
 
     }
 
@@ -155,9 +170,44 @@ public class MainActivity extends AppCompatActivity implements LocationCallBack 
 
     @Override
     public void broadcastLocation(BDLocation bdLocation) {
-        LogUtil.e("经度:" + bdLocation.getLongitude());
-        Toast.makeText(this, "嘻嘻嘻", Toast.LENGTH_SHORT).show();
+        if (bdLocation != null) {
+//            LatLng la = new LatLng(25.8888832d, bdLocation.getLongitude());
+            LatLng la = new LatLng(bdLocation.getLatitude(), bdLocation.getLongitude());
+            // 反Geo搜索
+            mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(la));
+            mLocationClient.stop();
+        }
+
     }
 
+    @Override
+    public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
+
+    }
+
+    @Override
+    public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+        if (reverseGeoCodeResult == null || reverseGeoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+            Toast.makeText(MainActivity.this, "抱歉,定位失败", Toast.LENGTH_LONG).show();
+            return;
+        }
+        ReverseGeoCodeResult.AddressComponent detailLocal = reverseGeoCodeResult.getAddressDetail();
+        this.city = detailLocal.city.substring(0, detailLocal.city.length() - 1);
+        this.district = detailLocal.district;
+        LogUtil.e("经度:" + reverseGeoCodeResult.getLocation().longitude);
+        LogUtil.e("纬度:" + reverseGeoCodeResult.getLocation().latitude);
+        LogUtil.e(detailLocal.province);
+        LogUtil.e(detailLocal.city);
+        LogUtil.e(detailLocal.district);
+        LogUtil.e(detailLocal.street);
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public String getDistrict() {
+        return this.district;
+    }
 
 }
