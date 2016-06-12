@@ -51,6 +51,7 @@ public class WeatherActivity extends BaseAppCompatActivity implements LocationLi
         tvWeaTomorrow = (TextView) findViewById(R.id.tv_wea_tomorrow);
         tvTemTomorrow = (TextView) findViewById(R.id.tv_tem_tomorrow);
         tvNowWea = (TextView) findViewById(R.id.tv_now_wea);
+
     }
 
     public void getLocation() {
