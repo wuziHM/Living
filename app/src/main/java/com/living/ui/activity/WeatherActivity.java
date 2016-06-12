@@ -1,18 +1,23 @@
 package com.living.ui.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.living.R;
+import com.living.adapter.ContentFragmentAdapter;
 import com.living.bean.CountryWeatherBean;
+import com.living.ui.fragment.ContentFragment;
 import com.living.util.Cn2SpellUtil;
 import com.living.util.LivingNetUtils;
 import com.living.util.LogUtil;
 
 import java.util.List;
+
+import me.kaelaela.verticalviewpager.VerticalViewPager;
 
 public class WeatherActivity extends BaseAppCompatActivity {
 
@@ -30,26 +35,42 @@ public class WeatherActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
         init();
-        getLocation();
-        getWeather();
+//        getWeather();
+        initViewPager();
+    }
+
+
+    private void initViewPager() {
+        VerticalViewPager viewPager = (VerticalViewPager) findViewById(R.id.vertical_viewpager);
+        //viewPager.setPageTransformer(false, new ZoomOutTransformer());
+        //viewPager.setPageTransformer(true, new StackTransformer());
+        String title = "ContentFragment";
+        ContentFragmentAdapter.Holder holder = new ContentFragmentAdapter.Holder(getSupportFragmentManager());
+
+
+        viewPager.setAdapter(new ContentFragmentAdapter.Holder(getSupportFragmentManager())
+                .add(ContentFragment.newInstance(title, 1))
+                .add(ContentFragment.newInstance(title, 2))
+                .add(ContentFragment.newInstance(title, 3))
+                .add(ContentFragment.newInstance(title, 4))
+                .add(ContentFragment.newInstance(title, 5))
+                .set());
+        //If you setting other scroll mode, the scrolled fade is shown from either side of display.
+        viewPager.setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
     private void init() {
-        tvLocation = (TextView) findViewById(R.id.tv_location);
-        tvRefreshTime = (TextView) findViewById(R.id.tv_fresh_time);
-        tvTemperature = (TextView) findViewById(R.id.tv_temperature);
-        tvWind = (TextView) findViewById(R.id.tv_wind);
-        tvWindDes = (TextView) findViewById(R.id.tv_wind_des);
-
-        tvWeaToday = (TextView) findViewById(R.id.tv_wea_today);
-        tvTemToday = (TextView) findViewById(R.id.tv_tem_today);
-        tvWeaTomorrow = (TextView) findViewById(R.id.tv_wea_tomorrow);
-        tvTemTomorrow = (TextView) findViewById(R.id.tv_tem_tomorrow);
-        tvNowWea = (TextView) findViewById(R.id.tv_now_wea);
-
-    }
-
-    public void getLocation() {
+//        tvLocation = (TextView) findViewById(R.id.tv_location);
+//        tvRefreshTime = (TextView) findViewById(R.id.tv_fresh_time);
+//        tvTemperature = (TextView) findViewById(R.id.tv_temperature);
+//        tvWind = (TextView) findViewById(R.id.tv_wind);
+//        tvWindDes = (TextView) findViewById(R.id.tv_wind_des);
+//
+//        tvWeaToday = (TextView) findViewById(R.id.tv_wea_today);
+//        tvTemToday = (TextView) findViewById(R.id.tv_tem_today);
+//        tvWeaTomorrow = (TextView) findViewById(R.id.tv_wea_tomorrow);
+//        tvTemTomorrow = (TextView) findViewById(R.id.tv_tem_tomorrow);
+//        tvNowWea = (TextView) findViewById(R.id.tv_now_wea);
 
     }
 

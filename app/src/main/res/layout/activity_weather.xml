@@ -10,6 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <me.kaelaela.verticalviewpager.VerticalViewPager
+        android:id="@+id/vertical_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+<!--
     <RelativeLayout
         android:id="@+id/rv_weather"
         android:layout_width="match_parent"
@@ -147,7 +152,7 @@
             android:textSize="@dimen/sp_18"
             tools:text="多云" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 
 </RelativeLayout>
