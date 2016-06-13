@@ -92,4 +92,9 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
         super.onDetach();
     }
 
+    @Override
+    public int getLayoutId() {
+        return 0;
+    }
+
 }

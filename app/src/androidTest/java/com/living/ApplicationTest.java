@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.living.greendao.model.User;
 import com.living.greendao.util.DbUtil;
+import com.living.test.Child;
 import com.living.util.LogUtil;
 
 import org.junit.Test;
@@ -55,4 +56,5 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         }
 
     }
+
 }

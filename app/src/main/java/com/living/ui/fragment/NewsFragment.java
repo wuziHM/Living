@@ -52,6 +52,11 @@ public class NewsFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public int getLayoutId() {
+        return 0;
+    }
+
     private void initView() {
         mSwipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_news);
         mSwipeRefresh.setColorSchemeResources(R.color.red, R.color.colorAccent, R.color.title_color, R.color.colorPrimary);

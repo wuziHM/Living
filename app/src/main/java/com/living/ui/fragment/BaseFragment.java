@@ -10,6 +10,8 @@ import com.living.util.ProgressUtil;
 
 public abstract class BaseFragment extends Fragment {
 
+    protected View rootView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +20,16 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        if (rootView == null) {
+            rootView = inflater.inflate(getLayoutId(), null, false);
+        }
+        ViewGroup parent = (ViewGroup) rootView.getParent();
+        if (parent != null) {
+            parent.removeView(rootView);
+        }
+        return rootView;
     }
 
 
@@ -35,5 +46,10 @@ public abstract class BaseFragment extends Fragment {
         ProgressUtil.loading(getActivity(), isLoading);
     }
 
+    public <T extends View> T findViewById(int resId) {
+        return (T) getView().findViewById(resId);
+    }
+
+    public abstract int getLayoutId();
 
 }

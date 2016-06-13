@@ -61,5 +61,9 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
                 break;
         }
     }
+    @Override
+    public int getLayoutId() {
+        return 0;
+    }
 
 }
