@@ -52,13 +52,13 @@ public class NewsFragment extends BaseFragment {
         initEvent();
     }
 
-    //    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        view = inflater.inflate(R.layout.fragment_news, container, false);
+        @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_news, container, false);
 //        initView();
 //        initEvent();
-//        return view;
-//    }
+        return view;
+    }
 
     @Override
     public int getLayoutId() {
