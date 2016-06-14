@@ -3,6 +3,7 @@ package com.living.ui.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,6 @@ import com.living.util.LogUtil;
 import java.io.InterruptedIOException;
 
 public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
-    private View rootView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,27 +27,33 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_tab1, container, false);
-        }
-        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
-        ViewGroup parent = (ViewGroup) rootView.getParent();
-        if (parent != null) {
-            parent.removeView(rootView);
-        }
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         initView();
-        return rootView;
     }
+
+
+    //    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        if (rootView == null) {
+//            rootView = inflater.inflate(R.layout.fragment_tab1, container, false);
+//        }
+//        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
+//        ViewGroup parent = (ViewGroup) rootView.getParent();
+//        if (parent != null) {
+//            parent.removeView(rootView);
+//        }
+//        initView();
+//        return rootView;
+//    }
 
     private void initView() {
 
-        rootView.findViewById(R.id.iv_main_activity_back).setOnClickListener(this);
-//        rootView.findViewById(R.id.iv_crop).setOnClickListener(this);
-        rootView.findViewById(R.id.ll_news).setOnClickListener(this);
-        rootView.findViewById(R.id.ll_weather).setOnClickListener(this);
-        rootView.findViewById(R.id.ll_robot).setOnClickListener(this);
-        rootView.findViewById(R.id.ll_xxxx).setOnClickListener(this);
+        findViewById(R.id.iv_main_activity_back).setOnClickListener(this);
+        findViewById(R.id.ll_news).setOnClickListener(this);
+        findViewById(R.id.ll_weather).setOnClickListener(this);
+        findViewById(R.id.ll_robot).setOnClickListener(this);
+        findViewById(R.id.ll_xxxx).setOnClickListener(this);
 
     }
 
@@ -94,7 +100,7 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.fragment_tab1;
     }
 
 }

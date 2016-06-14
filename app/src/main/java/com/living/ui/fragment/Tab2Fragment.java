@@ -2,6 +2,7 @@ package com.living.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,10 @@ import com.living.ui.activity.EmokitActivity;
 import com.living.ui.activity.TuLingChatActivity;
 import com.living.util.LogUtil;
 
-public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
-    private View rootView;//缓存Fragment view
+public class Tab2Fragment extends BaseFragment implements View.OnClickListener {
+//    private View rootView;//缓存Fragment view
 
-    LinearLayout ll_chat,ll_mood;
+    LinearLayout ll_chat, ll_mood;
     TextView tv_content, tv_time;
 
     @Override
@@ -24,7 +25,7 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
         super.onCreate(savedInstanceState);
     }
 
-    private void initView(){
+    private void initView() {
         ((TextView) rootView.findViewById(R.id.tv_main_title)).setText("发现");
         ll_chat = (LinearLayout) rootView.findViewById(R.id.ll_chat);
         tv_content = (TextView) rootView.findViewById(R.id.tv_content);
@@ -36,17 +37,23 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(rootView == null){
-            rootView=inflater.inflate(R.layout.fragment_tab2, null);
-        }
-        ViewGroup parent = (ViewGroup) rootView.getParent();
-        if (parent != null) {
-            parent.removeView(rootView);
-        }
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         initView();
-        return rootView;
     }
+
+    //    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        if (rootView == null) {
+//            rootView = inflater.inflate(R.layout.fragment_tab2, null);
+//        }
+//        ViewGroup parent = (ViewGroup) rootView.getParent();
+//        if (parent != null) {
+//            parent.removeView(rootView);
+//        }
+//        initView();
+//        return rootView;
+//    }
 
     @Override
     public void onClick(View arg0) {
@@ -61,9 +68,10 @@ public class Tab2Fragment extends BaseFragment implements View.OnClickListener{
                 break;
         }
     }
+
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.fragment_tab2;
     }
 
 }

@@ -47,7 +47,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public <T extends View> T findViewById(int resId) {
-        return (T) getView().findViewById(resId);
+        return (T) rootView.findViewById(resId);
     }
 
     public abstract int getLayoutId();

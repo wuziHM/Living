@@ -36,7 +36,7 @@ public class WeatherActivity extends BaseAppCompatActivity {
     private void initViewPager() {
         VerticalViewPager viewPager = (VerticalViewPager) findViewById(R.id.vertical_viewpager);
         //viewPager.setPageTransformer(false, new ZoomOutTransformer());
-        viewPager.setPageTransformer(true, new StackTransformer());
+//        viewPager.setPageTransformer(true, new StackTransformer());
         String title = "ContentFragment";
         ContentFragmentAdapter.Holder holder = new ContentFragmentAdapter.Holder(getSupportFragmentManager());
         String city = getIntent().getStringExtra(LOCATION);

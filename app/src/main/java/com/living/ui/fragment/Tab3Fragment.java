@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,6 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  * @author tobin
  */
 public class Tab3Fragment extends BaseFragment implements View.OnClickListener {
-    private View rootView;
     private ImageView iv_header;
 
     private Uri selectedUri;
@@ -56,20 +56,9 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_tab3, container, false);
-            LogUtil.e("tobin Tab3Fragment onCreateView rootView == null");
-        } else {
-            LogUtil.e("tobin Tab3Fragment onCreateView rootView != null");
-        }
-        ViewGroup parent = (ViewGroup) rootView.getParent();
-        if (parent != null) {
-            parent.removeView(rootView);
-        }
-        LogUtil.e("tobin Tab3Fragment onCreateView");
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         initView();
-        return rootView;
     }
 
     private void initView() {
@@ -176,6 +165,6 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.fragment_tab3;
     }
 }

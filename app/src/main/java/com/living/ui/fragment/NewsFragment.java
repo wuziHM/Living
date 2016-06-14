@@ -2,6 +2,7 @@ package com.living.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -45,16 +46,23 @@ public class NewsFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_news, container, false);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         initView();
         initEvent();
-        return view;
     }
+
+    //    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        view = inflater.inflate(R.layout.fragment_news, container, false);
+//        initView();
+//        initEvent();
+//        return view;
+//    }
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.fragment_news;
     }
 
     private void initView() {
@@ -127,8 +135,7 @@ public class NewsFragment extends BaseFragment {
     private void getNewsData(final boolean isLoadMore) {
         if (isLoadMore) {
             page++;
-        }
-        else {
+        } else {
             page = 1;
         }
         Parameters para = new Parameters();
@@ -141,10 +148,10 @@ public class NewsFragment extends BaseFragment {
                 LogUtil.e("tobin getNewsData status: " + status + " //response: " + responseString);
                 newsSearchBean = JsonUtil.Json2T(responseString, NewsSearchBean.class);
                 if (newsSearchBean == null) {
-                    if (isLoadMore){
-                        Toast.makeText(getActivity(),"加载更多失败,请稍后再试！",Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getActivity(),"新闻数据刷新失败，请尝试下拉刷新！",Toast.LENGTH_SHORT).show();
+                    if (isLoadMore) {
+                        Toast.makeText(getActivity(), "加载更多失败,请稍后再试！", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "新闻数据刷新失败，请尝试下拉刷新！", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     if (newsSearchBean.getShowapi_res_code() == 300301) {
