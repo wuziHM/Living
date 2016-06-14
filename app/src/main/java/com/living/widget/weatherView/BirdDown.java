@@ -55,7 +55,7 @@ public class BirdDown extends Actor {
             return;
         }
         //移动
-        matrix.postTranslate(2, 0);
+        matrix.postTranslate(1.3F, 0);
         //边界处理
         matrix.mapRect(targetBox, box);
         if (targetBox.left > width) {
