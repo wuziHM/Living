@@ -28,13 +28,11 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
 
 
     private void initView() {
-
         findViewById(R.id.iv_main_activity_back).setOnClickListener(this);
         findViewById(R.id.ll_news).setOnClickListener(this);
         findViewById(R.id.ll_weather).setOnClickListener(this);
         findViewById(R.id.ll_robot).setOnClickListener(this);
         findViewById(R.id.ll_xxxx).setOnClickListener(this);
-
     }
 
     @Override
