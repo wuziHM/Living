@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.living.greendao.model.User;
 import com.living.greendao.util.DbUtil;
-import com.living.test.Child;
 import com.living.util.LogUtil;
 
 import org.junit.Test;
@@ -24,6 +23,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         super(Application.class);
     }
 
+    @Test
     public void testMap() {
         Map<String, String> map1 = new HashMap<>();
         Map<String, String> map2 = new HashMap<>();
