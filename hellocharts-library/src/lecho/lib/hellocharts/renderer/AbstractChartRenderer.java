@@ -112,7 +112,7 @@ public abstract class AbstractChartRenderer implements ChartRenderer {
                 labelBackgroundPaint.setColor(autoBackgroundColor);
             }
 
-            canvas.drawRect(labelBackgroundRect, labelBackgroundPaint);
+//            canvas.drawRect(labelBackgroundRect, labelBackgroundPaint);
 
             textX = labelBackgroundRect.left + labelMargin;
             textY = labelBackgroundRect.bottom - labelMargin;
@@ -120,7 +120,7 @@ public abstract class AbstractChartRenderer implements ChartRenderer {
             textX = labelBackgroundRect.left;
             textY = labelBackgroundRect.bottom;
         }
-
+//        labelPaint.setColor(autoBackgroundColor);
         canvas.drawText(labelBuffer, startIndex, numChars, textX, textY, labelPaint);
     }
 

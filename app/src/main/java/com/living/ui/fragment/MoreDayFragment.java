@@ -79,7 +79,6 @@ public class MoreDayFragment extends BaseFragment {
         line1.setHasLabelsOnlyForSelected(hasLabelForSelected);
         line1.setHasLines(hasLines);
         line1.setHasPoints(hasPoints);
-        line1.hasLabels();
 
 
         Line line2 = new Line(values2).setColor(Color.BLUE);
@@ -91,7 +90,6 @@ public class MoreDayFragment extends BaseFragment {
         line2.setHasLabelsOnlyForSelected(hasLabelForSelected);
         line2.setHasLines(hasLines);
         line2.setHasPoints(hasPoints);
-        line2.hasLabels();
 
         List<Line> lines = new ArrayList<Line>();
         lines.add(line1);
