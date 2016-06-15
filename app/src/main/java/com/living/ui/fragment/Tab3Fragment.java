@@ -6,9 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,8 +60,8 @@ public class Tab3Fragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initView() {
-        ((TextView) rootView.findViewById(R.id.tv_main_title)).setText("我");
-        iv_header = (ImageView) rootView.findViewById(R.id.iv_header);
+        ((TextView) findViewById(R.id.tv_main_title)).setText("我");
+        iv_header = findViewById(R.id.iv_header);
         iv_header.setOnClickListener(this);
         GlideImageUtil.setPhotoResourceId(getActivity(), GlideCircleTransform.getInstance(getActivity()), R.mipmap.test_header, iv_header);
     }

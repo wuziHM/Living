@@ -10,7 +10,7 @@ import com.living.util.ProgressUtil;
 
 public abstract class BaseFragment extends Fragment {
 
-    protected View rootView;
+    private View rootView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
