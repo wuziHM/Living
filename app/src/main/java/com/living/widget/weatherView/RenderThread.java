@@ -9,7 +9,6 @@ import android.os.Message;
 import android.view.SurfaceHolder;
 
 import com.living.R;
-import com.living.util.LogUtil;
 
 /**
  * Created by wujiajun
@@ -24,7 +23,6 @@ public class RenderThread extends Thread {
     private static Scene scene;
 
     public RenderThread(SurfaceHolder surfaceHolder, Context context) {
-        LogUtil.e("RenderThread 构造方法");
         this.context = context;
         this.surfaceHolder = surfaceHolder;
         if (scene == null) {
@@ -42,7 +40,6 @@ public class RenderThread extends Thread {
 
     @Override
     public void run() {
-        LogUtil.e("run");
         //在非主线程使用消息队列
         prepare();
     }
@@ -63,7 +60,6 @@ public class RenderThread extends Thread {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
-                    LogUtil.e("weather", "scene width:" + scene.getWidth() + "     height:" + scene.getHeight());
                     if (scene.getWidth() != 0 && scene.getHeight() != 0) {
                         draw();
                     }
