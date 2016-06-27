@@ -1,10 +1,6 @@
 [
     {
-        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/E:\\allenTestSpace\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\ic_skip_white_24px.png",
-        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/E:\\allenTestSpace\\Living\\appintro\\build\\generated\\res\\pngs\\release\\drawable-ldpi\\ic_skip_white_24px.png"
-    },
-    {
-        "merged": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/drawable-ldpi-v4/ic_skip_white_24px.png",
-        "source": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/generated/res/pngs/release/drawable-ldpi/ic_skip_white_24px.png"
+        "merged": "E:\\allenTestSpace\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\ic_skip_white_24px.png",
+        "source": "E:\\allenTestSpace\\Living\\appintro\\build\\generated\\res\\pngs\\release\\drawable-ldpi\\ic_skip_white_24px.png"
     }
 ]

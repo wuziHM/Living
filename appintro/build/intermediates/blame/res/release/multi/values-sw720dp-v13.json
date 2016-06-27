@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/build/intermediates/res/merged/release/values-sw720dp-v13/values-sw720dp-v13.xml",
+        "outputFile": "E:\\allenTestSpace\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\values-sw720dp-v13\\values-sw720dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,50 +11,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/src/main/res/values-sw720dp/dimen.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 57,
-                        "endOffset": 108
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 113,
-                    "endColumn": 58,
-                    "endOffset": 167
-                },
-                "from": {
-                    "file": "/Users/minhu/Documents/E/weyee/testProgram/Living/appintro/src/main/res/values-sw720dp/dimen.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 113,
-                        "endColumn": 58,
-                        "endOffset": 167
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/Users/minhu/Documents/E/weyee/testProgram/Living/E:\\allenTestSpace\\Living\\appintro\\build\\intermediates\\res\\merged\\release\\values-sw720dp-v13\\values-sw720dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 57,
-                    "endOffset": 108
-                },
-                "from": {
-                    "file": "/Users/minhu/Documents/E/weyee/testProgram/Living/E:\\allenTestSpace\\Living\\appintro\\src\\main\\res\\values-sw720dp\\dimen.xml",
+                    "file": "E:\\allenTestSpace\\Living\\appintro\\src\\main\\res\\values-sw720dp\\dimen.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -73,7 +30,7 @@
                     "endOffset": 167
                 },
                 "from": {
-                    "file": "/Users/minhu/Documents/E/weyee/testProgram/Living/E:\\allenTestSpace\\Living\\appintro\\src\\main\\res\\values-sw720dp\\dimen.xml",
+                    "file": "E:\\allenTestSpace\\Living\\appintro\\src\\main\\res\\values-sw720dp\\dimen.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,

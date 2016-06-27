@@ -89,13 +89,11 @@ public class ForecastFragment extends BaseFragment {
     public void getWeather() {
         String city = getTitle();
         city = Cn2SpellUtil.converterToSpell(city);
-        LogUtil.e("city:" + city);
         loading(true);
         LivingNetUtils.getWeather(city, new Response.Listener<CountryWeatherBean>() {
             @Override
             public void onResponse(CountryWeatherBean response) {
                 loading(false);
-
                 CountryWeatherBean.HeWeatherEntity weatherBean = response.getHeWeather().get(0);
                 if (weatherBean.getStatus().equals("ok")) {
                     tvLocation.setText(weatherBean.getBasic().getCity());
