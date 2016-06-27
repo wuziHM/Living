@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\allenTestSpace\Living\appintro\src\main\assets"/><source path="E:\allenTestSpace\Living\appintro\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="E:\allenTestSpace\Living\appintro\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Workspace\StudioWorksapce\Living\appintro\src\main\assets"/><source path="C:\Workspace\StudioWorksapce\Living\appintro\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="C:\Workspace\StudioWorksapce\Living\appintro\src\release\assets"/></dataSet></merger>
