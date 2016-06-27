@@ -39,7 +39,7 @@ public class SceneSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
         setFocusable(true);
         setFocusableInTouchMode(true);
-        this.setKeepScreenOn(true);
+        this.setKeepScreenOn(false);
     }
 
     @Override

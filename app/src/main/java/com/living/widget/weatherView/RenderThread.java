@@ -74,10 +74,17 @@ public class RenderThread extends Thread {
 
 
     private void draw() {
-        Canvas canvas = surfaceHolder.lockCanvas();
-        if (canvas != null) {
-            scene.draw(canvas);
-            surfaceHolder.unlockCanvasAndPost(canvas);
+        try{
+            synchronized(surfaceHolder) {
+                Canvas canvas = surfaceHolder.lockCanvas();
+                if (canvas != null) {
+                    scene.draw(canvas);
+                    surfaceHolder.unlockCanvasAndPost(canvas);
+
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
