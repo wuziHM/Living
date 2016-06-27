@@ -24,7 +24,6 @@ import com.living.util.LogUtil;
 import java.util.List;
 
 public class NewsFragment extends BaseFragment {
-    View view;
 
     private NewsSearchBean newsSearchBean;
     private List<NewsSearchBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> contentListBean;
@@ -56,9 +55,9 @@ public class NewsFragment extends BaseFragment {
     }
 
     private void initView() {
-        mSwipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_news);
+        mSwipeRefresh = findViewById(R.id.swipe_refresh_news);
         mSwipeRefresh.setColorSchemeResources(R.color.red, R.color.colorAccent, R.color.title_color, R.color.colorPrimary);
-        mRecycleView = (RecyclerView) view.findViewById(R.id.recycle_view_news);
+        mRecycleView = findViewById(R.id.recycle_view_news);
         mManager = new LinearLayoutManager(getActivity());
         mRecycleView.setLayoutManager(mManager);
         mRecycleView.setItemAnimator(new DefaultItemAnimator());
