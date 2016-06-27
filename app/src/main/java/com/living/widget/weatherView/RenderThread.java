@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.living.R;
@@ -22,20 +21,23 @@ public class RenderThread extends Thread {
     private Context context;
     private SurfaceHolder surfaceHolder;
     private RenderHandler renderHandler;
-    private Scene scene;
+    private static Scene scene;
 
     public RenderThread(SurfaceHolder surfaceHolder, Context context) {
+        LogUtil.e("RenderThread 构造方法");
         this.context = context;
         this.surfaceHolder = surfaceHolder;
-        scene = new Scene(context);
-        //add scene/actor
-        scene.setBg(BitmapFactory.decodeResource(context.getResources(), R.mipmap.bg0_fine_day));
-        scene.add(new BirdUp(context));
-        scene.add(new CloudLeft(context));
-        scene.add(new CloudRight(context));
-        scene.add(new BirdDown(context));
-        scene.add(new SunShine(context));
-        scene.add(new CloudUp(context));
+        if (scene == null) {
+            scene = new Scene(context);
+            //add scene/actor
+            scene.setBg(BitmapFactory.decodeResource(context.getResources(), R.mipmap.bg0_fine_day));
+            scene.add(new BirdUp(context));
+            scene.add(new CloudLeft(context));
+            scene.add(new CloudRight(context));
+            scene.add(new BirdDown(context));
+            scene.add(new SunShine(context));
+            scene.add(new CloudUp(context));
+        }
     }
 
     @Override
@@ -61,7 +63,7 @@ public class RenderThread extends Thread {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
-                    LogUtil.e("weather","scene width:" + scene.getWidth() + "     height:" + scene.getHeight());
+                    LogUtil.e("weather", "scene width:" + scene.getWidth() + "     height:" + scene.getHeight());
                     if (scene.getWidth() != 0 && scene.getHeight() != 0) {
                         draw();
                     }
