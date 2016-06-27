@@ -11,7 +11,12 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.living.MainActivity;
 import com.living.R;
 import com.living.ui.fragment.Intro1Fragment;
-
+/**
+ * 欢迎界面Activity
+ *
+ * @author Tobin
+ * @since 2016-05-30
+ */
 public class IntroActivity extends AppIntro {
 
     @Override
