@@ -18,4 +18,9 @@ public class TestDemo extends AndroidTestCase {
         Child child = new Child();
         child.say();
     }
+
+
+    public void testString() {
+
+    }
 }
