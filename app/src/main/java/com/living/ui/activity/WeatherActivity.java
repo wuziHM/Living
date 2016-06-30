@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import com.living.R;
 import com.living.adapter.ContentFragmentAdapter;
 import com.living.bean.CountryWeatherBean;
+import com.living.impl.ScrollViewListener;
 import com.living.ui.fragment.ForecastFragment;
 import com.living.ui.fragment.MoreDayFragment;
 import com.living.widget.weatherView.SceneSurfaceView;
@@ -19,6 +20,7 @@ public class WeatherActivity extends BaseAppCompatActivity implements ForecastFr
     private SceneSurfaceView sceneView;
     public static final String LOCATION = "location";
     private MoreDayFragment moreDayFragment;
+    private VerticalViewPager viewPager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class WeatherActivity extends BaseAppCompatActivity implements ForecastFr
     }
 
     private void initViewPager() {
-        VerticalViewPager viewPager = (VerticalViewPager) findViewById(R.id.vertical_viewpager);
+        viewPager = (VerticalViewPager) findViewById(R.id.vertical_viewpager);
         //viewPager.setPageTransformer(false, new ZoomOutTransformer());
 //        viewPager.setPageTransformer(true, new StackTransformer());
         String title = "MoreDayFragment";
@@ -107,4 +109,9 @@ public class WeatherActivity extends BaseAppCompatActivity implements ForecastFr
     public void onPostWeather(CountryWeatherBean.HeWeatherEntity entity) {
         moreDayFragment.setWeather(entity);
     }
+
+    public void scorll(int x, int y) {
+        viewPager.setCurrentItem(0,true);
+    }
+
 }

@@ -10,9 +10,12 @@ import android.widget.TextView;
 
 import com.living.R;
 import com.living.bean.CountryWeatherBean;
+import com.living.impl.ScrollViewListener;
+import com.living.ui.activity.WeatherActivity;
 import com.living.util.AppUtil;
 import com.living.util.LogUtil;
 import com.living.util.StringUtils;
+import com.living.widget.weatherView.HomeFeatureLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +28,7 @@ import lecho.lib.hellocharts.model.ValueShape;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
 
-public class MoreDayFragment extends BaseFragment {
+public class MoreDayFragment extends BaseFragment implements ScrollViewListener {
 
     private boolean hasAxes = false;
     private boolean hasAxesNames = false;
@@ -36,7 +39,7 @@ public class MoreDayFragment extends BaseFragment {
     private boolean isCubic = false;
     private boolean hasLabelForSelected = false;
     private LineChartView chartView;
-    private ScrollView rvRoot;
+    private HomeFeatureLayout rvRoot;
     private List<PointValue> highTem;
     private List<PointValue> lowTem;
     private int tMin, tMax;
@@ -64,13 +67,13 @@ public class MoreDayFragment extends BaseFragment {
     private void initChat() {
         chartView = findViewById(R.id.chart);
         chartView.setViewportCalculationEnabled(false);
+        chartView.setInteractive(false);
         rvRoot = findViewById(R.id.rv_root);
+        rvRoot.setListener(this);
 
     }
 
     private void resetViewport(int tMin, int tMax) {
-        // Reset viewport height range to (0,100)
-        LogUtil.e("tMin:" + tMin + "  tMax:" + tMax);
         Viewport v = new Viewport(chartView.getMaximumViewport());
         int interval = (tMax - tMin) / 3;
         v.bottom = tMin - interval;
@@ -258,5 +261,11 @@ public class MoreDayFragment extends BaseFragment {
 
     public void setAlpha(float alpha) {
         rvRoot.setAlpha(alpha);
+    }
+
+
+    @Override
+    public void onScrollChanged(float x, float y) {
+        ((WeatherActivity) getActivity()).scorll((int) x, (int) y);
     }
 }
