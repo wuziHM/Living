@@ -1,265 +1,633 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.living.widget.weatherView.HomeFeatureLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rv_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/dp_10"
-    android:paddingRight="@dimen/dp_10">
+    android:background="#803c7dc8">
 
-    <LinearLayout
-        android:id="@+id/ly_more_day"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10">
 
         <LinearLayout
-            android:id="@+id/ly_day1"
-            android:layout_width="0dp"
+            android:id="@+id/ly_more_day"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_week1"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ly_day1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="今天"
-                style="@style/txt_12sp_white"/>
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_date1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="6/28"
-                style="@style/txt_12sp_white" />
+                <TextView
+                    android:id="@+id/tv_week1"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="今天" />
 
-            <TextView
-                android:id="@+id/tv_type1"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tv_date1"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="6/28" />
+
+                <TextView
+                    android:id="@+id/tv_type1"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="雷阵雨" />
+
+                <ImageView
+                    android:id="@+id/iv_wea1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_100" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_day2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="雷阵雨"
-                style="@style/txt_12sp_white" />
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_week2"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="今天" />
+
+                <TextView
+                    android:id="@+id/tv_date2"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="6/28" />
+
+                <TextView
+                    android:id="@+id/tv_type2"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="雷阵雨" />
+
+                <ImageView
+                    android:id="@+id/iv_wea2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_100" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_day3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_week3"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="今天" />
+
+                <TextView
+                    android:id="@+id/tv_date3"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="6/28" />
+
+                <TextView
+                    android:id="@+id/tv_type3"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="雷阵雨" />
+
+                <ImageView
+                    android:id="@+id/iv_wea3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_100" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_day4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_week4"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="今天" />
+
+                <TextView
+                    android:id="@+id/tv_date4"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="6/28" />
+
+                <TextView
+                    android:id="@+id/tv_type4"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="雷阵雨" />
+
+                <ImageView
+                    android:id="@+id/iv_wea4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_100" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_day5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_week5"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="今天" />
+
+                <TextView
+                    android:id="@+id/tv_date5"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="6/28" />
+
+                <TextView
+                    android:id="@+id/tv_type5"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="雷阵雨" />
+
+                <ImageView
+                    android:id="@+id/iv_wea5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_100" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_day6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_week6"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="今天" />
+
+                <TextView
+                    android:id="@+id/tv_date6"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="6/28" />
+
+                <TextView
+                    android:id="@+id/tv_type6"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="雷阵雨" />
+
+                <ImageView
+                    android:id="@+id/iv_wea6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_100" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_day7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_week7"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="今天" />
+
+                <TextView
+                    android:id="@+id/tv_date7"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="6/28" />
+
+                <TextView
+                    android:id="@+id/tv_type7"
+                    style="@style/txt_12sp_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="雷阵雨" />
+
+                <ImageView
+                    android:id="@+id/iv_wea7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_100" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/ly_more_day"
+            android:layout_marginTop="@dimen/dp_10"
+            android:clickable="false" />
+
+        <TextView
+            android:id="@+id/tv_index"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/chart"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center"
+            android:text="生活指数"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16" />
+
+        <LinearLayout
+            android:id="@+id/ly_first_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_index"
+            android:layout_marginTop="@dimen/dp_5"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shape_corner0_bg_white"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_2">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_comf" />
+
+                <TextView
+                    android:id="@+id/tv_comf1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="体感指数"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tv_comf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/tv_comf1"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:text="舒适"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shape_corner0_bg_white"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_2">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_drsg" />
+
+                <TextView
+                    android:id="@+id/tv_drsg1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="穿衣指数"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tv_drsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/tv_drsg1"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:text="热"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14" />
+
+            </RelativeLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ly_day2"
-            android:layout_width="0dp"
+            android:id="@+id/ly_sco_line"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_below="@id/ly_first_line"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_week2"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="今天"
-                style="@style/txt_12sp_white" />
+                android:layout_weight="1"
+                android:background="@drawable/shape_corner0_bg_white"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_2">
 
-            <TextView
-                android:id="@+id/tv_date2"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_flu" />
+
+                <TextView
+                    android:id="@+id/tv_flu1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="感冒指数"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tv_flu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/tv_flu1"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:text="少发"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="6/28"
-                style="@style/txt_12sp_white" />
+                android:layout_weight="1"
+                android:background="@drawable/shape_corner0_bg_white"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_2">
 
-            <TextView
-                android:id="@+id/tv_type2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="雷阵雨"
-                style="@style/txt_12sp_white" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_cw" />
 
+                <TextView
+                    android:id="@+id/tv_cw1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="洗车指数"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tv_cw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/tv_cw1"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:text="适宜"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ly_day3"
-            android:layout_width="0dp"
+            android:id="@+id/ly_thr_line"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_below="@id/ly_sco_line"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_week3"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="今天"
-                style="@style/txt_12sp_white" />
+                android:layout_weight="1"
+                android:background="@drawable/shape_corner0_bg_white"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_2">
 
-            <TextView
-                android:id="@+id/tv_date3"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_sport" />
+
+                <TextView
+                    android:id="@+id/tv_sport1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="运动指数"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tv_sport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/tv_sport1"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:text="少发"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="6/28"
-                style="@style/txt_12sp_white" />
+                android:layout_weight="1"
+                android:background="@drawable/shape_corner0_bg_white"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_2">
 
-            <TextView
-                android:id="@+id/tv_type3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="雷阵雨"
-                style="@style/txt_12sp_white" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_uv" />
 
+                <TextView
+                    android:id="@+id/tv_uv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="紫外线指数"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tv_uv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/tv_uv1"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:text="弱"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ly_day4"
-            android:layout_width="0dp"
+            android:id="@+id/ly_four_line"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_below="@id/ly_thr_line"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_week4"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="今天"
-                style="@style/txt_12sp_white" />
+                android:layout_weight="1"
+                android:background="@drawable/shape_corner0_bg_white"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_2">
 
-            <TextView
-                android:id="@+id/tv_date4"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_trav" />
+
+                <TextView
+                    android:id="@+id/tv_trav1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="旅游指数"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/tv_trav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/tv_trav1"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:text="适宜"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="6/28"
-                style="@style/txt_12sp_white" />
+                android:layout_weight="1"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_2">
 
-            <TextView
-                android:id="@+id/tv_type4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="雷阵雨"
-                style="@style/txt_12sp_white" />
-
+            </RelativeLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ly_day5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_week5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="今天"
-                style="@style/txt_12sp_white" />
-
-            <TextView
-                android:id="@+id/tv_date5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="6/28"
-                style="@style/txt_12sp_white" />
-
-            <TextView
-                android:id="@+id/tv_type5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="雷阵雨"
-                style="@style/txt_12sp_white" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ly_day6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_week6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="今天"
-                style="@style/txt_12sp_white" />
-
-            <TextView
-                android:id="@+id/tv_date6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="6/28"
-                style="@style/txt_12sp_white" />
-
-            <TextView
-                android:id="@+id/tv_type6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="雷阵雨"
-                style="@style/txt_12sp_white" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ly_day7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_week7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="今天"
-                style="@style/txt_12sp_white" />
-
-            <TextView
-                android:id="@+id/tv_date7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="6/28"
-                style="@style/txt_12sp_white" />
-
-            <TextView
-                android:id="@+id/tv_type7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="雷阵雨"
-                style="@style/txt_12sp_white" />
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <lecho.lib.hellocharts.view.LineChartView
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/ly_more_day"
-        android:clickable="false" />
-
-</RelativeLayout>
+    </RelativeLayout>
+</com.living.widget.weatherView.HomeFeatureLayout>

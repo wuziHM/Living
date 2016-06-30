@@ -1,6 +1,7 @@
 package com.living.ui.activity;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -40,6 +41,7 @@ public class WeatherActivity extends BaseAppCompatActivity implements ForecastFr
         int width = wm.getDefaultDisplay().getWidth();
         int height = wm.getDefaultDisplay().getHeight();
         sceneView.setSize(width, height);
+
     }
 
     @Override
@@ -80,6 +82,24 @@ public class WeatherActivity extends BaseAppCompatActivity implements ForecastFr
         holder.add(moreDayFragment);
         viewPager.setAdapter(holder.set());
         viewPager.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (position == 0) {
+                    moreDayFragment.setAlpha(0.5f * positionOffset);
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                moreDayFragment.setAlpha(position * 0.5f);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
 

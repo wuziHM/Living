@@ -4,10 +4,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.living.R;
 import com.living.bean.CountryWeatherBean;
+import com.living.util.AppUtil;
 import com.living.util.LogUtil;
 import com.living.util.StringUtils;
 
@@ -33,9 +36,12 @@ public class MoreDayFragment extends BaseFragment {
     private boolean isCubic = false;
     private boolean hasLabelForSelected = false;
     private LineChartView chartView;
+    private ScrollView rvRoot;
     private List<PointValue> highTem;
     private List<PointValue> lowTem;
     private int tMin, tMax;
+    private ImageView ivWea1, ivWea2, ivWea3, ivWea4, ivWea5, ivWea6, ivWea7;
+    private TextView tvComf, tvCw, tvDrsg, tvFlu, tvSport, tvTrav, tvUv;
 
     public MoreDayFragment() {
     }
@@ -58,6 +64,7 @@ public class MoreDayFragment extends BaseFragment {
     private void initChat() {
         chartView = findViewById(R.id.chart);
         chartView.setViewportCalculationEnabled(false);
+        rvRoot = findViewById(R.id.rv_root);
 
     }
 
@@ -78,7 +85,6 @@ public class MoreDayFragment extends BaseFragment {
     public int getLayoutId() {
         return R.layout.fragment_more_day;
     }
-
 
     public String getTitle() {
         return getArguments().getString("title");
@@ -148,6 +154,42 @@ public class MoreDayFragment extends BaseFragment {
         ((TextView) findViewById(R.id.tv_type6)).setText(entity.getDaily_forecast().get(5).getCond().getTxt_n());
         ((TextView) findViewById(R.id.tv_type7)).setText(entity.getDaily_forecast().get(6).getCond().getTxt_n());
 
+        ivWea1 = findViewById(R.id.iv_wea1);
+        AppUtil.getImageByReflect(ivWea1, entity.getDaily_forecast().get(0).getCond().getCode_d());
+        ivWea2 = findViewById(R.id.iv_wea2);
+        AppUtil.getImageByReflect(ivWea2, entity.getDaily_forecast().get(1).getCond().getCode_d());
+        ivWea3 = findViewById(R.id.iv_wea3);
+        AppUtil.getImageByReflect(ivWea3, entity.getDaily_forecast().get(2).getCond().getCode_d());
+        ivWea4 = findViewById(R.id.iv_wea4);
+        AppUtil.getImageByReflect(ivWea4, entity.getDaily_forecast().get(3).getCond().getCode_d());
+        ivWea5 = findViewById(R.id.iv_wea5);
+        AppUtil.getImageByReflect(ivWea5, entity.getDaily_forecast().get(4).getCond().getCode_d());
+        ivWea6 = findViewById(R.id.iv_wea6);
+        AppUtil.getImageByReflect(ivWea6, entity.getDaily_forecast().get(5).getCond().getCode_d());
+        ivWea7 = findViewById(R.id.iv_wea7);
+        AppUtil.getImageByReflect(ivWea7, entity.getDaily_forecast().get(6).getCond().getCode_d());
+
+        tvComf = findViewById(R.id.tv_comf);
+        tvComf.setText(entity.getSuggestion().getComf().getBrf());
+
+        tvCw = findViewById(R.id.tv_cw);
+        tvCw.setText(entity.getSuggestion().getCw().getBrf());
+
+        tvDrsg = findViewById(R.id.tv_drsg);
+        tvDrsg.setText(entity.getSuggestion().getDrsg().getBrf());
+
+        tvFlu = findViewById(R.id.tv_flu);
+        tvFlu.setText(entity.getSuggestion().getFlu().getBrf());
+
+        tvSport = findViewById(R.id.tv_sport);
+        tvSport.setText(entity.getSuggestion().getSport().getBrf());
+
+        tvTrav = findViewById(R.id.tv_trav);
+        tvTrav.setText(entity.getSuggestion().getTrav().getBrf());
+
+        tvUv = findViewById(R.id.tv_uv);
+        tvUv.setText(entity.getSuggestion().getUv().getBrf());
+
     }
 
     private void bandingLine(CountryWeatherBean.HeWeatherEntity entity) {
@@ -212,5 +254,9 @@ public class MoreDayFragment extends BaseFragment {
         data.setBaseValue(Float.NEGATIVE_INFINITY);
         data.setLines(lines);
         chartView.setLineChartData(data);
+    }
+
+    public void setAlpha(float alpha) {
+        rvRoot.setAlpha(alpha);
     }
 }

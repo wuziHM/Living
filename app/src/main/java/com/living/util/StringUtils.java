@@ -155,18 +155,15 @@ public class StringUtils {
      * @return MM/dd 格式的日期
      */
     public static String getShortDay(String day) {
-        LogUtil.e("获取短日期:" + day);
         String a = "";
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date date = sdf.parse(day);
-            LogUtil.e("month:" + date.getMonth());
             SimpleDateFormat format = new SimpleDateFormat("MM/dd");
             a = format.format(date);
         } catch (ParseException e) {
             LogUtil.e(e.getMessage());
         }
-        LogUtil.e("获取短日期,返回值:" + a);
         return a;
     }
 
@@ -175,7 +172,6 @@ public class StringUtils {
      * @return
      */
     public static String getWeek(String createTime) {
-        LogUtil.e("获取星期几:" + createTime);
         String[] weekOfDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
         try {
             String ret;
