@@ -1,11 +1,9 @@
 package com.living.ui.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +13,6 @@ import com.living.R;
 import com.living.bean.CountryWeatherBean;
 import com.living.util.Cn2SpellUtil;
 import com.living.util.LivingNetUtils;
-import com.living.util.LogUtil;
 
 import java.util.List;
 
@@ -35,6 +32,15 @@ public class ForecastFragment extends BaseFragment {
     private TextView tvWeaToday, tvTemToday;
     private TextView tvWeaTomorrow, tvTemTomorrow;
     public static final String CITY = "city";
+    private OnHandlerData handlerData;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity != null) {
+            handlerData = (OnHandlerData) activity;
+        }
+    }
 
     public ForecastFragment() {
     }
@@ -96,6 +102,7 @@ public class ForecastFragment extends BaseFragment {
                 loading(false);
                 CountryWeatherBean.HeWeatherEntity weatherBean = response.getHeWeather().get(0);
                 if (weatherBean.getStatus().equals("ok")) {
+                    handlerData.onPostWeather(weatherBean);
                     tvLocation.setText(weatherBean.getBasic().getCity());
                     tvRefreshTime.setText("更新时间" + weatherBean.getBasic().getUpdate().getLoc());
                     tvTemperature.setText(weatherBean.getNow().getTmp() + "°");
@@ -120,5 +127,11 @@ public class ForecastFragment extends BaseFragment {
             }
         });
     }
+
+    // 用来存放fragment的Activtiy必须实现这个接口
+    public interface OnHandlerData {
+        void onPostWeather(CountryWeatherBean.HeWeatherEntity entity);
+    }
+
 
 }

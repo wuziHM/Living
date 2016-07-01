@@ -22,4 +22,11 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="txt_12sp">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="txt_12sp_white" parent="txt_12sp">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

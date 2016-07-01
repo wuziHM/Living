@@ -379,7 +379,11 @@ public class LineChartRenderer extends AbstractChartRenderer {
                 if (MODE_DRAW == mode) {
                     drawPoint(canvas, line, pointValue, rawX, rawY, pointRadius);
                     if (line.hasLabels()) {
-                        drawLabel(canvas, line, pointValue, rawX, rawY, pointRadius + labelOffset);
+                        if (line.isLabelsUp()) {
+                            drawLabel(canvas, line, pointValue, rawX, rawY, pointRadius + labelOffset);
+                        } else {
+                            drawLabel(canvas, line, pointValue, rawX, rawY, pointRadius + labelOffset, false);
+                        }
                     }
                 } else if (MODE_HIGHLIGHT == mode) {
                     highlightPoint(canvas, line, pointValue, rawX, rawY, lineIndex, valueIndex);
@@ -422,12 +426,20 @@ public class LineChartRenderer extends AbstractChartRenderer {
             pointPaint.setColor(line.getDarkenColor());
             drawPoint(canvas, line, pointValue, rawX, rawY, pointRadius + touchToleranceMargin);
             if (line.hasLabels() || line.hasLabelsOnlyForSelected()) {
-                drawLabel(canvas, line, pointValue, rawX, rawY, pointRadius + labelOffset);
+                if (line.isLabelsUp()) {
+                    drawLabel(canvas, line, pointValue, rawX, rawY, pointRadius + labelOffset);
+                } else {
+                    drawLabel(canvas, line, pointValue, rawX, rawY, pointRadius + labelOffset, false);
+                }
             }
         }
     }
 
     private void drawLabel(Canvas canvas, Line line, PointValue pointValue, float rawX, float rawY, float offset) {
+        drawLabel(canvas, line, pointValue, rawX, rawY, offset, true);
+    }
+
+    private void drawLabel(Canvas canvas, Line line, PointValue pointValue, float rawX, float rawY, float offset, boolean isTop) {
         final Rect contentRect = computator.getContentRectMinusAllMargins();
         final int numChars = line.getFormatter().formatChartValue(labelBuffer, pointValue);
         if (numChars == 0) {
@@ -442,15 +454,18 @@ public class LineChartRenderer extends AbstractChartRenderer {
 
         float top;
         float bottom;
-
-        if (pointValue.getY() >= baseValue) {
-            top = rawY - offset - labelHeight - labelMargin * 2;
-            bottom = rawY - offset;
-        } else {
+        if (!isTop) {
             top = rawY + offset;
             bottom = rawY + offset + labelHeight + labelMargin * 2;
+        } else {
+            if (pointValue.getY() >= baseValue) {
+                top = rawY - offset - labelHeight - labelMargin * 2;
+                bottom = rawY - offset;
+            } else {
+                top = rawY + offset;
+                bottom = rawY + offset + labelHeight + labelMargin * 2;
+            }
         }
-
         if (top < contentRect.top) {
             top = rawY + offset;
             bottom = rawY + offset + labelHeight + labelMargin * 2;
