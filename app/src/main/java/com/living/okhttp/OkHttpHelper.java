@@ -34,7 +34,7 @@ public class OkHttpHelper {
         handler = new Handler(Looper.getMainLooper());
     }
 
-    private static OkHttpHelper getInstance(){
+    public static OkHttpHelper getInstance(){
         return new OkHttpHelper();
     }
 

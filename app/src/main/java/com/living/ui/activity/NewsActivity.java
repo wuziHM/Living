@@ -15,13 +15,21 @@ import com.living.R;
 import com.living.adapter.NewsClassifyAdapter;
 import com.living.bean.NewsChannelBean;
 import com.living.config.Constant;
+import com.living.okhttp.HttpCallback;
+import com.living.okhttp.OkHttpHelper;
 import com.living.ui.fragment.NewsFragment;
 import com.living.util.JsonUtil;
 import com.living.util.LogUtil;
 import com.living.util.ProgressUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class NewsActivity extends BaseAppCompatActivity implements View.OnClickListener {
     private TabLayout mTabLayout;
@@ -142,6 +150,30 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
             @Override
             public void onError(int status, String responseString, Exception e) {
                 Toast.makeText(NewsActivity.this,"网络错误：" + (e == null ? "" : e.getMessage()) + responseString,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Map<String , String> params = new HashMap<>();
+        params.put("apikey", ApiStoreSDK.getAppKey());
+        OkHttpHelper.getInstance().post(Constant.URL_NEWS_CHANNEL,params,new HttpCallback<NewsChannelBean>(){
+            @Override
+            public void onBefore(Request request) {
+                LogUtil.e("OkHttpHelper tobin onBefore");
+            }
+
+            @Override
+            public void onError(Response response, int code, Exception e) {
+                LogUtil.e("OkHttpHelper tobin onError");
+            }
+
+            @Override
+            public void onFailure(Request request, IOException e) {
+                LogUtil.e("OkHttpHelper tobin onFailure");
+            }
+
+            @Override
+            public void onSuccess(Response response, NewsChannelBean newsChannelBean) {
+                LogUtil.e("OkHttpHelper tobin onSuccess");
             }
         });
     }

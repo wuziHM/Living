@@ -16,7 +16,6 @@ import okhttp3.Response;
 
 public abstract class HttpCallback<T> {
     public Type type;
-
     /**
      * 把 T 转化成 Type
      * @param subclass
@@ -29,6 +28,10 @@ public abstract class HttpCallback<T> {
         }
         ParameterizedType parameteterized = (ParameterizedType)superclass;
         return $Gson$Types.canonicalize(parameteterized.getActualTypeArguments()[0]);
+    }
+
+    public HttpCallback(){
+        type = getSuperclassTypeParameter(getClass());
     }
 
     public abstract void onBefore(Request request);
