@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.living.R;
@@ -13,7 +12,6 @@ import com.living.bean.CountryWeatherBean;
 import com.living.impl.ScrollViewListener;
 import com.living.ui.activity.WeatherActivity;
 import com.living.util.AppUtil;
-import com.living.util.LogUtil;
 import com.living.util.StringUtils;
 import com.living.widget.weatherView.HomeFeatureLayout;
 
