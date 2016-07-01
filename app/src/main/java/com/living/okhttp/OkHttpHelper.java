@@ -1,5 +1,8 @@
 package com.living.okhttp;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 
@@ -23,9 +26,12 @@ public class OkHttpHelper {
     private static OkHttpClient okHttpClient;
     private Gson gson;
 
+    private Handler handler;
+
     private OkHttpHelper(){
         okHttpClient = new OkHttpClient();
         gson = new Gson();
+        handler = new Handler(Looper.getMainLooper());
     }
 
     private static OkHttpHelper getInstance(){
@@ -55,11 +61,13 @@ public class OkHttpHelper {
                 if (response.isSuccessful()){
                     String resultStr = response.body().string();
                     if (httpCallback.type == String.class){
-                        httpCallback.onSuccess(response,resultStr);
+//                        httpCallback.onSuccess(response,resultStr);
+                        callbackSuccess(httpCallback,response,resultStr);
                     }else{
                         try {
                             Object object = gson.fromJson(resultStr,httpCallback.type);
-                            httpCallback.onSuccess(response,object);
+//                            httpCallback.onSuccess(response,object);
+                            callbackSuccess(httpCallback,response,object);
                         }catch (JsonIOException e){
                             httpCallback.onError(response,response.code(),e);
                         }
@@ -93,6 +101,15 @@ public class OkHttpHelper {
             }
         }
         return body.build();
+    }
+
+    private void callbackSuccess(final HttpCallback httpCallback, final Response response, final Object object){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                httpCallback.onSuccess(response,object);
+            }
+        });
     }
 
     enum HttpMethodType{
