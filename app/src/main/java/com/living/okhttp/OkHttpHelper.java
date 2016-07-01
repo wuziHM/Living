@@ -48,11 +48,13 @@ public class OkHttpHelper {
     }
 
     public void doRequest(final Request request, final HttpCallback httpCallback){
-        httpCallback.onBefore(request);
+//        httpCallback.onBefore(request);
+        callbackBefore(httpCallback,request);
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                httpCallback.onFailure(request,e);
+                callbackFailure(httpCallback,request,e);
+//                httpCallback.onFailure(request,e);
             }
 
             @Override
@@ -69,12 +71,14 @@ public class OkHttpHelper {
 //                            httpCallback.onSuccess(response,object);
                             callbackSuccess(httpCallback,response,object);
                         }catch (JsonIOException e){
-                            httpCallback.onError(response,response.code(),e);
+                            callbackError(httpCallback,response,e);
+//                            httpCallback.onError(response,response.code(),e);
                         }
                     }
 
                 }else{
-                    httpCallback.onError(response,response.code(),null);
+                    callbackError(httpCallback,response,null);
+//                    httpCallback.onError(response,response.code(),null);
                 }
             }
         });
@@ -108,6 +112,33 @@ public class OkHttpHelper {
             @Override
             public void run() {
                 httpCallback.onSuccess(response,object);
+            }
+        });
+    }
+
+    private void callbackError(final HttpCallback httpCallback, final Response response,final Exception e){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                httpCallback.onError(response,response.code(),e);
+            }
+        });
+    }
+
+    private void callbackFailure(final HttpCallback httpCallback, final Request request,final IOException e){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                httpCallback.onFailure(request,e);
+            }
+        });
+    }
+
+    private void callbackBefore(final HttpCallback httpCallback, final Request request){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                httpCallback.onBefore(request);
             }
         });
     }
