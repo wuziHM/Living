@@ -173,7 +173,7 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
 
             @Override
             public void onSuccess(Response response, NewsChannelBean newsChannelBean) {
-                LogUtil.e("OkHttpHelper tobin onSuccess");
+                LogUtil.e("OkHttpHelper tobin onSuccess" + newsChannelBean.getShowapi_res_code() + "//" + newsChannelBean.toString());
             }
         });
     }
