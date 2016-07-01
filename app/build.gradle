@@ -125,10 +125,9 @@ dependencies {
     compile 'org.greenrobot:greendao:2.2.1'
     // GreenDao 生成dao和model的generator的项目 发布时可以去掉
     compile 'org.greenrobot:greendao-generator:2.2.0'
-    compile files('libs/ApiStoreSDK1.0.4.jar')
-    compile files('libs/locSDK_6.13.jar')
-    compile files('libs/pinyin4j-2.5.0.jar')
-    compile files('libs/baidumapapi_search_v3_7_3.jar')
+    // okhttp
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    //
     compile 'me.kaelaela:verticalviewpager:1.0.0@aar'
-    compile project(path: ':hellocharts-library')
+
 }
