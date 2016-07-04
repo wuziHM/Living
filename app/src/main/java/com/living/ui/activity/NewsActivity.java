@@ -6,11 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.baidu.apistore.sdk.ApiCallBack;
 import com.baidu.apistore.sdk.ApiStoreSDK;
-import com.baidu.apistore.sdk.network.Parameters;
 import com.living.R;
 import com.living.adapter.NewsClassifyAdapter;
 import com.living.bean.NewsChannelBean;
@@ -18,9 +15,7 @@ import com.living.config.Constant;
 import com.living.okhttp.HttpCallback;
 import com.living.okhttp.OkHttpHelper;
 import com.living.ui.fragment.NewsFragment;
-import com.living.util.JsonUtil;
 import com.living.util.LogUtil;
-import com.living.util.ProgressUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -125,40 +120,41 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
      */
     private void getChannelNews() {
 
-        ProgressUtil.loading(NewsActivity.this,true);
-        Parameters para = new Parameters();
-        para.put("apikey", ApiStoreSDK.getAppKey());
-        ApiStoreSDK.execute(Constant.URL_NEWS_CHANNEL, ApiStoreSDK.POST, para, new ApiCallBack() {
-            @Override
-            public void onSuccess(int status, String responseString) {
-                LogUtil.e("tobin : " + status + " //response: " + responseString);
-                newsChannelBean = JsonUtil.Json2T(responseString,NewsChannelBean.class);
-                if (newsChannelBean == null){
-                    getChannelNews();
-                }else{
-                    channelListBean = newsChannelBean.getShowapi_res_body().getChannelList();
-                    initTabView();
-                    ProgressUtil.loading(NewsActivity.this,false);
-                }
-            }
+//        ProgressUtil.loading(NewsActivity.this,true);
+//        Parameters para = new Parameters();
+//        para.put("apikey", ApiStoreSDK.getAppKey());
+//        ApiStoreSDK.execute(Constant.URL_NEWS_CHANNEL, ApiStoreSDK.POST, para, new ApiCallBack() {
+//            @Override
+//            public void onSuccess(int status, String responseString) {
+//                LogUtil.e("tobin : " + status + " //response: " + responseString);
+//                newsChannelBean = JsonUtil.Json2T(responseString,NewsChannelBean.class);
+//                if (newsChannelBean == null){
+//                    getChannelNews();
+//                }else{
+//                    channelListBean = newsChannelBean.getShowapi_res_body().getChannelList();
+//                    initTabView();
+//                    ProgressUtil.loading(NewsActivity.this,false);
+//                }
+//            }
+//
+//            @Override
+//            public void onComplete() {
+//                LogUtil.e("tobin getChannelNews" + "onComplete + 获取全部新闻分类结束");
+//            }
+//
+//            @Override
+//            public void onError(int status, String responseString, Exception e) {
+//                Toast.makeText(NewsActivity.this,"网络错误：" + (e == null ? "" : e.getMessage()) + responseString,Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-            @Override
-            public void onComplete() {
-                LogUtil.e("tobin getChannelNews" + "onComplete + 获取全部新闻分类结束");
-            }
-
-            @Override
-            public void onError(int status, String responseString, Exception e) {
-                Toast.makeText(NewsActivity.this,"网络错误：" + (e == null ? "" : e.getMessage()) + responseString,Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        Map<String , String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<>();
         params.put("apikey", ApiStoreSDK.getAppKey());
-        OkHttpHelper.getInstance().post(Constant.URL_NEWS_CHANNEL,params,new HttpCallback<NewsChannelBean>(){
+        OkHttpHelper.getInstance().post(Constant.URL_NEWS_CHANNEL, params, new HttpCallback<NewsChannelBean>() {
             @Override
             public void onBefore(Request request) {
                 LogUtil.e("OkHttpHelper tobin onBefore");
+                loading(true);
             }
 
             @Override
@@ -174,6 +170,15 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
             @Override
             public void onSuccess(Response response, NewsChannelBean newsChannelBean) {
                 LogUtil.e("OkHttpHelper tobin onSuccess");
+//                newsChannelBean = JsonUtil.Json2T(responseString,NewsChannelBean.class);
+                if (newsChannelBean == null) {
+                    getChannelNews();
+                } else {
+                    channelListBean = newsChannelBean.getShowapi_res_body().getChannelList();
+                    initTabView();
+                    loading(false);
+//                }
+                }
             }
         });
     }
