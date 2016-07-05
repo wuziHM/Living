@@ -39,22 +39,20 @@ public class OkHttpHelper {
     }
 
     public void get(String url,HttpCallback httpCallback){
-        Request request = buildRequest(url,null,HttpMethodType.GET);
+        Request request = buildRequest(url,null,null,HttpMethodType.GET);
         doRequest(request,httpCallback);
     }
-    public void post(String url, Map<String , String> params,HttpCallback httpCallback){
-        Request request = buildRequest(url,params,HttpMethodType.POST);
+    public void post(String url,Map<String , String> header, Map<String , String> params,HttpCallback httpCallback){
+        Request request = buildRequest(url,header,params,HttpMethodType.POST);
         doRequest(request,httpCallback);
     }
 
     public void doRequest(final Request request, final HttpCallback httpCallback){
-//        httpCallback.onBefore(request);
         callbackBefore(httpCallback,request);
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 callbackFailure(httpCallback,request,e);
-//                httpCallback.onFailure(request,e);
             }
 
             @Override
@@ -63,36 +61,37 @@ public class OkHttpHelper {
                 if (response.isSuccessful()){
                     String resultStr = response.body().string();
                     if (httpCallback.type == String.class){
-//                        httpCallback.onSuccess(response,resultStr);
                         callbackSuccess(httpCallback,response,resultStr);
                     }else{
                         try {
                             Object object = gson.fromJson(resultStr,httpCallback.type);
-//                            httpCallback.onSuccess(response,object);
                             callbackSuccess(httpCallback,response,object);
                         }catch (JsonIOException e){
                             callbackError(httpCallback,response,e);
-//                            httpCallback.onError(response,response.code(),e);
                         }
                     }
 
                 }else{
                     callbackError(httpCallback,response,null);
-//                    httpCallback.onError(response,response.code(),null);
                 }
             }
         });
 
     }
 
-    private Request buildRequest(String url,Map<String,String> params,HttpMethodType methodType){
+    private Request buildRequest(String url, Map<String,String> headerParams,Map<String,String> bodyParams, HttpMethodType methodType){
         Request.Builder builder = new Request.Builder();
         builder.url(url);
         if (methodType == HttpMethodType.GET){
             builder.get();
         }else if (methodType == HttpMethodType.POST){
-            RequestBody body = buildFormData(params);
+            RequestBody body = buildFormData(bodyParams);
             builder.post(body);
+            if(headerParams != null){
+                for (Map.Entry<String,String> entry: headerParams.entrySet()){
+                    builder.addHeader(entry.getKey(),entry.getValue());
+                }
+            }
         }
         return builder.build();
     }
