@@ -117,6 +117,7 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
         //设置TabLayout模式可以用默认是不可滑动的，大于5个时设置为可滑动
         if (mTitleList.size() > 5) {
             mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
         }
     }
 
@@ -155,7 +156,7 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
 
         Map<String , String> params = new HashMap<>();
         params.put("apikey", ApiStoreSDK.getAppKey());
-        OkHttpHelper.getInstance().post(Constant.URL_NEWS_CHANNEL,params,new HttpCallback<NewsChannelBean>(){
+        OkHttpHelper.getInstance().post(Constant.URL_NEWS_CHANNEL,params,null,new HttpCallback<NewsChannelBean>(){
             @Override
             public void onBefore(Request request) {
                 LogUtil.e("OkHttpHelper tobin onBefore");
@@ -169,11 +170,15 @@ public class NewsActivity extends BaseAppCompatActivity implements View.OnClickL
             @Override
             public void onFailure(Request request, IOException e) {
                 LogUtil.e("OkHttpHelper tobin onFailure");
+                Toast.makeText(NewsActivity.this,"网络错误：" + (e == null ? "" : e.getMessage()),Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(Response response, NewsChannelBean newsChannelBean) {
                 LogUtil.e("OkHttpHelper tobin onSuccess" + newsChannelBean.getShowapi_res_code() + "//" + newsChannelBean.toString());
+                if(newsChannelBean != null){
+                    LogUtil.e("OkHttpHelper tobin onSuccess" + newsChannelBean.getShowapi_res_body().getChannelList().get(0).getName());
+                }
             }
         });
     }
