@@ -5,4 +5,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_count">数量</string>
+    <string name="label_duration">时间间隔</string>
+    <string name="image_description_android_phone">android phone Image</string>
 </resources>

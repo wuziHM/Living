@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.living.MainActivity;
 import com.living.R;
+import com.living.ui.activity.GitWidgetActivity;
 import com.living.ui.activity.MapActivity;
 import com.living.ui.activity.NewsActivity;
 import com.living.ui.activity.WeatherActivity;
@@ -33,6 +34,7 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
         findViewById(R.id.ll_weather).setOnClickListener(this);
         findViewById(R.id.ll_robot).setOnClickListener(this);
         findViewById(R.id.ll_xxxx).setOnClickListener(this);
+        findViewById(R.id.ly_git).setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +62,10 @@ public class Tab1Fragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.ll_xxxx:
                 startActivity(new Intent(getActivity(), MapActivity.class));
+                break;
+
+            case R.id.ly_git:
+                startActivity(new Intent(getActivity(), GitWidgetActivity.class));
                 break;
             default:
                 break;

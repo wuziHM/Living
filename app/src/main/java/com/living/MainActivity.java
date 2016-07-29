@@ -30,7 +30,6 @@ import com.living.listener.LivingLoListener;
 import com.living.ui.fragment.Tab1Fragment;
 import com.living.ui.fragment.Tab2Fragment;
 import com.living.ui.fragment.Tab3Fragment;
-import com.living.util.LogUtil;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -193,12 +192,6 @@ public class MainActivity extends AppCompatActivity implements LocationCallBack,
         ReverseGeoCodeResult.AddressComponent detailLocal = reverseGeoCodeResult.getAddressDetail();
         this.city = detailLocal.city.substring(0, detailLocal.city.length() - 1);
         this.district = detailLocal.district;
-        LogUtil.e("经度:" + reverseGeoCodeResult.getLocation().longitude);
-        LogUtil.e("纬度:" + reverseGeoCodeResult.getLocation().latitude);
-        LogUtil.e(detailLocal.province);
-        LogUtil.e(detailLocal.city);
-        LogUtil.e(detailLocal.district);
-        LogUtil.e(detailLocal.street);
     }
 
     public String getCity() {

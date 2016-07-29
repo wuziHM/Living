@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.living">
 
-    <uses-sdk tools:overrideLibrary="me.kaelaela.verticalviewpager,"></uses-sdk>
+    <uses-sdk tools:overrideLibrary="me.kaelaela.verticalviewpager," />
 
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 开启摄像头 -->
@@ -98,9 +98,11 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
-        <activity android:name=".ui.activity.MapActivity"></activity>
+        <activity android:name=".ui.activity.MapActivity" />
+        <activity android:name=".ui.activity.XiuActivity" />
+        <activity android:name=".ui.activity.GitWidgetActivity"></activity>
     </application>
 
 </manifest>
