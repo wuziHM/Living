@@ -102,7 +102,9 @@
 
         <activity android:name=".ui.activity.MapActivity" />
         <activity android:name=".ui.activity.XiuActivity" />
-        <activity android:name=".ui.activity.GitWidgetActivity"></activity>
+        <activity android:name=".ui.activity.GitWidgetActivity" />
+        <activity android:name=".ui.activity.ToolbarHideActivity" />
+        <activity android:name=".ui.activity.CollapsingActivity"></activity>
     </application>
 
 </manifest>
