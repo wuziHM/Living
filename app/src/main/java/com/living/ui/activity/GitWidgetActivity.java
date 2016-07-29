@@ -9,7 +9,6 @@ import android.view.View;
 import com.living.R;
 import com.living.adapter.DividerItemDecoration;
 import com.living.adapter.GitWidgetAdapter;
-import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.ArrayList;
@@ -24,7 +23,6 @@ public class GitWidgetActivity extends BaseAppCompatActivity {
     private List list;
     private List<Class> clazz;
     private GitWidgetAdapter adapter;
-    private CommonAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
