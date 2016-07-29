@@ -42,8 +42,6 @@ public class ForecastFragment extends BaseFragment {
         }
     }
 
-    public ForecastFragment() {
-    }
 
     public static Fragment newInstance(String title, int position) {
         Bundle args = new Bundle();
