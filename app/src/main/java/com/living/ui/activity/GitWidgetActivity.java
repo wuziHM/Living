@@ -52,7 +52,11 @@ public class GitWidgetActivity extends BaseAppCompatActivity {
     private void addData() {
         list = new ArrayList();
         list.add("咻一咻");
+        list.add("Collapsing");
+        list.add("隐藏toolbar");
         clazz = new ArrayList();
         clazz.add(XiuActivity.class);
+        clazz.add(CollapsingActivity.class);
+        clazz.add(ToolbarHideActivity.class);
     }
 }
